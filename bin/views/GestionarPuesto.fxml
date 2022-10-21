@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.GestionarPuestoController">
+   <center>
+      <AnchorPane prefHeight="720.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+         <children>
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="24.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="1201.0">
+               <fill>
+                  <LinearGradient endX="0.7677725118483412" startX="0.3933649289099526" startY="0.981042654028436">
+                     <stops>
+                        <Stop>
+                           <color>
+                              <Color red="0.5925925970077515" green="0.6129629611968994" blue="1.0" />
+                           </color>
+                        </Stop>
+                        <Stop offset="1.0">
+                           <color>
+                              <Color red="1.0" green="1.0" blue="1.0" />
+                           </color>
+                        </Stop>
+                     </stops>
+                  </LinearGradient>
+               </fill>
+            </Rectangle>
+            <Button fx:id="salirButton" layoutX="1140.0" layoutY="681.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="128.0" text="Salir" />
+            <Button fx:id="nuevoButton" layoutX="75.0" layoutY="190.0" mnemonicParsing="false" onAction="#nuevoButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Nuevo" />
+            <TextField fx:id="codigoTextField" layoutX="75.0" layoutY="127.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <Label layoutX="75.0" layoutY="93.0" text="Código:" />
+            <TextField fx:id="puestoTextField" layoutX="521.0" layoutY="130.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <Label layoutX="521.0" layoutY="90.0" text="Nombre de Puesto:" />
+            <Button fx:id="limpiarButton" layoutX="1051.0" layoutY="200.0" mnemonicParsing="false" onAction="#limpiarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Limpiar" />
+            <TextField fx:id="empresaTextField" layoutX="937.0" layoutY="127.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
+            <Label layoutX="937.0" layoutY="87.0" text="Empresa:" />
+            <Button fx:id="buscarButton" layoutX="889.0" layoutY="200.0" mnemonicParsing="false" onAction="#buscarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Buscar" />
+            <TableView fx:id="tableView" layoutX="75.0" layoutY="310.0" prefHeight="288.0" prefWidth="779.0">
+              <columns>
+                <TableColumn fx:id="codigoColumn" prefWidth="186.0" text="Código" />
+                <TableColumn fx:id="puestoColumn" prefWidth="250.0" text="Nombre de puesto" />
+                  <TableColumn fx:id="empresaColumn" prefWidth="342.0" text="Empresa" />
+              </columns>
+            </TableView>
+            <Button fx:id="editarButton" layoutX="926.0" layoutY="310.0" mnemonicParsing="false" onAction="#editarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Editar" />
+            <Button fx:id="eliminarButton" layoutX="926.0" layoutY="393.0" mnemonicParsing="false" onAction="#eliminarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Eliminar" />
+         </children>
+      </AnchorPane>
+   </center>
+</BorderPane>

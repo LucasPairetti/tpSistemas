@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class IngresoController {
@@ -20,12 +21,14 @@ public class IngresoController {
 
     @FXML
     private Button salirButton;
-
+    @FXML
+    private AnchorPane scenePane;
     @FXML
     void ingresoConsultorClicked(ActionEvent event) throws IOException {
 Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioConsultor.fxml")));
     	
     	Stage window = (Stage)ingresoConsultorButton.getScene().getWindow();
+    	window.setTitle("Validar usuario consultor");
     	window.setScene(new Scene(root));
     }
 
@@ -36,7 +39,9 @@ Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioCons
 
     @FXML
     void salirClicked(ActionEvent event) {
-
+    	Stage stage = (Stage) scenePane.getScene().getWindow();
+    	stage.close();
+    	
     }
 
 }

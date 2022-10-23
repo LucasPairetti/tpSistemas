@@ -1,10 +1,14 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import entidades.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,13 +17,13 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class GestionarPuestoController {
+public class GestionarPuestoController implements Initializable {
 
     @FXML
     private Button buscarButton;
 
     @FXML
-    private TableColumn<?, ?> codigoColumn;
+    private TableColumn<Puesto, Integer> codigoColumn;
 
     @FXML
     private TextField codigoTextField;
@@ -31,7 +35,7 @@ public class GestionarPuestoController {
     private Button eliminarButton;
 
     @FXML
-    private TableColumn<?, ?> empresaColumn;
+    private TableColumn<Puesto, String> empresaColumn;
 
     @FXML
     private TextField empresaTextField;
@@ -43,7 +47,7 @@ public class GestionarPuestoController {
     private Button nuevoButton;
 
     @FXML
-    private TableColumn<?, ?> puestoColumn;
+    private TableColumn<Puesto, String> puestoColumn;
 
     @FXML
     private TextField puestoTextField;
@@ -52,7 +56,13 @@ public class GestionarPuestoController {
     private Button salirButton;
 
     @FXML
-    private TableView<?> tableView;
+    private TableView<Puesto> tableView;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
     @FXML
     void buscarButtonClicked(ActionEvent event) {
@@ -103,5 +113,7 @@ public class GestionarPuestoController {
     	
     	
     }
+
+	
 
 }

@@ -1,10 +1,14 @@
 package controllers;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
+import entidades.*;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,7 +18,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class AltaPuestoController {
+public class AltaPuestoController implements Initializable {
 
     @FXML
     private Button AceptarButton;
@@ -29,7 +33,7 @@ public class AltaPuestoController {
     private TextField codigoTextField;
 
     @FXML
-    private TableColumn<?, ?> competenciaColumn;
+    private TableColumn<Competencia, String> competenciaColumn;
 
     @FXML
     private TextArea descripcionTextArea;
@@ -41,13 +45,19 @@ public class AltaPuestoController {
     private TextField empresaTextField;
 
     @FXML
-    private TableColumn<?, ?> ponderacionColumn;
+    private TableColumn<ItemCompetencia, Integer> ponderacionColumn;
 
     @FXML
     private TextField puestoTextField;
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		
+	}
 
     @FXML
-    private TableView<?> tableView;
+    private TableView<ItemCompetencia> tableView;
 
     @FXML
     void AceptarButtonClicked(ActionEvent event) {
@@ -78,5 +88,7 @@ public class AltaPuestoController {
     void eliminarButtonClicked(ActionEvent event) {
 
     }
+
+	
 
 }

@@ -30,18 +30,21 @@ public class PuestoDaoImp implements PuestoDao{
 
 	@Override
 	public ArrayList<Puesto> getAllPuestos() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Puesto getPuestoById(int idPuesto) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public Puesto getPuestoByNombre(int nombre) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

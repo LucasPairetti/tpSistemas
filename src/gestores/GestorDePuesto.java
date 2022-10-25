@@ -1,5 +1,6 @@
 package gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.*;
@@ -46,21 +47,21 @@ public class GestorDePuesto implements PuestoDao{
 		
 	}
 	@Override
-	public void getAllPuestos() {
+	public ArrayList<Puesto> getAllPuestos() {
 		// TODO Auto-generated method stub
-		dao.getAllPuestos();
+		return dao.getAllPuestos();
 		
 	}
 	@Override
-	public void getPuestoById(int idPuesto) {
+	public Puesto getPuestoById(int idPuesto) {
 		// TODO Auto-generated method stub
-		dao.getPuestoById(idPuesto);
+		return dao.getPuestoById(idPuesto);
 		
 	}
 	@Override
-	public void getPuestoByNombre(int nombre) {
+	public Puesto getPuestoByNombre(int nombre) {
 		// TODO Auto-generated method stub
-		dao.getPuestoByNombre(nombre);
+		return dao.getPuestoByNombre(nombre);
 	}
 	
 	

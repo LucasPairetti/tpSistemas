@@ -1,5 +1,6 @@
 package DAOS;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import entidades.ItemCompetencia;
@@ -28,19 +29,19 @@ public class PuestoDaoImp implements PuestoDao{
 	}
 
 	@Override
-	public void getAllPuestos() {
+	public ArrayList<Puesto> getAllPuestos() {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getPuestoById(int idPuesto) {
+	public Puesto getPuestoById(int idPuesto) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getPuestoByNombre(int nombre) {
+	public Puesto getPuestoByNombre(int nombre) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -8,6 +8,7 @@ public class Puesto  {
 	private int codigo;
 	private String nombrePuesto;
 	private String empresa;
+	private String descripcion;
 	private List<ItemCompetencia> competencias;
 	
 	
@@ -15,12 +16,13 @@ public class Puesto  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Puesto(int idPuesto, int codigo, String nombrePuesto, String empresa, List<ItemCompetencia> competencias) {
+	public Puesto(int idPuesto, int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias) {
 		super();
 		this.idPuesto = idPuesto;
 		this.codigo = codigo;
 		this.nombrePuesto = nombrePuesto;
 		this.empresa = empresa;
+		this.descripcion=descripcion;
 		this.competencias = competencias;
 	}
 	public int getIdPuesto() {
@@ -56,6 +58,13 @@ public class Puesto  {
 	@Override
 	public int hashCode() {
 		return Objects.hash(codigo, competencias, empresa, idPuesto, nombrePuesto);
+		
+	}
+	public String getDescripcion() {
+		return descripcion;
+	}
+	public void setDescripcion(String descripcion) {
+		this.descripcion = descripcion;
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -70,6 +79,7 @@ public class Puesto  {
 				&& Objects.equals(empresa, other.empresa) && idPuesto == other.idPuesto
 				&& Objects.equals(nombrePuesto, other.nombrePuesto);
 	}
+
 	
 	
 	

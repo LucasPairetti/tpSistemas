@@ -30,7 +30,7 @@ public class GestorDePuesto implements PuestoDao{
 	@Override
 	public void createPuesto(int id, int codigo, String nombre, String empresa, String descripcion,
 			List<ItemCompetencia> competencias) {
-		// TODO Auto-generated method stub
+		
 		dao.createPuesto(id, codigo, nombre, empresa, descripcion, competencias);
 		
 	}
@@ -62,6 +62,11 @@ public class GestorDePuesto implements PuestoDao{
 	public Puesto getPuestoByNombre(int nombre) {
 		// TODO Auto-generated method stub
 		return dao.getPuestoByNombre(nombre);
+	}
+	public void crearPuesto(int i, int parseInt, String text, String text2, String text3, Object object) {
+		// TODO Auto-generated method stub
+		Puesto puestoNuevo = new Puesto(i, parseInt, text, text2, text3, null);
+		System.out.println("Idpuesto:"+i+"codigo:"+ puestoNuevo.getCodigo()+"nombre:"+puestoNuevo.getNombrePuesto()+"empresa:"+puestoNuevo.getEmpresa()+"descripcion:"+puestoNuevo.getDescripcion());			
 	}
 	
 	

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import entidades.*;
+import gestores.GestorDePuesto;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class AltaPuestoController implements Initializable {
+	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
 
     @FXML
     private Button AceptarButton;
@@ -61,6 +63,11 @@ public class AltaPuestoController implements Initializable {
 
     @FXML
     void AceptarButtonClicked(ActionEvent event) {
+    	
+    	if(!(codigoTextField.getText()== null || puestoTextField.getText() == null || descripcionTextArea.getText() ==null) )
+    	
+    	gestorPuesto.crearPuesto(0, Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), null);
+    	//falta competencias y trabajar el int
 
     }
 

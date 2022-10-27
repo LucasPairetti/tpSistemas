@@ -2,23 +2,32 @@ package entidades;
 
 import java.util.List;
 import java.util.Objects;
+import jakarta.persistence.*;
 
+@Entity
 public class Puesto  {
-	private int idPuesto;
-	private int codigo;
-	private String nombrePuesto;
-	private String empresa;
-	private String descripcion;
-	private List<ItemCompetencia> competencias;
-	
+		@Id
+		@GeneratedValue(strategy= GenerationType.IDENTITY)
+		private int idPuesto;
+		@Column(nullable = false, unique = true)
+		private int codigo;
+		@Column(nullable = false, unique = true)
+		private String nombrePuesto;
+		@Column(nullable = false)
+		private String empresa;
+		@Column(nullable = false)
+		private String descripcion;
+		@OneToMany(cascade = CascadeType.ALL)
+		private List<ItemCompetencia> competencias;
+		@Column(nullable = true)
+		private int idAuditoria = -1;
 	
 	public Puesto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Puesto(int idPuesto, int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias) {
+	public Puesto(int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias) {
 		super();
-		this.idPuesto = idPuesto;
 		this.codigo = codigo;
 		this.nombrePuesto = nombrePuesto;
 		this.empresa = empresa;
@@ -78,6 +87,10 @@ public class Puesto  {
 		return codigo == other.codigo && Objects.equals(competencias, other.competencias)
 				&& Objects.equals(empresa, other.empresa) && idPuesto == other.idPuesto
 				&& Objects.equals(nombrePuesto, other.nombrePuesto);
+	}
+	public void addItemCompetencia(ItemCompetencia itemCompetencia) {
+		// TODO Auto-generated method stub
+		this.competencias.add(itemCompetencia);
 	}
 
 	

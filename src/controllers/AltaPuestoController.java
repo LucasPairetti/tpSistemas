@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 import entidades.*;
 import gestores.GestorDeCompetencias;
 import gestores.GestorDePuesto;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -78,26 +79,38 @@ public class AltaPuestoController implements Initializable {
     ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();  
     ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
     @Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		//buscar todas las competencias y agregarlas a listaCompetencias
-    	listaCompetencias = (ObservableList<Competencia>) gestorCompetencias.getAllCompetencia();
-    	//formatear tablas
-    	ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();  
+    public void initialize(URL arg0, ResourceBundle arg1) {
+        // TODO Auto-generated method stub
+        //buscar todas las competencias y agregarlas a listaCompetencias
+        listaCompetencias = (ObservableList<Competencia>) gestorCompetencias.getAllCompetencia();
+        //formatear tablas
+        ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
         ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
-        
-        
-    	competenciaColumn.setCellValueFactory(new PropertyValueFactory<>("competencia"));
-    	competenciaItemColumn.setCellValueFactory(new PropertyValueFactory<>("nombreCompetencia"));
-    	ponderacionColumn.setCellValueFactory(new PropertyValueFactory<>("ponderacion"));
-    	
-    	Competencia pruebaCompetencia = new Competencia( 1, 1234,"Lealtad", "prueba de lealtad");
-    	listaCompetencias.add(pruebaCompetencia);
-    	
-    	//mostrarlas
-    	competenciasTableView.setItems(listaCompetencias);
-    	
-	}
+
+
+        competenciaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreCompetencia"));
+
+
+
+        competenciaItemColumn.setCellValueFactory(data ->{
+            ItemCompetencia itemcompetencia = data.getValue();
+            Competencia competencia = itemcompetencia.getCompetencia();
+            String nombreCompetencia = competencia.getNombreCompetencia();
+            return new ReadOnlyStringWrapper(nombreCompetencia);
+
+        });
+
+
+
+        ponderacionColumn.setCellValueFactory(new PropertyValueFactory<>("ponderacion"));
+
+        Competencia pruebaCompetencia = new Competencia(1234,"Lealtad", "prueba de lealtad");
+        listaCompetencias.add(pruebaCompetencia);
+
+        //mostrarlas
+        competenciasTableView.setItems(listaCompetencias);
+
+    }
 
    
 
@@ -106,7 +119,7 @@ public class AltaPuestoController implements Initializable {
     	
     	if(!(codigoTextField.getText()== null || puestoTextField.getText() == null || descripcionTextArea.getText() ==null) )
     	//este crear puesto es un fake de prueba
-    	gestorPuesto.crearPuesto(0, Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
+    	gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
     	
 
     }
@@ -114,7 +127,7 @@ public class AltaPuestoController implements Initializable {
     @FXML
     void agregarItemButtonClicked(ActionEvent event) {
     	Competencia competenciaElegida = competenciasTableView.getSelectionModel().getSelectedItem();
-    	ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
+    	ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (null, competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
     	listadoDeCompetencias.add(nuevoItemCompetencia);
     	listaItemCompetencia.add(nuevoItemCompetencia);
     	itemCompetenciatableView.setItems(listaItemCompetencia);

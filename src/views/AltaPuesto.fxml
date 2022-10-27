@@ -47,7 +47,7 @@
             <TableView fx:id="itemCompetenciatableView" layoutX="827.0" layoutY="65.0" prefHeight="589.0" prefWidth="333.0">
               <columns>
                 <TableColumn fx:id="competenciaItemColumn" prefWidth="203.0" text="Nombre de competencia" />
-                <TableColumn fx:id="ponderacionColumn" prefWidth="129.0" text="ponderación" />
+                <TableColumn fx:id="ponderacionColumn" prefWidth="129.0" text="Ponderación" />
               </columns>
             </TableView>
             <Label layoutX="72.0" layoutY="378.0" text="Descripción del puesto:" />

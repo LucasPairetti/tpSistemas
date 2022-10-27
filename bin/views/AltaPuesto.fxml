@@ -12,13 +12,13 @@
 <?import javafx.scene.paint.LinearGradient?>
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.shape.Rectangle?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AltaPuestoController">
-   <center>
+   <bottom>
       <AnchorPane prefHeight="720.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Rectangle arcHeight="5.0" arcWidth="5.0" height="589.0" layoutX="24.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="455.0">
+            <Rectangle arcHeight="5.0" arcWidth="5.0" height="589.0" layoutX="24.0" layoutY="64.0" stroke="BLACK" strokeType="INSIDE" width="355.0">
                <fill>
                   <LinearGradient endX="0.6587677725118484" endY="1.0" startX="0.37914691943127965" startY="0.6492890995260663">
                      <stops>
@@ -44,29 +44,27 @@
             <TextField fx:id="empresaTextField" layoutX="75.0" layoutY="326.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
             <Label layoutX="75.0" layoutY="286.0" text="Empresa:" />
             <Button fx:id="AceptarButton" layoutX="24.0" layoutY="661.0" mnemonicParsing="false" onAction="#AceptarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Aceptar" />
-            <TableView fx:id="tableView" layoutX="532.0" layoutY="118.0" prefHeight="538.0" prefWidth="469.0">
+            <TableView fx:id="itemCompetenciatableView" layoutX="827.0" layoutY="65.0" prefHeight="589.0" prefWidth="333.0">
               <columns>
-                <TableColumn fx:id="competenciaColumn" prefWidth="344.0" text="Nombre de competencia" />
-                <TableColumn fx:id="ponderacionColumn" prefWidth="124.0" text="ponderación" />
+                <TableColumn fx:id="competenciaItemColumn" prefWidth="203.0" text="Nombre de competencia" />
+                <TableColumn fx:id="ponderacionColumn" prefWidth="129.0" text="ponderación" />
               </columns>
             </TableView>
             <Label layoutX="72.0" layoutY="378.0" text="Descripción del puesto:" />
             <TextArea fx:id="descripcionTextArea" layoutX="72.0" layoutY="395.0" prefHeight="236.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <AnchorPane layoutX="532.0" layoutY="65.0" prefHeight="53.0" prefWidth="469.0" style="-fx-background-color: gray;">
-               <children>
-                  <Button fx:id="eliminarButton" layoutX="353.0" layoutY="12.0" mnemonicParsing="false" onAction="#eliminarButtonClicked" prefHeight="30.0" prefWidth="102.0" text="Eliminar" />
-                  <Button fx:id="agregarButton" layoutX="235.0" layoutY="12.0" mnemonicParsing="false" onAction="#agregarButtonClicked" prefHeight="30.0" prefWidth="102.0" text="Agregar" />
-                  <Label layoutX="23.0" layoutY="18.0" text="Caracteristicas del puesto" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </AnchorPane>
             <Label layoutX="309.0" layoutY="200.0" text="(*)" />
             <Label layoutX="309.0" layoutY="102.0" text="(*)" />
             <Label layoutX="309.0" layoutY="303.0" text="(*)" />
+            <TableView fx:id="competenciasTableView" layoutX="401.0" layoutY="61.0" prefHeight="589.0" prefWidth="200.0">
+              <columns>
+                <TableColumn fx:id="competenciaColumn" prefWidth="199.0" text="Competencias" />
+              </columns>
+            </TableView>
+            <TextField fx:id="ponderacionTextField" layoutX="640.0" layoutY="344.0" />
+            <Text layoutX="681.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ponderacion" />
+            <Button fx:id="agregarItemButton" layoutX="667.0" layoutY="376.0" mnemonicParsing="false" onAction="#agregarItemButtonClicked" prefHeight="25.0" prefWidth="95.0" text="Agregar" />
+            <Button fx:id="eliminarItemButton" layoutX="1028.0" layoutY="32.0" mnemonicParsing="false" onAction="#eliminarItemButtonClicked" text="Eliminar Competencia" />
          </children>
       </AnchorPane>
-   </center>
+   </bottom>
 </BorderPane>

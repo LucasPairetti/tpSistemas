@@ -1,5 +1,7 @@
 package DAOS;
 
+import java.util.List;
+
 import entidades.Competencia;
 import interfaces.CompetenciasDao;
 
@@ -24,19 +26,22 @@ public class CompetenciasDaoImp implements CompetenciasDao{
 	}
 
 	@Override
-	public void getAllCompetencia() {
+	public List<Competencia> getAllCompetencia() {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getCompetenciaById(int idCompetencia) {
+	public Competencia getCompetenciaById(int idCompetencia) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void getCompetenciaByNombre(int nombre) {
+	public Competencia getCompetenciaByNombre(int nombre) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}

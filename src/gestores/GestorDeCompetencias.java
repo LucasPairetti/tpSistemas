@@ -1,5 +1,7 @@
 package gestores;
 
+import java.util.List;
+
 import DAOS.*;
 import entidades.Competencia;
 import interfaces.*;
@@ -40,19 +42,20 @@ public class GestorDeCompetencias implements CompetenciasDao {
 		dao.deleteCompetencia(competencia);
 	}
 	@Override
-	public void getAllCompetencia() {
+	public List<Competencia> getAllCompetencia() {
 		// TODO Auto-generated method stub
-		dao.getAllCompetencia();
+		return dao.getAllCompetencia();
+		
 	}
 	@Override
-	public void getCompetenciaById(int idCompetencia) {
+	public Competencia getCompetenciaById(int idCompetencia) {
 		// TODO Auto-generated method stub
-		dao.getCompetenciaById(idCompetencia);
+		return dao.getCompetenciaById(idCompetencia);
 	}
 	@Override
-	public void getCompetenciaByNombre(int nombre) {
+	public Competencia getCompetenciaByNombre(int nombre) {
 		// TODO Auto-generated method stub
-		dao.getCompetenciaByNombre(nombre);
+		return dao.getCompetenciaByNombre(nombre);
 	}
 	
 	

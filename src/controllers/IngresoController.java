@@ -1,7 +1,6 @@
 package controllers;
 
 import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,6 +26,8 @@ Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioCons
     	
     	Stage window = (Stage)ingresoConsultorButton.getScene().getWindow();
     	window.setScene(new Scene(root));
+    	
+    	
     }
 
     @FXML

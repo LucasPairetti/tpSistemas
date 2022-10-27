@@ -2,22 +2,30 @@ package entidades;
 
 import java.util.List;
 import java.util.Objects;
+import jakarta.persistence.*;
 
+@Entity
 public class Puesto  {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idPuesto;
+	@Column(nullable = false, unique = true)
 	private int codigo;
+	@Column(nullable = false, unique = true)
 	private String nombrePuesto;
+	@Column(nullable = false)
 	private String empresa;
+	@OneToMany(cascade = CascadeType.ALL)
 	private List<ItemCompetencia> competencias;
-	
+	@Column(nullable = true)
+	private int idAuditoria;
 	
 	public Puesto() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Puesto(int idPuesto, int codigo, String nombrePuesto, String empresa, List<ItemCompetencia> competencias) {
+	public Puesto(int codigo, String nombrePuesto, String empresa, List<ItemCompetencia> competencias) {
 		super();
-		this.idPuesto = idPuesto;
 		this.codigo = codigo;
 		this.nombrePuesto = nombrePuesto;
 		this.empresa = empresa;
@@ -57,6 +65,11 @@ public class Puesto  {
 	public int hashCode() {
 		return Objects.hash(codigo, competencias, empresa, idPuesto, nombrePuesto);
 	}
+	
+	public void addItemCompetencia(ItemCompetencia item) {
+		this.competencias.add(item);
+	}
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

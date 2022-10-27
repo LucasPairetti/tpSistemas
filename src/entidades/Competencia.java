@@ -1,9 +1,17 @@
 package entidades;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Competencia {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idCompetencia;
+	@Column(nullable = false, unique=true)
 	private int codigo;
+	@Column(unique=true, nullable = false)
 	private String nombreCompetencia;
+	@Column(nullable = false)
 	private String descripcion;
 	
 	
@@ -15,9 +23,8 @@ public class Competencia {
 
 
 
-	public Competencia(int idCompetencia, int codigo, String nombreCompetencia, String descripcion) {
+	public Competencia(int codigo, String nombreCompetencia, String descripcion) {
 		super();
-		this.idCompetencia = idCompetencia;
 		this.codigo = codigo;
 		this.nombreCompetencia = nombreCompetencia;
 		this.descripcion = descripcion;

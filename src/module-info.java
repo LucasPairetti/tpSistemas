@@ -5,11 +5,13 @@ module TPsistemas {
     requires javafx.graphics;
     requires javafx.base;
     requires java.desktop;
+    requires org.hibernate.orm.core;
+    requires hibernate.jpa;
+    requires jakarta.persistence;
+    requires org.hibernate.commons.annotations;
 	
-	
-	
-	
-	opens application to javafx.graphics, javafx.fxml, javafx.base;
-	opens entidades to javafx.base;
+	opens application to javafx.graphics, javafx.fxml, javafx.base, org.hibernate.core, hibernate.jpa, jboss.annotations, jboss.jms.api,
+	jboss.logging, jboss.transaction.api;
+	opens entidades to javafx.base, org.hibernate.orm.core;
 	opens controllers to javafx.fxml;
 }

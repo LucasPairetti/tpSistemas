@@ -7,6 +7,7 @@ import java.util.List;
 import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
+import gestores.GestorDeCompetencias;
 import gestores.GestorDePuesto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -35,12 +36,13 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		launch(args);
-		/*Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
+		//launch(args);
+		Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
+		GestorDeCompetencias.getInstance().createCompetencia(comp);
 		List<ItemCompetencia> competencias = new ArrayList<ItemCompetencia>();
 		Puesto puesto = new Puesto(123, "gerente", "McDonalds", "Se necesita para el 3/10", competencias);
-		puesto.addItemCompetencia(new ItemCompetencia(puesto, comp, 10));
+		puesto.addItemCompetencia(new ItemCompetencia(comp, 10));
 		GestorDePuesto.getInstance();
-		GestorDePuesto.getDao().createPuesto(puesto);*/
+		GestorDePuesto.getDao().createPuesto(puesto);
 	}
 }

@@ -120,9 +120,6 @@ public class AltaPuestoController implements Initializable {
 
             if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())==null && gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))==null) {
                Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
-               for(int i=0; i< listadoDeCompetencias.size(); i++) {
-                   listadoDeCompetencias.get(i).setPuesto(puesto);
-               }
                gestorPuesto.createPuesto(puesto);}
             else System.out.println("Ya existe un puesto con ese codigo o con ese nombre.");
 
@@ -142,7 +139,7 @@ public class AltaPuestoController implements Initializable {
     @FXML
     void agregarItemButtonClicked(ActionEvent event) {
     	Competencia competenciaElegida = competenciasTableView.getSelectionModel().getSelectedItem();
-    	ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (null, competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
+    	ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
     	listadoDeCompetencias.add(nuevoItemCompetencia);
     	listaItemCompetencia.add(nuevoItemCompetencia);
     	itemCompetenciatableView.setItems(listaItemCompetencia);

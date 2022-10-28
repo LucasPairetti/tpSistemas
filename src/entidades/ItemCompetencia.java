@@ -1,7 +1,5 @@
 package entidades;
 
-import org.hibernate.annotations.Cascade;
-
 import jakarta.persistence.*;
 
 
@@ -10,31 +8,18 @@ public class ItemCompetencia {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idItemCompetencia;
-	@ManyToOne
-	private Puesto puesto;
 	@OneToOne
+	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , foreignKey=@ForeignKey(name="FK_Item_Comp", value=ConstraintMode.CONSTRAINT))
 	private Competencia competencia;
 	@Column(nullable = false)
 	private int ponderacion;
 	
 	
-	public ItemCompetencia(Puesto idPuesto, Competencia competencia, int ponderacion) {
+	public ItemCompetencia(Competencia competencia, int ponderacion) {
 		super();
-		this.puesto = idPuesto;
 		this.competencia = competencia;
 		this.ponderacion = ponderacion;
 	}
-
-
-	public Puesto getPuesto() {
-		return puesto;
-	}
-
-
-	public void setPuesto(Puesto puesto) {
-		this.puesto = puesto;
-	}
-
 
 	public Competencia getCompetencia() {
 		return competencia;

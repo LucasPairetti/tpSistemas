@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 public class Competencia {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idCompetencia")
 	private int idCompetencia;
 	@Column(nullable = false, unique=true)
 	private int codigo;

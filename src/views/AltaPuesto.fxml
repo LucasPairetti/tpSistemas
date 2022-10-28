@@ -36,34 +36,34 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Button fx:id="cancelarButton" layoutX="1106.0" layoutY="661.0" mnemonicParsing="false" onAction="#cancelarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Cancelar" />
             <TextField fx:id="codigoTextField" layoutX="75.0" layoutY="127.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
             <Label layoutX="75.0" layoutY="93.0" text="Código:" />
             <TextField fx:id="puestoTextField" layoutX="75.0" layoutY="223.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
             <Label layoutX="75.0" layoutY="183.0" text="Nombre de Puesto:" />
             <TextField fx:id="empresaTextField" layoutX="75.0" layoutY="326.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
             <Label layoutX="75.0" layoutY="286.0" text="Empresa:" />
-            <Button fx:id="AceptarButton" layoutX="24.0" layoutY="661.0" mnemonicParsing="false" onAction="#AceptarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Aceptar" />
-            <TableView fx:id="itemCompetenciatableView" layoutX="827.0" layoutY="65.0" prefHeight="589.0" prefWidth="333.0">
-              <columns>
-                <TableColumn fx:id="competenciaItemColumn" prefWidth="203.0" text="Nombre de competencia" />
-                <TableColumn fx:id="ponderacionColumn" prefWidth="129.0" text="Ponderación" />
-              </columns>
-            </TableView>
-            <Label layoutX="72.0" layoutY="378.0" text="Descripción del puesto:" />
             <TextArea fx:id="descripcionTextArea" layoutX="72.0" layoutY="395.0" prefHeight="236.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <Label layoutX="309.0" layoutY="200.0" text="(*)" />
-            <Label layoutX="309.0" layoutY="102.0" text="(*)" />
-            <Label layoutX="309.0" layoutY="303.0" text="(*)" />
             <TableView fx:id="competenciasTableView" layoutX="401.0" layoutY="61.0" prefHeight="589.0" prefWidth="200.0">
               <columns>
                 <TableColumn fx:id="competenciaColumn" prefWidth="199.0" text="Competencias" />
               </columns>
             </TableView>
             <TextField fx:id="ponderacionTextField" layoutX="640.0" layoutY="344.0" />
-            <Text layoutX="681.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ponderacion" />
             <Button fx:id="agregarItemButton" layoutX="667.0" layoutY="376.0" mnemonicParsing="false" onAction="#agregarItemButtonClicked" prefHeight="25.0" prefWidth="95.0" text="Agregar" />
+            <TableView fx:id="itemCompetenciatableView" layoutX="827.0" layoutY="65.0" prefHeight="589.0" prefWidth="333.0">
+              <columns>
+                <TableColumn fx:id="competenciaItemColumn" prefWidth="203.0" text="Nombre de competencia" />
+                <TableColumn fx:id="ponderacionColumn" prefWidth="129.0" text="ponderación" />
+              </columns>
+            </TableView>
             <Button fx:id="eliminarItemButton" layoutX="1028.0" layoutY="32.0" mnemonicParsing="false" onAction="#eliminarItemButtonClicked" text="Eliminar Competencia" />
+            <Label layoutX="72.0" layoutY="378.0" text="Descripción del puesto:" />
+            <Label layoutX="309.0" layoutY="200.0" text="(*)" />
+            <Label layoutX="309.0" layoutY="102.0" text="(*)" />
+            <Label layoutX="309.0" layoutY="303.0" text="(*)" />
+            <Text layoutX="681.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ponderacion" />
+            <Button fx:id="AceptarButton" layoutX="24.0" layoutY="661.0" mnemonicParsing="false" onAction="#AceptarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Aceptar" />
+            <Button fx:id="cancelarButton" layoutX="1130.0" layoutY="661.0" mnemonicParsing="false" onAction="#cancelarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Cancelar" />
          </children>
       </AnchorPane>
    </bottom>

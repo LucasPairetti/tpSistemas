@@ -9,20 +9,20 @@
    <center>
       <AnchorPane prefHeight="720.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="salirButton" layoutX="501.0" layoutY="644.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="278.0" text="Salir" />
-            <Label layoutX="546.0" layoutY="110.0" text="Funciones sobre competencias:" />
-            <Button fx:id="competenciasButton" layoutX="501.0" layoutY="172.0" mnemonicParsing="false" onAction="#competenciasButtonClicked" prefHeight="46.0" prefWidth="278.0" text="competencias" />
-            <Label layoutX="139.0" layoutY="110.0" text="Funciones sobre candidatos:" />
-            <Label layoutX="951.0" layoutY="110.0" text="Funciones sobre resultados:" />
-            <Button fx:id="factoresButton" layoutX="501.0" layoutY="247.0" mnemonicParsing="false" onAction="#factoresButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Factores" />
-            <Button fx:id="preguntasButton" layoutX="501.0" layoutY="333.0" mnemonicParsing="false" onAction="#preguntasButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Preguntas" />
-            <Button fx:id="puestosButton" layoutX="501.0" layoutY="428.0" mnemonicParsing="false" onAction="#puestosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Puestos" />
             <Button fx:id="gestionarCandidatosButton" layoutX="85.0" layoutY="177.0" mnemonicParsing="false" onAction="#gestionarCandidatosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="gestionar candidatos" />
             <Button fx:id="importarCandidatosButton" layoutX="85.0" layoutY="252.0" mnemonicParsing="false" onAction="#importarCandidatosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="importar candidatos" />
             <Button fx:id="evaluarCandidatosButton" layoutX="86.0" layoutY="338.0" mnemonicParsing="false" onAction="#evaluarCandidatosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="evaluar a candidatos" />
+            <Button fx:id="competenciasButton" layoutX="501.0" layoutY="172.0" mnemonicParsing="false" onAction="#competenciasButtonClicked" prefHeight="46.0" prefWidth="278.0" text="competencias" />
+            <Button fx:id="factoresButton" layoutX="501.0" layoutY="247.0" mnemonicParsing="false" onAction="#factoresButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Factores" />
+            <Button fx:id="preguntasButton" layoutX="501.0" layoutY="333.0" mnemonicParsing="false" onAction="#preguntasButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Preguntas" />
+            <Button fx:id="puestosButton" layoutX="501.0" layoutY="428.0" mnemonicParsing="false" onAction="#puestosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="Puestos" />
             <Button fx:id="exportarResultadosButton" layoutX="896.0" layoutY="175.0" mnemonicParsing="false" onAction="#exportarResultadosButtonClicked" prefHeight="46.0" prefWidth="278.0" text="exportar Resultados" />
             <Button fx:id="reporteComparativoButton" layoutX="896.0" layoutY="257.0" mnemonicParsing="false" onAction="#reporteComparativoButtonClicked" prefHeight="46.0" prefWidth="276.0" text="emitir reporte comparativo" />
             <Button fx:id="ordenMeritoButton" layoutX="896.0" layoutY="343.0" mnemonicParsing="false" onAction="#ordenMeritoButtonClicked" prefHeight="46.0" prefWidth="278.0" text="emitir orden de merito" />
+            <Label layoutX="546.0" layoutY="110.0" text="Funciones sobre competencias:" />
+            <Label layoutX="139.0" layoutY="110.0" text="Funciones sobre candidatos:" />
+            <Label layoutX="951.0" layoutY="110.0" text="Funciones sobre resultados:" />
+            <Button fx:id="salirButton" layoutX="502.0" layoutY="564.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="278.0" text="Salir" />
          </children>
       </AnchorPane>
    </center>

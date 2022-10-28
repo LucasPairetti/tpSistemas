@@ -34,16 +34,12 @@
                   </LinearGradient>
                </fill>
             </Rectangle>
-            <Button fx:id="salirButton" layoutX="1140.0" layoutY="681.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="128.0" text="Salir" />
-            <Button fx:id="nuevoButton" layoutX="75.0" layoutY="190.0" mnemonicParsing="false" onAction="#nuevoButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Nuevo" />
             <TextField fx:id="codigoTextField" layoutX="75.0" layoutY="127.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <Label layoutX="75.0" layoutY="93.0" text="Código:" />
             <TextField fx:id="puestoTextField" layoutX="521.0" layoutY="130.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <Label layoutX="521.0" layoutY="90.0" text="Nombre de Puesto:" />
-            <Button fx:id="limpiarButton" layoutX="1051.0" layoutY="200.0" mnemonicParsing="false" onAction="#limpiarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Limpiar" />
             <TextField fx:id="empresaTextField" layoutX="937.0" layoutY="127.0" prefHeight="34.0" prefWidth="250.0" style="-fx-border-color: black;" />
-            <Label layoutX="937.0" layoutY="87.0" text="Empresa:" />
+            <Button fx:id="nuevoButton" layoutX="75.0" layoutY="190.0" mnemonicParsing="false" onAction="#nuevoButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Nuevo" />
             <Button fx:id="buscarButton" layoutX="889.0" layoutY="200.0" mnemonicParsing="false" onAction="#buscarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Buscar" />
+            <Button fx:id="limpiarButton" layoutX="1051.0" layoutY="200.0" mnemonicParsing="false" onAction="#limpiarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Limpiar" />
             <TableView fx:id="tableView" layoutX="75.0" layoutY="310.0" prefHeight="288.0" prefWidth="779.0">
               <columns>
                 <TableColumn fx:id="codigoColumn" prefWidth="186.0" text="Código" />
@@ -53,6 +49,10 @@
             </TableView>
             <Button fx:id="editarButton" layoutX="926.0" layoutY="310.0" mnemonicParsing="false" onAction="#editarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Editar" />
             <Button fx:id="eliminarButton" layoutX="926.0" layoutY="393.0" mnemonicParsing="false" onAction="#eliminarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Eliminar" />
+            <Button fx:id="salirButton" layoutX="1140.0" layoutY="681.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="128.0" text="Salir" />
+            <Label layoutX="75.0" layoutY="93.0" text="Código:" />
+            <Label layoutX="521.0" layoutY="90.0" text="Nombre de Puesto:" />
+            <Label layoutX="937.0" layoutY="87.0" text="Empresa:" />
          </children>
       </AnchorPane>
    </center>

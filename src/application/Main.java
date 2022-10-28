@@ -1,7 +1,9 @@
 package application;
 	
+
 import java.util.ArrayList;
 import java.util.List;
+
 import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
@@ -32,6 +34,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
 		launch(args);
 		/*Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
 		List<ItemCompetencia> competencias = new ArrayList<ItemCompetencia>();
@@ -39,6 +42,5 @@ public class Main extends Application {
 		puesto.addItemCompetencia(new ItemCompetencia(puesto, comp, 10));
 		GestorDePuesto.getInstance();
 		GestorDePuesto.getDao().createPuesto(puesto);*/
-		
 	}
 }

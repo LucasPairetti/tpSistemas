@@ -27,13 +27,10 @@ public class GestorDePuesto implements PuestoDao{
 	}
 	
 	//metodos
-	public void createPuesto(int codigo, String nombre, String empresa, String descripcion,
+	public Puesto createPuesto(int codigo, String nombre, String empresa, String descripcion,
 			List<ItemCompetencia> competencias) {
-		
 		Puesto puesto = new Puesto(codigo, nombre, empresa, descripcion, competencias);
-		
-		dao.createPuesto(puesto);
-		
+		return puesto;
 	}
 	@Override
 	public void updatePuesto(Puesto puesto) {
@@ -48,7 +45,7 @@ public class GestorDePuesto implements PuestoDao{
 		
 	}
 	@Override
-	public ArrayList<Puesto> getAllPuestos() {
+	public List<Puesto> getAllPuestos() {
 		// TODO Auto-generated method stub
 		return dao.getAllPuestos();
 		
@@ -60,20 +57,23 @@ public class GestorDePuesto implements PuestoDao{
 		
 	}
 	@Override
-	public Puesto getPuestoByNombre(int nombre) {
+	public Puesto getPuestoByNombre(String nombre) {
 		// TODO Auto-generated method stub
 		return dao.getPuestoByNombre(nombre);
 	}
-	/*public void crearPuesto(int i, int parseInt, String text, String text2, String text3, Object object) {
-		// TODO Auto-generated method stub
-		Puesto puestoNuevo = new Puesto(i, parseInt, text, text2, text3, null);
-		System.out.println("Idpuesto:"+i+"codigo:"+ puestoNuevo.getCodigo()+"nombre:"+puestoNuevo.getNombrePuesto()+"empresa:"+puestoNuevo.getEmpresa()+"descripcion:"+puestoNuevo.getDescripcion());			
-	}*/
+	
 	@Override
 	public void createPuesto(Puesto puesto) {
 		// TODO Auto-generated method stub
 		dao.createPuesto(puesto);
 	}
+	
+	@Override
+	public Puesto getPuestoByCodigo(int codigo) {
+		// TODO Auto-generated method stub
+		return dao.getPuestoByCodigo(codigo);
+	}
+	
 	public static PuestoDaoImp getDao() {
 		// TODO Auto-generated method stub
 		return dao;

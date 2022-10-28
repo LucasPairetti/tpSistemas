@@ -3,12 +3,10 @@ package DAOS;
 import entidades.Puesto;
 import java.util.*;
 import interfaces.PuestoDao;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
 import org.hibernate.*;
-import org.hibernate.query.Query;
 
-/*import javax.persistence.*;
-import javax.persistence.TypedQuery;
-import jakarta.persistence.*;*/
 
 public class PuestoDaoImp implements PuestoDao{
 
@@ -16,13 +14,16 @@ public class PuestoDaoImp implements PuestoDao{
 	public void createPuesto(Puesto puesto) {
 		// TODO Auto-generated method stub
 		
+		try {
 		 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		 session.beginTransaction();
 		 session.persist(puesto);
 		 System.out.println("Inserted Successfully");
 		 session.getTransaction().commit();
 		 session.close();
-		 
+		}catch(PersistentObjectException e) {
+			e.getStackTrace();
+		}
 	}
 
 	@Override
@@ -53,13 +54,14 @@ public class PuestoDaoImp implements PuestoDao{
 	}
 
 	@Override
-	public ArrayList<Puesto> getAllPuestos() {
+	public List<Puesto> getAllPuestos() {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		Query<Puesto> query = session.createQuery("select * from puesto", Puesto.class);
-		ArrayList<Puesto> puestos = (ArrayList<Puesto>) query.getResultList();
+		List<Puesto> puestos = session
+				.createQuery("SELECT a FROM Puesto a", Puesto.class)
+				.getResultList();
 		
 		session.getTransaction().commit();
 		session.close();
@@ -71,34 +73,85 @@ public class PuestoDaoImp implements PuestoDao{
 	@Override
 	public Puesto getPuestoById(int idPuesto) {
 		// TODO Auto-generated method stub
+		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
+		try {
 		Puesto puesto = (Puesto) session.get(Puesto.class, idPuesto);
 		
 		session.getTransaction().commit();
 		session.close();
 		
 		return puesto;
+		
+		    } catch (final NoResultException nre) {
+		    	session.getTransaction().commit();
+				session.close();
+		        return null;
+		    }
+
 	}
 
 	@Override
-	public Puesto getPuestoByNombre(int nombre) {
+	public Puesto getPuestoByCodigo(int codigoBusqueda) {
 		// TODO Auto-generated method stub
 		
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		Query<Puesto> query = session.createQuery("select * from puesto where nombrePuesto =: nombre ", Puesto.class)
-	            .setParameter("nombre", nombre);
-		Puesto puesto = (Puesto) query.getSingleResult();
+		try {
+		
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+	    CriteriaQuery<Puesto> criteria = builder.createQuery(Puesto.class);
+	    Root<Puesto> from = criteria.from(Puesto.class);
+	    criteria.select(from);
+	    criteria.where(builder.equal(from.get("codigo"), codigoBusqueda));
+	    TypedQuery<Puesto> typed = session.createQuery(criteria);
+		
+	    Puesto puesto = typed.getSingleResult();
+	    
+		session.getTransaction().commit();
+		session.close();
+		
+		return puesto;
+		 } catch (final NoResultException nre) {
+			 	session.getTransaction().commit();
+				session.close();
+				
+		        return null;
+		    }
+		
+		
+	}
+	
+	@Override
+	public Puesto getPuestoByNombre(String nombre){
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		try {
+		
+		CriteriaBuilder builder = session.getCriteriaBuilder();
+	    CriteriaQuery<Puesto> criteria = builder.createQuery(Puesto.class);
+	    Root<Puesto> from = criteria.from(Puesto.class);
+	    criteria.select(from);
+	    criteria.where(builder.equal(from.get("nombrePuesto"), nombre));
+	    TypedQuery<Puesto> typed = session.createQuery(criteria);
+		
+	    Puesto puesto = typed.getSingleResult();
 		
 		session.getTransaction().commit();
 		session.close();
 		
 		return puesto;
-		
-		
+		}catch(final NoResultException nre) {
+				session.getTransaction().commit();
+				session.close();
+			
+		        return null;
+		    }
 	}
 	
 	}

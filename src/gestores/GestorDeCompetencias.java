@@ -26,10 +26,10 @@ public class GestorDeCompetencias implements CompetenciasDao {
 	
 	//metodos
 	
-	@Override
-	public void createCompetencia(int id, int codigo, String nombre, String descripcion) {
+	public void createCompetencia(int codigo, String nombre, String descripcion) {
 		// TODO Auto-generated method stub
-		dao.createCompetencia(id, codigo, nombre, descripcion);
+		Competencia competencia = new Competencia(codigo, nombre, descripcion);
+		dao.createCompetencia(competencia);
 	}
 	@Override
 	public void updateCompetencia(Competencia Competencia) {
@@ -48,6 +48,10 @@ public class GestorDeCompetencias implements CompetenciasDao {
 		
 	}
 	@Override
+	public void createCompetencia(Competencia competencia) {
+		dao.createCompetencia(competencia);
+	}
+	@Override
 	public Competencia getCompetenciaById(int idCompetencia) {
 		// TODO Auto-generated method stub
 		return dao.getCompetenciaById(idCompetencia);
@@ -56,6 +60,10 @@ public class GestorDeCompetencias implements CompetenciasDao {
 	public Competencia getCompetenciaByNombre(int nombre) {
 		// TODO Auto-generated method stub
 		return dao.getCompetenciaByNombre(nombre);
+	}
+	@Override
+	public Competencia getCompetenciaByCodigo(int codigoBusqueda) {
+		return dao.getCompetenciaByCodigo(codigoBusqueda);
 	}
 	
 	

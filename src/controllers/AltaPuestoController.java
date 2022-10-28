@@ -30,7 +30,6 @@ public class AltaPuestoController implements Initializable {
 	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
 	GestorDeCompetencias gestorCompetencias = GestorDeCompetencias.getInstance();
 
-
     @FXML
     private Button AceptarButton;
 
@@ -82,10 +81,10 @@ public class AltaPuestoController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
         //buscar todas las competencias y agregarlas a listaCompetencias
-        listaCompetencias = (ObservableList<Competencia>) gestorCompetencias.getAllCompetencia();
+        listaCompetencias.addAll(gestorCompetencias.getAllCompetencia());
         //formatear tablas
         ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
-        ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
+        //ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
 
 
         competenciaColumn.setCellValueFactory(new PropertyValueFactory<>("nombreCompetencia"));
@@ -104,8 +103,8 @@ public class AltaPuestoController implements Initializable {
 
         ponderacionColumn.setCellValueFactory(new PropertyValueFactory<>("ponderacion"));
 
-        Competencia pruebaCompetencia = new Competencia(1234,"Lealtad", "prueba de lealtad");
-        listaCompetencias.add(pruebaCompetencia);
+        //Competencia pruebaCompetencia = new Competencia(1234,"Lealtad", "prueba de lealtad");
+        //listaCompetencias.addAll(listaCompetencias);
 
         //mostrarlas
         competenciasTableView.setItems(listaCompetencias);
@@ -116,13 +115,29 @@ public class AltaPuestoController implements Initializable {
 
     @FXML
     void AceptarButtonClicked(ActionEvent event) {
-    	
-    	if(!(codigoTextField.getText()== null || puestoTextField.getText() == null || descripcionTextArea.getText() ==null) )
-    	//este crear puesto es un fake de prueba
-    	gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
-    	
 
-    }
+        if(!(codigoTextField.getText()== null || puestoTextField.getText() == null || descripcionTextArea.getText() ==null) ) {
+
+            if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())==null && gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))==null) {
+               Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
+               for(int i=0; i< listadoDeCompetencias.size(); i++) {
+                   listadoDeCompetencias.get(i).setPuesto(puesto);
+               }
+               gestorPuesto.createPuesto(puesto);}
+            else System.out.println("Ya existe un puesto con ese codigo o con ese nombre.");
+
+        Parent root;
+        try {
+            root = FXMLLoader.load((getClass().getResource("/views/GestionarPuesto.fxml")));
+            Stage window = (Stage)AceptarButton.getScene().getWindow();
+            window.setTitle("Gestionar Puestos");
+            window.setScene(new Scene(root));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        }
+        }
     
     @FXML
     void agregarItemButtonClicked(ActionEvent event) {
@@ -155,7 +170,10 @@ public class AltaPuestoController implements Initializable {
 
     @FXML
     void eliminarItemButtonClicked(ActionEvent event) {
-
+    	ItemCompetencia itemCompetencia = itemCompetenciatableView.getSelectionModel().getSelectedItem();
+        listadoDeCompetencias.remove(itemCompetencia);
+        listaItemCompetencia.remove(itemCompetencia);
+        itemCompetenciatableView.setItems(listaItemCompetencia);
     }
 	
 

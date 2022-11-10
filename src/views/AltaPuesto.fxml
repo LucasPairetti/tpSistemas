@@ -64,6 +64,10 @@
             <Text layoutX="681.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ponderacion" />
             <Button fx:id="AceptarButton" layoutX="24.0" layoutY="661.0" mnemonicParsing="false" onAction="#AceptarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Aceptar" />
             <Button fx:id="cancelarButton" layoutX="1130.0" layoutY="661.0" mnemonicParsing="false" onAction="#cancelarButtonClicked" prefHeight="40.0" prefWidth="136.0" text="Cancelar" />
+            <Text fx:id="empresaErrorText" fill="RED" layoutX="298.0" layoutY="374.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" />
+            <Text fx:id="codigoErrorText" fill="RED" layoutX="298.0" layoutY="174.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" />
+            <Text fx:id="nombreErrorText" fill="RED" layoutX="298.0" layoutY="270.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="RIGHT" />
+            <Text fx:id="ponderacionErrorText" fill="RED" layoutX="703.0" layoutY="430.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" />
          </children>
       </AnchorPane>
    </bottom>

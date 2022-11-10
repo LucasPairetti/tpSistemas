@@ -18,6 +18,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -140,10 +141,22 @@ public class AltaPuestoController implements Initializable {
 
         if(checkearCamposPuesto()) {
 
-            if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())==null && gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))==null) {
-               Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
-               gestorPuesto.createPuesto(puesto);}
-            else System.out.println("Ya existe un puesto con ese codigo o con ese nombre.");//falta mostrar cuadro alerta en lugar de esto
+            if( gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))!=null)  {
+            	Alert alerta= new Alert(Alert.AlertType.INFORMATION);
+            	alerta.setTitle("puesto existente");
+            	alerta.setContentText("ya existe un puesto con este codigo");
+            	alerta.showAndWait();
+            }
+            else if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())!=null ) {
+            	Alert alerta= new Alert(Alert.AlertType.INFORMATION);
+            	alerta.setTitle("puesto existente");
+            	alerta.setContentText("ya existe un puesto con este nombre");
+            	alerta.showAndWait();
+            	
+            }else {
+            	 Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
+                 gestorPuesto.createPuesto(puesto);
+            }
 
         Parent root;
         try {

@@ -142,13 +142,13 @@ public class AltaPuestoController implements Initializable {
         if(checkearCamposPuesto()) {
 
             if( gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))!=null)  {
-            	Alert alerta= new Alert(Alert.AlertType.INFORMATION);
+            	Alert alerta= new Alert(Alert.AlertType.WARNING);
             	alerta.setTitle("puesto existente");
             	alerta.setContentText("ya existe un puesto con este codigo");
             	alerta.showAndWait();
             }
             else if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())!=null ) {
-            	Alert alerta= new Alert(Alert.AlertType.INFORMATION);
+            	Alert alerta= new Alert(Alert.AlertType.WARNING);
             	alerta.setTitle("puesto existente");
             	alerta.setContentText("ya existe un puesto con este nombre");
             	alerta.showAndWait();

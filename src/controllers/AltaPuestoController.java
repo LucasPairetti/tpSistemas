@@ -16,6 +16,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -26,6 +27,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.text.Text;
+import javafx.scene.text.TextAlignment;
 import javafx.stage.Stage;
 
 public class AltaPuestoController implements Initializable {
@@ -92,7 +94,7 @@ public class AltaPuestoController implements Initializable {
     ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();  
     ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1) {	
     	
     	//escondo los mensajes de error
     	nombreErrorText.setOpacity(0);
@@ -156,20 +158,24 @@ public class AltaPuestoController implements Initializable {
             }else {
             	 Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
                  gestorPuesto.createPuesto(puesto);
+                
+                 Parent root;
+                 try {
+                     root = FXMLLoader.load((getClass().getResource("/views/GestionarPuesto.fxml")));
+                     Stage window = (Stage)AceptarButton.getScene().getWindow();
+                     window.setTitle("Gestionar Puestos");
+                     window.setScene(new Scene(root));
+                 } catch (IOException e) {
+                     // TODO Auto-generated catch block
+                     e.printStackTrace();
+                 }
+           
             }
 
-        Parent root;
-        try {
-            root = FXMLLoader.load((getClass().getResource("/views/GestionarPuesto.fxml")));
-            Stage window = (Stage)AceptarButton.getScene().getWindow();
-            window.setTitle("Gestionar Puestos");
-            window.setScene(new Scene(root));
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+      
+        
         }
-        }
-        }
+    }
     
     @FXML
     void agregarItemButtonClicked(ActionEvent event) {
@@ -213,36 +219,49 @@ public class AltaPuestoController implements Initializable {
     	Boolean flag = true;
     	
     	
-    	if(codigoTextField.getText()==null) {
+    	
+    	
+    	
+    	if(codigoTextField.getText()=="") {
+    		
     		flag = false;
     		codigoErrorText.setText("complete este campo obligatorio");
+    		
     		codigoErrorText.setOpacity(1);
     	}else codigoErrorText.setOpacity(0);
     		
     		
-    	if(empresaTextField.getText()==null) {
+    	if(empresaTextField.getText()=="") {
     		flag = false;
     		empresaErrorText.setText("complete este campo obligatorio");
+    		
     		empresaErrorText.setOpacity(1);
     	}else empresaErrorText.setOpacity(0);
     	
-    	if(puestoTextField.getText()==null) {
+    	if(puestoTextField.getText()=="") {
     		flag = false;
     		nombreErrorText.setText("complete este campo obligatorio");
+    		
     		nombreErrorText.setOpacity(1);
     	}else nombreErrorText.setOpacity(0);
     	
     	try {
+    		if(flag) {
     		Integer.parseInt(codigoTextField.getText());
+    		}
+    		
+    		return flag;
     		
     	}catch(Exception e) {
+    		
     		codigoErrorText.setText("caracteres invalidos, solo se aceptan numericos");
+    		
     		codigoErrorText.setOpacity(1);
     		return false;
     	}
     	
     	
-    	return flag;
+    	
     	
     	
     }
@@ -251,19 +270,39 @@ public class AltaPuestoController implements Initializable {
     	Boolean flag= true;
     	
     	
-    	if(competenciasTableView.getSelectionModel().isEmpty()) {
-    		ponderacionErrorText.setText("Seleccione una competencia");
+    	if(ponderacionTextField.getText()=="") {
+    		flag =false;
+    		ponderacionErrorText.setText("complete este campo obligatorio");
+    		
     		ponderacionErrorText.setOpacity(1);
-    	}else  ponderacionErrorText.setOpacity(0);
+    		
+    		
+    	}else if(competenciasTableView.getSelectionModel().getSelectedItem()==null) {
+    		flag=false;
+    		ponderacionErrorText.setText("seleccione una competencia");
+    		
+    		ponderacionErrorText.setOpacity(1);	
+    		
+    	}else ponderacionErrorText.setOpacity(0);
     	
-    	if(ponderacionTextField.getText()==null && flag) {
-    		flag = false;
-    		ponderacionErrorText.setText("caracteres invalidos, solo se aceptan numericos");
+    	try {
+    		if(flag) {
+    			Integer.parseInt(ponderacionTextField.getText());
+    		}
+    		
+    		return flag;
+    		
+    	}catch (Exception e) {
+    		
+    		ponderacionErrorText.setText("caracteres invalidos\nsolo se aceptan numericos");
+    		
     		ponderacionErrorText.setOpacity(1);
-    	} else ponderacionErrorText.setOpacity(0);
+    		return false;
+    		
+    	}
     	
-    	
-		return flag;
+  
+	
     }
     
 	

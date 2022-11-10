@@ -23,6 +23,7 @@ public class Puesto  {
 		private List<ItemCompetencia> competencias;
 		@Column(nullable = true)
 		private int idAuditoria = -1;
+		//auditoria
 	
 	public Puesto() {
 		super();

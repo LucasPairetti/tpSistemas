@@ -36,7 +36,8 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		//launch(args);
+		launch(args);
+		/*
 		Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
 		GestorDeCompetencias.getInstance().createCompetencia(comp);
 		List<ItemCompetencia> competencias = new ArrayList<ItemCompetencia>();
@@ -44,5 +45,6 @@ public class Main extends Application {
 		puesto.addItemCompetencia(new ItemCompetencia(comp, 10));
 		GestorDePuesto.getInstance();
 		GestorDePuesto.getDao().createPuesto(puesto);
+		*/
 	}
 }

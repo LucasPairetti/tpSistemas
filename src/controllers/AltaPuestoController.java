@@ -180,11 +180,23 @@ public class AltaPuestoController implements Initializable {
     @FXML
     void agregarItemButtonClicked(ActionEvent event) {
     	if(checkearCamposCompetencia()) {
+    		Boolean flagRepetido=true;
     	Competencia competenciaElegida = competenciasTableView.getSelectionModel().getSelectedItem();
-    	ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
-    	listadoDeCompetencias.add(nuevoItemCompetencia);
-    	listaItemCompetencia.add(nuevoItemCompetencia);
-    	itemCompetenciatableView.setItems(listaItemCompetencia);
+    	for(ItemCompetencia item: listaItemCompetencia) {
+    		if(item.getCompetencia().equals(competenciaElegida))flagRepetido=false;
+    		
+    	}
+    	
+    	if(flagRepetido) {
+    		ItemCompetencia nuevoItemCompetencia = new ItemCompetencia (competenciaElegida, Integer.parseInt(ponderacionTextField.getText()));
+        	listadoDeCompetencias.add(nuevoItemCompetencia);
+        	listaItemCompetencia.add(nuevoItemCompetencia);
+        	itemCompetenciatableView.setItems(listaItemCompetencia);
+    		
+    	}
+    		
+    	
+    	
     	}
     	
 

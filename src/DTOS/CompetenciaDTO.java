@@ -1,30 +1,28 @@
-package entidades;
+package DTOS;
 
 import java.util.Objects;
 
-import jakarta.persistence.*;
-@Entity
-public class Competencia {
-	@Id
-	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name="idCompetencia")
+import entidades.Competencia;
+
+public class CompetenciaDTO extends Competencia{
+
 	private int idCompetencia;
-	@Column(nullable = false, unique=true)
+	
 	private int codigo;
-	@Column(unique=true, nullable = false)
+	
 	private String nombreCompetencia;
-	@Column(nullable = false)
+	
 	private String descripcion;
 	
 	
-	public Competencia() {
+	public CompetenciaDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 
 
-	public Competencia(int codigo, String nombreCompetencia, String descripcion) {
+	public CompetenciaDTO(int codigo, String nombreCompetencia, String descripcion) {
 		super();
 		this.codigo = codigo;
 		this.nombreCompetencia = nombreCompetencia;
@@ -96,14 +94,10 @@ public class Competencia {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Competencia other = (Competencia) obj;
+		CompetenciaDTO other = (CompetenciaDTO) obj;
 		return codigo == other.codigo && Objects.equals(descripcion, other.descripcion)
 				&& idCompetencia == other.idCompetencia && Objects.equals(nombreCompetencia, other.nombreCompetencia);
 	}
-	
-	
-	
-	
 	
 	
 }

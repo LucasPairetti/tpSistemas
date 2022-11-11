@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.*;
+import DTOS.CompetenciaDTO;
+import DTOS.PuestoDTO;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
 import interfaces.PuestoDao;
@@ -79,7 +81,39 @@ public class GestorDePuesto implements PuestoDao{
 		return dao;
 	}
 	
+	public PuestoDTO getPuestoDTO(Puesto puesto) {
+		GestorDeCompetencias gc = GestorDeCompetencias.getInstance();
+		List<ItemCompetencia> competenciasDTO= new ArrayList<ItemCompetencia>();
+		for(ItemCompetencia itemCompetencia: puesto.getCompetencias()) {
+			
+			CompetenciaDTO compDTO = gc.getCompetenciaDTO(itemCompetencia.getCompetencia());
+			
+			ItemCompetencia itemCompDTO = new ItemCompetencia(compDTO, itemCompetencia.getPonderacion());
+			competenciasDTO.add(itemCompDTO);
+			
+		}
 	
+		PuestoDTO puestoDTO = new PuestoDTO(puesto.getCodigo(),puesto.getNombrePuesto(),puesto.getEmpresa(),puesto.getDescripcion(),competenciasDTO);
+		
+		
+		return puestoDTO;
+		
+		
+	}
+	
+	public List<PuestoDTO> getAllpuestosDTO(){
+		
+		List<Puesto> puestos= getAllPuestos();
+		
+		List<PuestoDTO> puestosDTO = new ArrayList<PuestoDTO>();
+		for(Puesto puesto: puestos) {
+			puestosDTO.add(getPuestoDTO(puesto));
+		}
+		
+		
+		return puestosDTO;
+		
+	}
 	
 	
 }

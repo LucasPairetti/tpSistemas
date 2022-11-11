@@ -1,8 +1,10 @@
 package gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.*;
+import DTOS.CompetenciaDTO;
 import entidades.Competencia;
 import interfaces.*;
 
@@ -66,6 +68,24 @@ public class GestorDeCompetencias implements CompetenciasDao {
 		return dao.getCompetenciaByCodigo(codigoBusqueda);
 	}
 	
+	public CompetenciaDTO getCompetenciaDTO (Competencia competencia) {
+		
+		CompetenciaDTO competenciaDTO = new CompetenciaDTO(competencia.getCodigo(), competencia.getNombreCompetencia(), competencia.getDescripcion());
+		
+		return competenciaDTO;
+		
+	}
 	
+	public List<CompetenciaDTO> getAllCompetenciaDTO (){
+		List<CompetenciaDTO> competenciasDTO= new ArrayList<CompetenciaDTO>();
+		
+		for(Competencia comp: getAllCompetencia()) {
+			competenciasDTO.add(getCompetenciaDTO(comp));
+			
+		}
+		
+		
+		return competenciasDTO;
+	}
 	
 }

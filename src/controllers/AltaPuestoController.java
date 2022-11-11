@@ -155,7 +155,19 @@ public class AltaPuestoController implements Initializable {
             	alerta.setContentText("ya existe un puesto con este nombre");
             	alerta.showAndWait();
             	
-            }else {
+            }else if(listadoDeCompetencias.isEmpty()) {
+            	
+            	Alert alerta= new Alert(Alert.AlertType.WARNING);
+            	alerta.setTitle("Faltan competencias");
+            	alerta.setContentText("Debe agregar al menos una competencia");
+            	alerta.showAndWait();
+            	
+            	
+            }
+            
+            
+            
+            else {
             	 Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
                  gestorPuesto.createPuesto(puesto);
                 

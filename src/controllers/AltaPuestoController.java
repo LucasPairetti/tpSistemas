@@ -88,6 +88,9 @@ public class AltaPuestoController implements Initializable {
     @FXML
     private Text codigoErrorText;
     
+    @FXML
+    private Text descripcionErrorText;
+    
     private List<ItemCompetencia> listadoDeCompetencias = new ArrayList<ItemCompetencia>();
     
     
@@ -101,7 +104,7 @@ public class AltaPuestoController implements Initializable {
     	codigoErrorText.setOpacity(0);
     	empresaErrorText.setOpacity(0);
     	ponderacionErrorText.setOpacity(0);
-    	
+    	descripcionErrorText.setOpacity(0);
     	
     	
         // TODO Auto-generated method stub
@@ -268,6 +271,15 @@ public class AltaPuestoController implements Initializable {
     		
     		nombreErrorText.setOpacity(1);
     	}else nombreErrorText.setOpacity(0);
+    	
+    	if(descripcionTextArea.getText()=="") {
+    		flag =false;
+    		descripcionErrorText.setText("complete este campo obligatorio");
+    		
+    		descripcionErrorText.setOpacity(1);
+    		
+    	}else descripcionErrorText.setOpacity(0);
+    	
     	
     	try {
     		if(flag) {

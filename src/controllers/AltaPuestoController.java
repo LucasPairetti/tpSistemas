@@ -109,7 +109,7 @@ public class AltaPuestoController implements Initializable {
     	
         // TODO Auto-generated method stub
         //buscar todas las competencias y agregarlas a listaCompetencias
-        listaCompetencias.addAll(gestorCompetencias.getAllCompetencia());
+        listaCompetencias.addAll(gestorCompetencias.getAllCompetenciaDTO());
         //formatear tablas
         ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
         //ObservableList<Competencia> listaCompetencias= FXCollections.observableArrayList(); 
@@ -171,8 +171,8 @@ public class AltaPuestoController implements Initializable {
             
             
             else {
-            	 Puesto puesto = gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
-                 gestorPuesto.createPuesto(puesto);
+            	 gestorPuesto.createPuesto(Integer.parseInt(codigoTextField.getText()), puestoTextField.getText(), empresaTextField.getText(), descripcionTextArea.getText(), listadoDeCompetencias);
+                 //gestorPuesto.createPuesto(puesto);
                 
                  Parent root;
                  try {
@@ -197,6 +197,7 @@ public class AltaPuestoController implements Initializable {
     	if(checkearCamposCompetencia()) {
     		Boolean flagRepetido=true;
     	Competencia competenciaElegida = competenciasTableView.getSelectionModel().getSelectedItem();
+    	System.out.println(competenciaElegida.getClass());
     	for(ItemCompetencia item: listaItemCompetencia) {
     		if(item.getCompetencia().equals(competenciaElegida))flagRepetido=false;
     		

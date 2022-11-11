@@ -3,7 +3,6 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
 import entidades.*;
 import gestores.GestorDePuesto;
 import javafx.collections.FXCollections;
@@ -20,6 +19,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import DTOS.PuestoDTO;
 
 public class GestionarPuestoController implements Initializable {
 
@@ -69,7 +69,7 @@ public class GestionarPuestoController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
-        listaPuestos.addAll(gestorPuestos.getAllPuestos());
+        listaPuestos.addAll(gestorPuestos.getAllpuestosDTO());
 
         codigoColumn.setCellValueFactory(new PropertyValueFactory<>("codigo"));
         puestoColumn.setCellValueFactory(new PropertyValueFactory<>("nombrePuesto"));

@@ -14,6 +14,7 @@ public class ItemCompetencia {
 	@Column(nullable = false)
 	private int ponderacion;
 	
+	public ItemCompetencia() { super();}
 	
 	public ItemCompetencia(Competencia competencia, int ponderacion) {
 		super();

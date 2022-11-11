@@ -12,5 +12,6 @@ module TPsistemas {
 	opens application to javafx.graphics, javafx.fxml, javafx.base, org.hibernate.core, hibernate.jpa, jboss.annotations, jboss.jms.api,
 	jboss.logging, jboss.transaction.api;
 	opens entidades to javafx.base, org.hibernate.orm.core;
+	opens DTOS to javafx.base, org.hibernate.orm.core;
 	opens controllers to javafx.fxml;
 }

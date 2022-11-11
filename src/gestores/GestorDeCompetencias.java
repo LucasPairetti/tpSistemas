@@ -87,5 +87,10 @@ public class GestorDeCompetencias implements CompetenciasDao {
 		
 		return competenciasDTO;
 	}
+	public Competencia getCompetenciaByDTO(Competencia competenciaDTO) {
+		// TODO Auto-generated method stub
+		Competencia competencia = this.getCompetenciaByCodigo(competenciaDTO.getCodigo());
+		return competencia;
+	}
 	
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import DAOS.*;
 import DTOS.CompetenciaDTO;
 import DTOS.PuestoDTO;
+import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
 import interfaces.PuestoDao;
@@ -29,11 +30,20 @@ public class GestorDePuesto implements PuestoDao{
 	}
 	
 	//metodos
-	public Puesto createPuesto(int codigo, String nombre, String empresa, String descripcion,
+	public void createPuesto(int codigo, String nombre, String empresa, String descripcion,
 			List<ItemCompetencia> competencias) {
+		GestorDeCompetencias gc = GestorDeCompetencias.getInstance();
+		for(ItemCompetencia item: competencias) {
+			if(item.getCompetencia().getClass()==CompetenciaDTO.class) {
+				Competencia comp = gc.getCompetenciaByDTO(item.getCompetencia());
+				System.out.println(comp);
+				item.setCompetencia(comp);
+			};
+		};
 		Puesto puesto = new Puesto(codigo, nombre, empresa, descripcion, competencias);
-		return puesto;
+		dao.createPuesto(puesto);
 	}
+	
 	@Override
 	public void updatePuesto(Puesto puesto) {
 		// TODO Auto-generated method stub
@@ -103,7 +113,7 @@ public class GestorDePuesto implements PuestoDao{
 	
 	public List<PuestoDTO> getAllpuestosDTO(){
 		
-		List<Puesto> puestos= getAllPuestos();
+		List<Puesto> puestos= this.getAllPuestos();
 		
 		List<PuestoDTO> puestosDTO = new ArrayList<PuestoDTO>();
 		for(Puesto puesto: puestos) {
@@ -115,5 +125,12 @@ public class GestorDePuesto implements PuestoDao{
 		
 	}
 	
+	public Puesto getPuestoByPuestoDTO(PuestoDTO puestodto){
+		
+		Puesto puesto = dao.getPuestoById(puestodto.getIdPuesto());
+		
+		return puesto;
+		
+	}
 	
 }

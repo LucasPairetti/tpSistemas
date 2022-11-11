@@ -18,7 +18,7 @@ public class Puesto  {
 		private String empresa;
 		@Column(nullable = false)
 		private String descripcion;
-		@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+		@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 		@JoinColumn(name="puesto_id", nullable = false, referencedColumnName="idPuesto" , foreignKey=@ForeignKey(name="FK_Item_Puesto", value=ConstraintMode.CONSTRAINT))
 		private List<ItemCompetencia> competencias;
 		@Column(nullable = true)

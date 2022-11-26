@@ -148,14 +148,14 @@ public class AltaPuestoController implements Initializable {
 
             if( gestorPuesto.getPuestoByCodigo(Integer.parseInt(codigoTextField.getText()))!=null)  {
             	Alert alerta= new Alert(Alert.AlertType.WARNING);
-            	alerta.setTitle("puesto existente");
-            	alerta.setContentText("ya existe un puesto con este codigo");
+            	alerta.setTitle("Puesto existente");
+            	alerta.setContentText("Ya existe un puesto con este codigo");
             	alerta.showAndWait();
             }
             else if(gestorPuesto.getPuestoByNombre(puestoTextField.getText())!=null ) {
             	Alert alerta= new Alert(Alert.AlertType.WARNING);
-            	alerta.setTitle("puesto existente");
-            	alerta.setContentText("ya existe un puesto con este nombre");
+            	alerta.setTitle("Puesto existente");
+            	alerta.setContentText("Ya existe un puesto con este nombre");
             	alerta.showAndWait();
             	
             }else if(listadoDeCompetencias.isEmpty()) {
@@ -197,7 +197,6 @@ public class AltaPuestoController implements Initializable {
     	if(checkearCamposCompetencia()) {
     		Boolean flagRepetido=true;
     	Competencia competenciaElegida = competenciasTableView.getSelectionModel().getSelectedItem();
-    	System.out.println(competenciaElegida.getClass());
     	for(ItemCompetencia item: listaItemCompetencia) {
     		if(item.getCompetencia().equals(competenciaElegida))flagRepetido=false;
     		
@@ -253,7 +252,7 @@ public class AltaPuestoController implements Initializable {
     	if(codigoTextField.getText()=="") {
     		
     		flag = false;
-    		codigoErrorText.setText("complete este campo obligatorio");
+    		codigoErrorText.setText("Complete este campo obligatorio");
     		
     		codigoErrorText.setOpacity(1);
     	}else codigoErrorText.setOpacity(0);
@@ -261,21 +260,21 @@ public class AltaPuestoController implements Initializable {
     		
     	if(empresaTextField.getText()=="") {
     		flag = false;
-    		empresaErrorText.setText("complete este campo obligatorio");
+    		empresaErrorText.setText("Complete este campo obligatorio");
     		
     		empresaErrorText.setOpacity(1);
     	}else empresaErrorText.setOpacity(0);
     	
     	if(puestoTextField.getText()=="") {
     		flag = false;
-    		nombreErrorText.setText("complete este campo obligatorio");
+    		nombreErrorText.setText("Complete este campo obligatorio");
     		
     		nombreErrorText.setOpacity(1);
     	}else nombreErrorText.setOpacity(0);
     	
     	if(descripcionTextArea.getText()=="") {
     		flag =false;
-    		descripcionErrorText.setText("complete este campo obligatorio");
+    		descripcionErrorText.setText("Complete este campo obligatorio");
     		
     		descripcionErrorText.setOpacity(1);
     		
@@ -291,7 +290,7 @@ public class AltaPuestoController implements Initializable {
     		
     	}catch(Exception e) {
     		
-    		codigoErrorText.setText("caracteres invalidos, solo se aceptan numericos");
+    		codigoErrorText.setText("Caracteres invalidos, solo se aceptan numericos");
     		
     		codigoErrorText.setOpacity(1);
     		return false;
@@ -309,14 +308,14 @@ public class AltaPuestoController implements Initializable {
     	
     	if(ponderacionTextField.getText()=="") {
     		flag =false;
-    		ponderacionErrorText.setText("complete este campo obligatorio");
+    		ponderacionErrorText.setText("Complete este campo obligatorio");
     		
     		ponderacionErrorText.setOpacity(1);
     		
     		
     	}else if(competenciasTableView.getSelectionModel().getSelectedItem()==null) {
     		flag=false;
-    		ponderacionErrorText.setText("seleccione una competencia");
+    		ponderacionErrorText.setText("Seleccione una competencia");
     		
     		ponderacionErrorText.setOpacity(1);	
     		
@@ -331,7 +330,7 @@ public class AltaPuestoController implements Initializable {
     		
     	}catch (Exception e) {
     		
-    		ponderacionErrorText.setText("caracteres invalidos\nsolo se aceptan numericos");
+    		ponderacionErrorText.setText("Caracteres invalidos\nsolo se aceptan numericos");
     		
     		ponderacionErrorText.setOpacity(1);
     		return false;

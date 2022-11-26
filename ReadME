@@ -1,0 +1,22 @@
+la idea seria usar esto de block de notas para comunicarnos y mandarnos algun detalle
+
+26/11/22 14:57 Pairet: tenemos que hacer una entidad Candidato, para hacer todo lo de hacer el cuestionario, no?
+
+
+26/11/22 15:40 
+- se agregó la pantalla de completar cuestionario y su controlador
+-se actualizó la pantalla validarUsuarioConsultor: ahora podes mostrar y ocultar la contraseña
+
+falta:
+Interfaces:
+-agregar una pantalla de ingreso de candidato
+-la interfaz que le ofrezca realizar el cuestionario
+
+
+Logica:
+-hacer la logica de completar cuestionario
+-hacer la logica de evaluar candidato
+-hacer la logica de validar ingreso de candidato
+-hacer la logica de validar ingreso de usuario
+datos:
+?? sabe tomi

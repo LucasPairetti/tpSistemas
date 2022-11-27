@@ -17,7 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class IngresoUsuarioController implements Initializable {
+public class IngresoConsultorController implements Initializable {
 
     @FXML
     private Button ingresarButton;

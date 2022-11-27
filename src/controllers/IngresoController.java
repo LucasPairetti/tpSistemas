@@ -25,7 +25,7 @@ public class IngresoController {
     private AnchorPane scenePane;
     @FXML
     void ingresoConsultorClicked(ActionEvent event) throws IOException {
-Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioConsultor.fxml")));
+Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarConsultor.fxml")));
     	
     	Stage window = (Stage)ingresoConsultorButton.getScene().getWindow();
     	window.setTitle("Validar usuario consultor");
@@ -33,8 +33,12 @@ Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioCons
     }
 
     @FXML
-    void ingresoCuestionarioClicked(ActionEvent event) {
-
+    void ingresoCuestionarioClicked(ActionEvent event) throws IOException {
+    	Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarCandidato.fxml")));
+    	
+    	Stage window = (Stage)ingresoConsultorButton.getScene().getWindow();
+    	window.setTitle("Validar usuario consultor");
+    	window.setScene(new Scene(root));
     }
 
     @FXML

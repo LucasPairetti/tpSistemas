@@ -9,7 +9,7 @@ la idea seria usar esto de block de notas para comunicarnos y mandarnos algun de
 
 falta:
 Interfaces:
--agregar una pantalla de ingreso de candidato
+-agregar una pantalla de ingreso de candidato (terminado)
 -la interfaz que le ofrezca realizar el cuestionario
 
 
@@ -20,3 +20,11 @@ Logica:
 -hacer la logica de validar ingreso de usuario
 datos:
 ?? sabe tomi
+
+
+
+27/11/2022 11:51
+
+-agregue pantalla de ingreso candidato
+-renombré interfaces graficas y controladores x comodidad
+-faltan cosas de la lista del 26/11/22

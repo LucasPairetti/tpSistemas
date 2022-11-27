@@ -111,7 +111,7 @@ public class UsuarioConsultorController {
     void salirButtonClicked(ActionEvent event) {
 Parent root;
 try {
-	root = FXMLLoader.load((getClass().getResource("/views/ValidarUsuarioConsultor.fxml")));
+	root = FXMLLoader.load((getClass().getResource("/views/ValidarConsultor.fxml")));
 	Stage window = (Stage)salirButton.getScene().getWindow();
 	window.setTitle("Validar usuario consultor");
 	window.setScene(new Scene(root));

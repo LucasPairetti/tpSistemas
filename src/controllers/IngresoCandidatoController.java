@@ -92,9 +92,9 @@ public class IngresoCandidatoController implements Initializable {
     	int  nroDoc=Integer.parseInt(usuarioTextField.getText());
     	
     	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) { //este if lo pongo xq como son dos textfield, no se cual es el completo (asumo que es el que tiene mas caracteres)
-    		int clave=Integer.parseInt(passwordFieldHidden.getText()); 
+    		int clave = Integer.parseInt(passwordFieldHidden.getText()); 
     	}else {
-    		int clave=Integer.parseInt(passwordFieldShowed.getText()); 
+    		int clave = Integer.parseInt(passwordFieldShowed.getText()); 
     	}
     	
     	
@@ -139,18 +139,18 @@ public class IngresoCandidatoController implements Initializable {
     	
     	if(tipoDocComboBox.getSelectionModel().getSelectedItem()==null) {
     		flag=false;
-    		errorDocText.setText("elija un tipo de documento");
+    		errorDocText.setText("Elija un tipo de documento.");
     		errorDocText.setOpacity(1);
     		
     	}else errorDocText.setOpacity(0);
     	if(usuarioTextField.getText()=="") {
     		 flag=false;
-    		 errorNumText.setText("Complete este campo obligatorio");
+    		 errorNumText.setText("Complete este campo, es obligatorio.");
     		 errorNumText.setOpacity(1);
     	}else errorNumText.setOpacity(0);
     	if ((passwordFieldShowed.getText()==""&&passwordFieldHidden.getText()=="")) {
     		flag=false;
-    		errorClaveText.setText("Complete este campo obligatorio");
+    		errorClaveText.setText("Complete este campo, es obligatorio.");
     		errorClaveText.setOpacity(1);
     	 }else errorClaveText.setOpacity(0);
     	
@@ -164,7 +164,7 @@ public class IngresoCandidatoController implements Initializable {
     		
     	}catch(Exception e) {
     		
-    		errorNumText.setText("Caracteres invalidos, solo se aceptan numericos");
+    		errorNumText.setText("Caracteres inválidos, solo se aceptan numéricos.");
     		
     		errorNumText.setOpacity(1);
     		return false;
@@ -181,7 +181,7 @@ public class IngresoCandidatoController implements Initializable {
     		
     	}catch(Exception e) {
     		
-    		errorClaveText.setText("Caracteres invalidos, solo se aceptan numericos");
+    		errorClaveText.setText("Caracteres inválidos, solo se aceptan numéricos.");
     		
     		errorClaveText.setOpacity(1);
     		return false;

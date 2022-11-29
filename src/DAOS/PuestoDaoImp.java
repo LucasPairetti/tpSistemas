@@ -39,7 +39,9 @@ public class PuestoDaoImp implements PuestoDao{
 		session.close();
 		
 	}
-
+	
+	//Este no se va a utilizar. Vamos a pasarle un puesto y una auditoria. Actualizamos el puesto
+	//y lo mergeamos para mantenerlo.
 	@Override
 	public void deletePuesto(Puesto puesto) {
 		// TODO Auto-generated method stub

@@ -19,12 +19,12 @@
             <TextField fx:id="passwordFieldShowed" layoutX="548.0" layoutY="408.0" prefHeight="34.0" prefWidth="187.0" style="-fx-border-color: black;" visible="false" />
             <Button fx:id="ingresarButton" layoutX="590.0" layoutY="489.0" mnemonicParsing="false" onAction="#ingresarButtonClicked" prefHeight="30.0" prefWidth="102.0" text="Ingresar" />
             <Button fx:id="salirButton" layoutX="1140.0" layoutY="681.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="128.0" text="Salir" />
-            <Button fx:id="volverButton" layoutX="571.0" layoutY="568.0" mnemonicParsing="false" onAction="#volverButtonClicked" prefHeight="30.0" prefWidth="140.0" text="Volver a seleccion" />
-            <Label layoutX="570.0" layoutY="257.0" text="numero de documento:" />
-            <Label layoutX="622.0" layoutY="357.0" text="clave:" />
+            <Button fx:id="volverButton" layoutX="571.0" layoutY="568.0" mnemonicParsing="false" onAction="#volverButtonClicked" prefHeight="30.0" prefWidth="140.0" text="Volver a selección" />
+            <Label layoutX="570.0" layoutY="257.0" text="Número de Documento:" />
+            <Label layoutX="622.0" layoutY="357.0" text="Clave:" />
             <CheckBox fx:id="mostrarContraseñaCheck" layoutX="777.0" layoutY="417.0" mnemonicParsing="false" onAction="#MostrarContraseña" text="Mostrar clave" />
-            <ComboBox fx:id="tipoDocComboBox" layoutX="564.0" layoutY="155.0" prefWidth="150.0" promptText="tipo de documento" style="-fx-border-color: black;" />
-            <Label layoutX="582.0" layoutY="122.0" text="tipo de documento:" />
+            <ComboBox fx:id="tipoDocComboBox" layoutX="564.0" layoutY="155.0" prefWidth="150.0" promptText="Tipo de Documento" style="-fx-border-color: black;" />
+            <Label layoutX="582.0" layoutY="122.0" text="Tipo de Documento:" />
             <Text layoutX="705.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />
             <Text layoutX="727.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />
             <Text layoutX="727.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />

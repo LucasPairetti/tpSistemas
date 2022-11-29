@@ -67,9 +67,9 @@ public class IngresoConsultorController implements Initializable {
     	}
     	String usuario= usuarioTextField.getText();
     	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) {//este if esta xq no se si un campo esta mas completo que otro, tomo como contraseña el que tiene mayor longitud
-    		String password= passwordFieldHidden.getText();
+    		String password = passwordFieldHidden.getText();
     	}else {
-    		String password= passwordFieldShowed.getText();
+    		String password = passwordFieldShowed.getText();
     	}
     	
     	
@@ -135,14 +135,14 @@ public class IngresoConsultorController implements Initializable {
     	 
     	 if(usuarioTextField.getText()=="") {
     		 flag=false;
-    		 errorUsuarioText.setText("Complete este campo obligatorio");
+    		 errorUsuarioText.setText("Complete este campo, es obligatorio.");
     		 errorUsuarioText.setOpacity(1);
     		 
     	 }else errorUsuarioText.setOpacity(0);
     		 
     	if ((passwordFieldShowed.getText()==""&&passwordFieldHidden.getText()=="")) {
     		flag=false;
-    		errorPasswordText.setText("Complete este campo obligatorio");
+    		errorPasswordText.setText("Complete este campo, es obligatorio.");
     		errorPasswordText.setOpacity(1);
     	 }else errorPasswordText.setOpacity(0);
     		

@@ -46,17 +46,17 @@ public class GestorDeConsultor implements ConsultorDao {
 		return dao.getAllConsultor();
 	}
 	@Override
-	public Competencia getConsultorById(int idConsultor) {
+	public Consultor getConsultorById(int idConsultor) {
 		// TODO Auto-generated method stub
 		return dao.getConsultorById(idConsultor);
 	}
 	@Override
-	public Competencia getConsultorByContrasenia(String contrasenia) {
+	public Consultor getConsultorByContrasenia(String contrasenia) {
 		// TODO Auto-generated method stub
 		return dao.getConsultorByContrasenia(contrasenia);
 	}
 	@Override
-	public Competencia getConsultorByNombre(String nombreDeUsuario) {
+	public Consultor getConsultorByNombre(String nombreDeUsuario) {
 		// TODO Auto-generated method stub
 		return dao.getConsultorByNombre(nombreDeUsuario);
 	}

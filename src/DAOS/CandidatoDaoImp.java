@@ -5,25 +5,39 @@ import java.util.List;
 import org.hibernate.PersistentObjectException;
 import org.hibernate.Session;
 
-import entidades.Competencia;
+import entidades.Candidato;
 import entidades.Consultor;
-import entidades.Puesto;
-import interfaces.ConsultorDao;
+import interfaces.CandidatoDAO;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class ConsultorDaoImp implements ConsultorDao {
+public class CandidatoDaoImp implements CandidatoDAO {
 
 	@Override
-	public void updateConsultor(Consultor consultor) {
+	public void createCandidato(Candidato candidato) {
+		// TODO Auto-generated method stub
+		try {
+			 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+			 session.beginTransaction();
+			 session.persist(candidato);
+			 System.out.println("Inserted Successfully");
+			 session.getTransaction().commit();
+			 session.close();
+			}catch(PersistentObjectException e) {
+				e.getStackTrace();
+			}
+	}
+
+	@Override
+	public void updateCandidato(Candidato candidato) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 
-		session.merge(consultor);
+		session.merge(candidato);
 		 System.out.println("Updated Successfully");
 		
 		session.getTransaction().commit();
@@ -31,57 +45,57 @@ public class ConsultorDaoImp implements ConsultorDao {
 	}
 
 	@Override
-	public void deleteConsultor(Consultor consultor) {
+	public void deleteCandidato(Candidato candidato) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		session.remove(consultor);
+		//El gestor antes de eliminar pone en true el eliminado.
+		session.merge(candidato);
 		
 		session.getTransaction().commit();
 		session.close();
 	}
 
 	@Override
-	public List<Consultor> getAllConsultor() {
+	public List<Candidato> getAllCandidato() {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		List<Consultor> consultores = session
-				.createQuery("SELECT a FROM Consultor", Consultor.class)
+		List<Candidato> candidatos = session
+				.createQuery("SELECT a FROM Candidato", Candidato.class)
 				.getResultList();
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		return consultores;
+		return candidatos;
 	}
 
 	@Override
-	public Consultor getConsultorById(int idConsultor) {
+	public Candidato getCandidatoById(int idCandidato) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
 		try {
-		Consultor consultor = (Consultor) session.get(Consultor.class, idConsultor);
+		Candidato candidato = (Candidato) session.get(Candidato.class, idCandidato);
 		
 		session.getTransaction().commit();
 		session.close();
 		
-		return consultor;
+		return candidato;
 		
 		    } catch (final NoResultException nre) {
 		    	session.getTransaction().commit();
 				session.close();
 		        return null;
 		    }
-
 	}
 
 	@Override
-	public Consultor getConsultorByContrasenia(String contrasenia) {
+	public Candidato getCandidatoByClave(String clave) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -89,19 +103,21 @@ public class ConsultorDaoImp implements ConsultorDao {
 		try {
 		
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-	    CriteriaQuery<Consultor> criteria = builder.createQuery(Consultor.class);
-	    Root<Consultor> from = criteria.from(Consultor.class);
+	    CriteriaQuery<Candidato> criteria = builder.createQuery(Candidato.class);
+	    Root<Candidato> from = criteria.from(Candidato.class);
 	    criteria.select(from);
-	    criteria.where(builder.equal(from.get("contrasenia"), contrasenia));
-	    TypedQuery<Consultor> typed = session.createQuery(criteria);
+	    criteria.where(builder.equal(from.get("clave"), clave));
+	    TypedQuery<Candidato> typed = session.createQuery(criteria);
 		
-	    Consultor consultor = typed.getSingleResult();
+	    Candidato candidato = typed.getSingleResult();
 	    
 		session.getTransaction().commit();
 		session.close();
 		
-		return consultor;
+		return candidato;
+		
 		 } catch (final NoResultException nre) {
+			 
 			 	session.getTransaction().commit();
 				session.close();
 				
@@ -110,7 +126,7 @@ public class ConsultorDaoImp implements ConsultorDao {
 	}
 
 	@Override
-	public Consultor getConsultorByNombre(String nombreDeUsuario) {
+	public Candidato getCandidatoByNroDocumento(int numeroDeDocumento) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -118,40 +134,26 @@ public class ConsultorDaoImp implements ConsultorDao {
 		try {
 		
 		CriteriaBuilder builder = session.getCriteriaBuilder();
-	    CriteriaQuery<Consultor> criteria = builder.createQuery(Consultor.class);
-	    Root<Consultor> from = criteria.from(Consultor.class);
+	    CriteriaQuery<Candidato> criteria = builder.createQuery(Candidato.class);
+	    Root<Candidato> from = criteria.from(Candidato.class);
 	    criteria.select(from);
-	    criteria.where(builder.equal(from.get("nombreDeUsuario"), nombreDeUsuario));
-	    TypedQuery<Consultor> typed = session.createQuery(criteria);
+	    criteria.where(builder.equal(from.get("numeroDeDocumento"), numeroDeDocumento));
+	    TypedQuery<Candidato> typed = session.createQuery(criteria);
 		
-	    Consultor consultor = typed.getSingleResult();
+	    Candidato candidato = typed.getSingleResult();
 	    
 		session.getTransaction().commit();
 		session.close();
 		
-		return consultor;
+		return candidato;
 		
 		 } catch (final NoResultException nre) {
+			 
 			 	session.getTransaction().commit();
 				session.close();
 				
 		        return null;
 		    }
-	}
-
-	@Override
-	public void createConsultor(Consultor consultor) {
-		// TODO Auto-generated method stub
-		try {
-			 Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-			 session.beginTransaction();
-			 session.persist(consultor);
-			 System.out.println("Inserted Successfully");
-			 session.getTransaction().commit();
-			 session.close();
-			}catch(PersistentObjectException e) {
-				e.getStackTrace();
-			}
 	}
 
 }

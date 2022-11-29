@@ -7,14 +7,14 @@ import org.hibernate.Session;
 
 import entidades.Candidato;
 import entidades.Consultor;
-import interfaces.CandidatoDAO;
+import interfaces.CandidatoDao;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import jakarta.persistence.criteria.CriteriaBuilder;
 import jakarta.persistence.criteria.CriteriaQuery;
 import jakarta.persistence.criteria.Root;
 
-public class CandidatoDaoImp implements CandidatoDAO {
+public class CandidatoDaoImp implements CandidatoDao {
 
 	@Override
 	public void createCandidato(Candidato candidato) {

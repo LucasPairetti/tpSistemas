@@ -2,21 +2,42 @@ package entidades;
 
 import java.util.Date;
 import java.util.List; //o java.sql?
+import jakarta.persistence.*;
 
+@Entity
 public class Candidato {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idCandidato")
 	private int idCandidato;
+	@Column(nullable = false, unique = true)
 	private int numeroDocumento;
+	@Column(nullable = false, unique = true)
 	private String clave;
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Cuestionario cuestionario;
+	@Column(nullable = false, unique = false)
 	private String tipoDocumento;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="candidato_id", nullable = false, referencedColumnName="idCandidato" , 
+				foreignKey=@ForeignKey(name="FK_Candidato_Cuestionario", 
+				value=ConstraintMode.CONSTRAINT))
 	private List<Cuestionario> cuestionariosTerminados;
+	@Column(nullable = false, unique = true)
 	private int nroCandidato;
+	@Column(nullable = false, unique = false)
 	private String nombre;
+	@Column(nullable = false, unique = false)
 	private String apellido;
+	@Column(nullable = false, unique = false)
 	private Date fechaNacimiento;
+	@Column(nullable = false, unique = false)
 	private String nacionalidad;
+	@Column(nullable = false, unique = true)
 	private String email;
+	@Column(nullable = false, unique = false)
 	private String escolaridad;
+	@Column
 	private Boolean eliminacion;
 	
 	

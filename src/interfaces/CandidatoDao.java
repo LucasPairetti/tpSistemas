@@ -4,7 +4,7 @@ import java.util.List;
 
 import entidades.Candidato;
 
-public interface CandidatoDAO {
+public interface CandidatoDao {
 	public void createCandidato(Candidato candidato);
 	public void updateCandidato(Candidato candidato);
 	public void deleteCandidato(Candidato candidato);

@@ -28,3 +28,9 @@ datos:
 -agregue pantalla de ingreso candidato
 -renombré interfaces graficas y controladores x comodidad
 -faltan cosas de la lista del 26/11/22
+
+
+29/11/22 11:01
+
+-agregue manejos de errores sobre los campos para validar consultores y candidatos
+-faltan mensajes de error para cuando no exista un usuario con esos datos, pero eso se lo verá mas adelante despues de la logica que le toca a tomi

@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.IngresoCandidatoController">
    <center>
@@ -15,7 +16,7 @@
          <children>
             <TextField fx:id="usuarioTextField" layoutX="546.0" layoutY="290.0" prefHeight="34.0" prefWidth="187.0" style="-fx-border-color: black;" />
             <PasswordField fx:id="passwordFieldHidden" layoutX="548.0" layoutY="408.0" prefHeight="34.0" prefWidth="187.0" style="-fx-border-color: black;" />
-            <TextField fx:id="passwordFieldShowed" layoutX="549.0" layoutY="343.0" prefHeight="34.0" prefWidth="187.0" style="-fx-border-color: black;" visible="false" />
+            <TextField fx:id="passwordFieldShowed" layoutX="548.0" layoutY="408.0" prefHeight="34.0" prefWidth="187.0" style="-fx-border-color: black;" visible="false" />
             <Button fx:id="ingresarButton" layoutX="590.0" layoutY="489.0" mnemonicParsing="false" onAction="#ingresarButtonClicked" prefHeight="30.0" prefWidth="102.0" text="Ingresar" />
             <Button fx:id="salirButton" layoutX="1140.0" layoutY="681.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="30.0" prefWidth="128.0" text="Salir" />
             <Button fx:id="volverButton" layoutX="571.0" layoutY="568.0" mnemonicParsing="false" onAction="#volverButtonClicked" prefHeight="30.0" prefWidth="140.0" text="Volver a seleccion" />
@@ -24,6 +25,12 @@
             <CheckBox fx:id="mostrarContraseñaCheck" layoutX="777.0" layoutY="417.0" mnemonicParsing="false" onAction="#MostrarContraseña" text="Mostrar clave" />
             <ComboBox fx:id="tipoDocComboBox" layoutX="564.0" layoutY="155.0" prefWidth="150.0" promptText="tipo de documento" style="-fx-border-color: black;" />
             <Label layoutX="582.0" layoutY="122.0" text="tipo de documento:" />
+            <Text layoutX="705.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />
+            <Text layoutX="727.0" layoutY="287.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />
+            <Text layoutX="727.0" layoutY="404.0" strokeType="OUTSIDE" strokeWidth="0.0" text="(*)" />
+            <Text fx:id="errorClaveText" fill="RED" layoutX="546.0" layoutY="455.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="errorNumText" fill="RED" layoutX="546.0" layoutY="337.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Text fx:id="errorDocText" fill="RED" layoutX="560.0" layoutY="195.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
          </children>
       </AnchorPane>
    </center>

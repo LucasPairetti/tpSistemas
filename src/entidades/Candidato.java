@@ -33,9 +33,9 @@ public class Candidato {
 	private Date fechaNacimiento;
 	@Column(nullable = false, unique = false)
 	private String nacionalidad;
-	@Column(nullable = false, unique = true)
-	private String email;
 	@Column(nullable = false, unique = false)
+	private String email;
+	@Column(nullable = false, unique = true)
 	private String escolaridad;
 	@Column
 	private Boolean eliminacion;
@@ -43,6 +43,10 @@ public class Candidato {
 	
 	//NOTA: Este constructor se utiliza para fines practicos de la implementacion. Por consigna,
 	//los candidatos deben ser importados de un archivo externo.
+	
+	public Candidato() {
+		super();
+	}
 	
 	public Candidato(int idCandidato, int numeroDocumento, String clave, Cuestionario cuestionario,
 			String tipoDocumento, List<Cuestionario> cuestionariosTerminados, int nroCandidato, String nombre,

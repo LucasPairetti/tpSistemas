@@ -3,6 +3,7 @@ package entidades;
 import java.util.Objects;
 
 import jakarta.persistence.*;
+
 @Entity
 public class Competencia {
 	@Id
@@ -15,15 +16,12 @@ public class Competencia {
 	private String nombreCompetencia;
 	@Column(nullable = false)
 	private String descripcion;
-	
-	
+
 	public Competencia() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
-
-
-
+	
 	public Competencia(int codigo, String nombreCompetencia, String descripcion) {
 		super();
 		this.codigo = codigo;

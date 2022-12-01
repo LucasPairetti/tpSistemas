@@ -1,23 +1,11 @@
 package application;
 	
 
-import java.util.ArrayList;
-import java.util.List;
-
-import entidades.Competencia;
-import entidades.Consultor;
-import entidades.ItemCompetencia;
-import entidades.Puesto;
-import gestores.GestorDeCompetencias;
-import gestores.GestorDeConsultor;
-import gestores.GestorDePuesto;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
-
 
 public class Main extends Application {
 	@Override
@@ -39,8 +27,8 @@ public class Main extends Application {
 	public static void main(String[] args) {
 		
 		launch(args);
-		GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
-		gestorDeConsultor.createConsultor("TomasDannunzio", "Ramona123");
+		//GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
+		//gestorDeConsultor.createConsultor("TomasDannunzio", "Ramona123");
 		/*
 		Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
 		GestorDeCompetencias.getInstance().createCompetencia(comp);

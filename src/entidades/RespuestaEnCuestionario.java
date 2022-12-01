@@ -3,28 +3,28 @@ package entidades;
 import jakarta.persistence.*;
 
 @Entity
-public class Respuesta {
+public class RespuestaEnCuestionario {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
-	@Column(name="idRespuesta")
-	private int idRespuesta;
+	@Column(name="idRespuestaEnCuestionario")
+	private int idRespuestaEnCuestionario;
 	@Column(nullable = false)
 	private String descripcion;
 	@Column(nullable = false)
 	private int ordenDeVisualizacion;
 	
-	public Respuesta() {
+	public RespuestaEnCuestionario() {
 		super();
 	}
 	
-	public Respuesta(String descripcion, int ordenDeVisualizacion) {
+	public RespuestaEnCuestionario(String descripcion, int ordenDeVisualizacion) {
 		super();
 		this.descripcion = descripcion;
 		this.ordenDeVisualizacion = ordenDeVisualizacion;
 	}
 
-	public int getIdRespuesta() {
-		return idRespuesta;
+	public int getIdRespuestaEnCuestionario() {
+		return idRespuestaEnCuestionario;
 	}
 
 	public String getDescripcion() {
@@ -42,5 +42,6 @@ public class Respuesta {
 	public void setOrdenDeVisualizacion(int ordenDeVisualizacion) {
 		this.ordenDeVisualizacion = ordenDeVisualizacion;
 	}
+	
 	
 }

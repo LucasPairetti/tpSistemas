@@ -2,16 +2,31 @@ package entidades;
 
 import java.util.Date;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Estado {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idEstado")
 	private int idEstado;
+	@Column(nullable = false)
 	private Date fecha;
-	private String Estado;
+	@Column(nullable = false)
+	private String tipoEstado;
+	@OneToOne
+	@JoinColumn(name="idEstado", nullable = false, referencedColumnName="idEstado" , 
+				foreignKey=@ForeignKey(name="FK_Estado_Cuestionario", value=ConstraintMode.CONSTRAINT))
 	private Cuestionario cuestionario;
+	
+	public Estado() {
+		super();
+	}
 	
 	public Estado(Date fecha, String estado, Cuestionario cuestionario) {
 		super();
 		this.fecha = fecha;
-		Estado = estado;
+		tipoEstado = estado;
 		this.cuestionario = cuestionario;
 	}
 	
@@ -26,10 +41,10 @@ public class Estado {
 		this.fecha = fecha;
 	}
 	public String getEstado() {
-		return Estado;
+		return tipoEstado;
 	}
 	public void setEstado(String estado) {
-		Estado = estado;
+		tipoEstado = estado;
 	}
 	public Cuestionario getCuestionario() {
 		return cuestionario;

@@ -15,26 +15,55 @@ public class Cuestionario {
 	private Candidato candidato;
 	//private int nroDocumento;
 	private String clave;
-	@Column(nullable = true)
+	@OneToOne
+	@JoinColumn(name="idCuestionario", nullable = false, referencedColumnName="idCuestionario" , 
+	foreignKey=@ForeignKey(name="FK_Cuestionario_Estado", value=ConstraintMode.CONSTRAINT))
 	private Estado estado;
 	@Column(nullable = false)
 	private int cantidadAccesos;
-	@Column
+	@Column(nullable = true)
 	private Date fechaComienzo;
-	@Column
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="cuestionario_id", nullable = false, referencedColumnName="idCuestionario" , 
+				foreignKey=@ForeignKey(name="FK_Bloque_Cuestionario", value=ConstraintMode.CONSTRAINT))
 	private List<Bloque> bloques;
-	@Column
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="cuestionario_id", nullable = false, referencedColumnName="idCuestionario" , 
+	foreignKey=@ForeignKey(name="FK_PuntajePorCompetencia_Cuestionario", value=ConstraintMode.CONSTRAINT))
 	private List<PuntajePorCompetencia> resultadoXCompetencia;
-	@Column
+	@Column(nullable = true)
 	private int resultadoFinal;
-	@Column
+	@Column(nullable = true)
 	private Date fechaFinal;
-	@Column
+	@Column(nullable = true)
 	private Date ultimoAcceso;
+	//Agregamos un historial de cuestionario?
+	
+	public Cuestionario() {
+		super();
+	}
+	
+	public Cuestionario(int idCuestionario, Candidato candidato, String clave, Estado estado, int cantidadAccesos,
+			Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
+			int resultadoFinal, Date fechaFinal, Date ultimoAcceso) {
+		super();
+		this.idCuestionario = idCuestionario;
+		this.candidato = candidato;
+		this.clave = clave;
+		this.estado = estado;
+		this.cantidadAccesos = cantidadAccesos;
+		this.fechaComienzo = fechaComienzo;
+		this.bloques = bloques;
+		this.resultadoXCompetencia = resultadoXCompetencia;
+		this.resultadoFinal = resultadoFinal;
+		this.fechaFinal = fechaFinal;
+		this.ultimoAcceso = ultimoAcceso;
+	}
 	
 	public int getIdCuestionario() {
 		return idCuestionario;
 	}
+	
 	public void setIdCuestionario(int idCuestionario) {
 		this.idCuestionario = idCuestionario;
 	}

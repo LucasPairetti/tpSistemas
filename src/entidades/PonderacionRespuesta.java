@@ -1,9 +1,23 @@
 package entidades;
 
+import jakarta.persistence.*;
+
+@Entity
 public class PonderacionRespuesta {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idPuesto")
 	private int idPonderacionRespuesta;
+	@Column(nullable = false, unique = false)
 	private int ponderacion;
+	@OneToOne
+	@JoinColumn(name="respuesta_id", nullable = false, referencedColumnName="idRespuesta", 
+				foreignKey=@ForeignKey(name="FK_Ponderacion_RTA", value=ConstraintMode.CONSTRAINT))
 	private Respuesta respuesta;
+	
+	public PonderacionRespuesta() {
+		super();
+	}
 	
 	public PonderacionRespuesta(int ponderacion, Respuesta respuesta) {
 		super();

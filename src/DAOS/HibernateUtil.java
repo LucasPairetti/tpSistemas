@@ -31,6 +31,18 @@ public class HibernateUtil {
 					sources.addAnnotatedClass( entidades.ItemCompetencia.class );
 					sources.addAnnotatedClass( entidades.Consultor.class );
 					sources.addAnnotatedClass( entidades.Candidato.class );
+					sources.addAnnotatedClass( entidades.Bloque.class );
+					sources.addAnnotatedClass( entidades.Cuestionario.class );
+					sources.addAnnotatedClass( entidades.Estado.class );
+					sources.addAnnotatedClass( entidades.Factor.class );
+					sources.addAnnotatedClass( entidades.OpcionDeRespuesta.class );
+					sources.addAnnotatedClass( entidades.PonderacionRespuesta.class );
+					sources.addAnnotatedClass( entidades.PonderacionRtaCuestionario.class );
+					sources.addAnnotatedClass( entidades.Pregunta.class );
+					sources.addAnnotatedClass( entidades.PreguntaEnCuestionario.class );
+					sources.addAnnotatedClass( entidades.PuntajePorCompetencia.class );
+					sources.addAnnotatedClass( entidades.Respuesta.class );
+					sources.addAnnotatedClass( entidades.RespuestaEnCuestionario.class );
 				
 			Metadata metadata = sources.buildMetadata();
 				    

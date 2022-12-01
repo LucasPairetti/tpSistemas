@@ -9,7 +9,8 @@ public class ItemCompetencia {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int idItemCompetencia;
 	@OneToOne
-	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , foreignKey=@ForeignKey(name="FK_Item_Comp", value=ConstraintMode.CONSTRAINT))
+	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia", 
+				foreignKey=@ForeignKey(name="FK_Item_Comp", value=ConstraintMode.CONSTRAINT))
 	private Competencia competencia;
 	@Column(nullable = false)
 	private int ponderacion;

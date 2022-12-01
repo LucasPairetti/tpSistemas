@@ -15,6 +15,10 @@ public class Consultor {
 	@Column(nullable = false)
 	private String constrasenia;
 	
+	public Consultor() {
+		super();
+	}
+	
 	public Consultor(String nombreDeUsuario, String constrasenia) {
 		super();
 		this.nombreDeUsuario = nombreDeUsuario;

@@ -2,14 +2,34 @@ package entidades;
 
 import java.util.List;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Factor {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idFactor")
 	private int idFactor;
+	@Column(nullable = false, unique = true)
 	private String nombreFactor;
+	@Column(nullable = false, unique = true)
 	private int codigo;
+	@Column(nullable = false)
 	private String descripcion;
+	@ManyToOne
+	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , 
+	foreignKey=@ForeignKey(name="FK_Factor_Comp", value=ConstraintMode.CONSTRAINT))
 	private Competencia competencia;
+	@Column(nullable = false)
 	private int nroOrden;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="factor_id", nullable = false, referencedColumnName="idFactor" , 
+	foreignKey=@ForeignKey(name="FK_Factor_Pregunta", value=ConstraintMode.CONSTRAINT))
 	private List<Pregunta> preguntas;
+	
+	public Factor() {
+		super();
+	}
 	
 	public Factor(String nombreFactor, int codigo, String descripcion, Competencia competencia,
 			int nroOrden, List<Pregunta> preguntas) {

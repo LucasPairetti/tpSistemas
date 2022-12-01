@@ -67,13 +67,14 @@ public class IngresoConsultorController implements Initializable {
     	if(!validarCampos()) {
     		return;
     	}
-    	String password;
+    	String password = passwordFieldHidden.getText();
+    	System.out.println(password);
     	String usuario = usuarioTextField.getText();
-    	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) {//este if esta xq no se si un campo esta mas completo que otro, tomo como contraseña el que tiene mayor longitud
-    		password = passwordFieldHidden.getText();
-    	}else {
-    		password = passwordFieldShowed.getText();
-    	}
+    	//if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) {//este if esta xq no se si un campo esta mas completo que otro, tomo como contraseña el que tiene mayor longitud
+    		//password = passwordFieldHidden.getText();
+    	//}else {
+    	//	password = passwordFieldShowed.getText();
+    	//}
     	
     	GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
     	
@@ -81,10 +82,13 @@ public class IngresoConsultorController implements Initializable {
     	
     	if(usuarioValidado == null) {
     		System.out.println("El nombre de usuario ingresado no pertenece a un consultor registrado.");
-    		return;
-    	} else if(usuarioValidado.getConstrasenia() != password) {
+    		return; 
+    		} 
+    	else {
+    		if(!(usuarioValidado.getConstrasenia().equals(password))) {
     		System.out.println("La contraseña ingresada no es correcta.");
     		return;
+    		}
     	}
     	
     	/*

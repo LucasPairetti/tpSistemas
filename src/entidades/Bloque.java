@@ -2,12 +2,26 @@ package entidades;
 
 import java.util.List;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Bloque {
+	@Id
+	@GeneratedValue(strategy= GenerationType.IDENTITY)
+	@Column(name="idBloque")
 	private int idBloque;
-	private List<Pregunta> preguntas;
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	//@JoinColumn(name="bloque_id", nullable = false, referencedColumnName="idBloque" , 
+	//foreignKey=@ForeignKey(name="FK_Bloque_PreguntaEnCuestionario", value=ConstraintMode.CONSTRAINT))
+	private List<PreguntaEnCuestionario> preguntas;
+	@Column(nullable = false)
 	private int numeroBloque;
 	
-	public Bloque(List<Pregunta> preguntas, int numeroBloque) {
+	public Bloque() {
+		super();
+	}
+	
+	public Bloque(List<PreguntaEnCuestionario> preguntas, int numeroBloque) {
 		super();
 		this.preguntas = preguntas;
 		this.numeroBloque = numeroBloque;
@@ -17,11 +31,11 @@ public class Bloque {
 		return idBloque;
 	}
 
-	public List<Pregunta> getPreguntas() {
+	public List<PreguntaEnCuestionario> getPreguntas() {
 		return preguntas;
 	}
 
-	public void setPreguntas(List<Pregunta> preguntas) {
+	public void setPreguntas(List<PreguntaEnCuestionario> preguntas) {
 		this.preguntas = preguntas;
 	}
 

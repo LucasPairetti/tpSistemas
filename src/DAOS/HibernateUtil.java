@@ -29,6 +29,8 @@ public class HibernateUtil {
 					sources.addAnnotatedClass( entidades.Puesto.class );
 					sources.addAnnotatedClass( entidades.Competencia.class );
 					sources.addAnnotatedClass( entidades.ItemCompetencia.class );
+					sources.addAnnotatedClass( entidades.Consultor.class );
+					sources.addAnnotatedClass( entidades.Candidato.class );
 				
 			Metadata metadata = sources.buildMetadata();
 				    

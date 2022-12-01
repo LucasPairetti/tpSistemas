@@ -3,6 +3,7 @@ package entidades;
 import jakarta.persistence.*;
 
 @Entity
+@Table(name="Consultor")
 public class Consultor {
 	
 	@Id

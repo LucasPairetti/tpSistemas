@@ -1,19 +1,12 @@
 package DAOS;
 
 import java.util.List;
-
 import org.hibernate.PersistentObjectException;
 import org.hibernate.Session;
-
-import entidades.Competencia;
 import entidades.Consultor;
-import entidades.Puesto;
 import interfaces.ConsultorDao;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.TypedQuery;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaQuery;
-import jakarta.persistence.criteria.Root;
+import jakarta.persistence.*;
+import jakarta.persistence.criteria.*;
 
 public class ConsultorDaoImp implements ConsultorDao {
 

@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import entidades.Consultor;
+import gestores.GestorDeConsultor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -65,13 +67,25 @@ public class IngresoConsultorController implements Initializable {
     	if(!validarCampos()) {
     		return;
     	}
-    	String usuario= usuarioTextField.getText();
+    	String password;
+    	String usuario = usuarioTextField.getText();
     	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) {//este if esta xq no se si un campo esta mas completo que otro, tomo como contraseña el que tiene mayor longitud
-    		String password = passwordFieldHidden.getText();
+    		password = passwordFieldHidden.getText();
     	}else {
-    		String password = passwordFieldShowed.getText();
+    		password = passwordFieldShowed.getText();
     	}
     	
+    	GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
+    	
+    	Consultor usuarioValidado = gestorDeConsultor.getConsultorByNombre(usuario);
+    	
+    	if(usuarioValidado == null) {
+    		System.out.println("El nombre de usuario ingresado no pertenece a un consultor registrado.");
+    		return;
+    	} else if(usuarioValidado.getConstrasenia() != password) {
+    		System.out.println("La contraseña ingresada no es correcta.");
+    		return;
+    	}
     	
     	/*
     	 * ahora tenes usuario y password como atributos para validar
@@ -140,7 +154,7 @@ public class IngresoConsultorController implements Initializable {
     		 
     	 }else errorUsuarioText.setOpacity(0);
     		 
-    	if ((passwordFieldShowed.getText()==""&&passwordFieldHidden.getText()=="")) {
+    	if ((passwordFieldShowed.getText()=="" && passwordFieldHidden.getText()=="")) {
     		flag=false;
     		errorPasswordText.setText("Complete este campo, es obligatorio.");
     		errorPasswordText.setOpacity(1);

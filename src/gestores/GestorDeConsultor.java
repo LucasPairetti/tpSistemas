@@ -12,6 +12,7 @@ import interfaces.ConsultorDao;
 public class GestorDeConsultor implements ConsultorDao {
 	private static GestorDeConsultor instance;
 	private static ConsultorDaoImp dao;
+	//private Consultor instanciaDeConsultor;
 	
 	public GestorDeConsultor() {
 		super();

@@ -5,6 +5,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import entidades.Consultor;
+import gestores.GestorDeAutenticacion;
 import gestores.GestorDeConsultor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -62,44 +63,21 @@ public class IngresoConsultorController implements Initializable {
 
     @FXML
     void ingresarButtonClicked(ActionEvent event) {
-    	
-    	//cuando se haga la validacion, revisar que se se tomen los valores de 
+    	 
     	if(!validarCampos()) {
     		return;
     	}
+    	
     	String password = passwordFieldHidden.getText();
-    	System.out.println(password);
     	String usuario = usuarioTextField.getText();
-    	//if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) {//este if esta xq no se si un campo esta mas completo que otro, tomo como contraseña el que tiene mayor longitud
-    		//password = passwordFieldHidden.getText();
-    	//}else {
-    	//	password = passwordFieldShowed.getText();
-    	//}
     	
-    	GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
+    	if(passwordFieldShowed.getText().length() >= passwordFieldHidden.getText().length()) password = passwordFieldShowed.getText();
     	
-    	Consultor usuarioValidado = gestorDeConsultor.getConsultorByNombre(usuario);
+    	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	
-    	if(usuarioValidado == null) {
-    		System.out.println("El nombre de usuario ingresado no pertenece a un consultor registrado.");
-    		return; 
-    		} 
-    	else {
-    		if(!(usuarioValidado.getConstrasenia().equals(password))) {
-    		System.out.println("La contraseña ingresada no es correcta.");
-    		return;
-    		}
-    	}
-    	
-    	/*
-    	 * ahora tenes usuario y password como atributos para validar
-    	 * aca tendria que ir la logica de validar al usuario, es mas facil decir "si no se cumplen los parametros -> return;" cosa de no necesitar meter lo de interfaz
-    	 * dentro de un if o algo
-    	 * 
-    	 */
+    	if(!gestorDeAutenticacion.autenticarConsultor(usuario, password)) return;
     
-    	
-    	//de aca para abajo, es enviar al usuario a la siguiente pantalla, asi que esto debe ocurrir solo si se validó
+    	//Salto a otra interfaz
     	Parent root;
 		try {
 			root = FXMLLoader.load((getClass().getResource("/views/UsuarioConsultor.fxml")));

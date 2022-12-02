@@ -13,7 +13,7 @@ import interfaces.PuestoDao;
 
 public class GestorDePuesto implements PuestoDao{
 	private static GestorDePuesto instance;
-	private static PuestoDaoImp dao;
+	private static PuestoDao dao;
 	
 	public GestorDePuesto() {
 		super();
@@ -86,10 +86,6 @@ public class GestorDePuesto implements PuestoDao{
 		return dao.getPuestoByCodigo(codigo);
 	}
 	
-	public static PuestoDaoImp getDao() {
-		// TODO Auto-generated method stub
-		return dao;
-	}
 	
 	public PuestoDTO getPuestoDTO(Puesto puesto) {
 		GestorDeCompetencias gc = GestorDeCompetencias.getInstance();

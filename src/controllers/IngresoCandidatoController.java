@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import gestores.GestorDeAutenticacion;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -90,24 +91,33 @@ public class IngresoCandidatoController implements Initializable {
     	}
     	String tipoDoc= tipoDocComboBox.getSelectionModel().getSelectedItem();
     	int  nroDoc=Integer.parseInt(usuarioTextField.getText());
-    	
+    	String clave;
     	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) { //este if lo pongo xq como son dos textfield, no se cual es el completo (asumo que es el que tiene mas caracteres)
-    		int clave = Integer.parseInt(passwordFieldHidden.getText()); 
+    		clave = passwordFieldHidden.getText(); 
     	}else {
-    		int clave = Integer.parseInt(passwordFieldShowed.getText()); 
+    		clave = passwordFieldShowed.getText(); 
     	}
     	
     	
+    	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	
-    	
-    	
+    	if(!gestorDeAutenticacion.autenticarCandidato(tipoDoc, nroDoc, clave)) return;
     	
     	/*
     	 * tenes tipoDoc, nroDoc y clave para como atributos para hacer la validacion
     	 * misma logica que en validar consultor, solo que aun no tengo pensada la interfaz que le sigue a esto
     	 * 
     	 */
-    	
+    	Parent root;
+		try {
+			root = FXMLLoader.load((getClass().getResource("/views/CompletarCuestionario.fxml")));
+			Stage window = (Stage)ingresarButton.getScene().getWindow();
+			window.setTitle("Usuario consultor");
+	    	window.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
 
     }
@@ -170,14 +180,14 @@ public class IngresoCandidatoController implements Initializable {
     		return false;
     	}
     	
-    	try {
+    	/*try {
     		if(flag &&passwordFieldHidden.getText()!="" ) {
     		Integer.parseInt(passwordFieldHidden.getText());
     		}else if(flag &&passwordFieldShowed.getText()!="" ) {
         		Integer.parseInt(passwordFieldShowed.getText());
         		}
     		
-
+    		//Controlar largo
     		
     	}catch(Exception e) {
     		
@@ -185,10 +195,7 @@ public class IngresoCandidatoController implements Initializable {
     		
     		errorClaveText.setOpacity(1);
     		return false;
-    	}
-    	
-    	
-    	
+    	}*/
     	
     	
     	return flag;

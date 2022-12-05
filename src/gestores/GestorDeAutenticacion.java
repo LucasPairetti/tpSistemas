@@ -1,10 +1,7 @@
 package gestores;
 
-import DAOS.PuestoDaoImp;
+import entidades.Candidato;
 import entidades.Consultor;
-import interfaces.CandidatoDao;
-import interfaces.ConsultorDao;
-import interfaces.PuestoDao;
 
 public class GestorDeAutenticacion {
 	private static GestorDeAutenticacion instance;
@@ -31,16 +28,26 @@ public class GestorDeAutenticacion {
 		
 		Consultor usuarioValidado = gestorConsultor.getConsultorByNombre(nombreDeUsuario);
     	
-    	if(usuarioValidado == null || !(usuarioValidado.getNombreDeUsuario().equals(nombreDeUsuario))) {
-    		System.out.println("El nombre de usuario ingresado no pertenece a un consultor registrado.");
+    	if(usuarioValidado == null) {
+    		System.out.println("El usuario o la contraseña no son válidos");
     		return false; 
     		} 
     	else {
     		if(!(usuarioValidado.getConstrasenia().equals(contrasenia))) {
-    		System.out.println("La contraseña ingresada no es correcta.");
+    		System.out.println("El usuario o la contraseña no son válidos");
     		return false;
     			}
     		}
 		return true;
 	}
+
+	public Boolean autenticarCandidato(String tipoDoc, int nroDoc, String clave) {
+		// TODO Auto-generated method stub
+		Candidato candidato = gestorCandidato.getCandidatoByNroDocumento(tipoDoc, nroDoc);
+		
+		if(candidato == null || !candidato.getClave().equals(clave)) {
+			System.out.println("El usuario o la contraseña no son válidos"); return false;}
+		else return true;
+		}
+		
 }

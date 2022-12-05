@@ -11,5 +11,5 @@ public interface CandidatoDao {
 	public List<Candidato> getAllCandidato();
 	public Candidato getCandidatoById(int idCandidato);
 	public Candidato getCandidatoByClave(String clave);
-	public Candidato getCandidatoByNroDocumento(int numeroDeDocumento);
+	public Candidato getCandidatoByNroDocumento(String tipoDocumento, int numeroDeDocumento);
 }

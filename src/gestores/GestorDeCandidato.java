@@ -2,10 +2,8 @@ package gestores;
 
 import java.util.Date;
 import java.util.List;
-
 import DAOS.CandidatoDaoImp;
 import entidades.Candidato;
-import entidades.Consultor;
 import entidades.Cuestionario;
 import interfaces.CandidatoDao;
 
@@ -28,11 +26,11 @@ public class GestorDeCandidato implements CandidatoDao {
 	}
 	
 	
-	public void createCandidato(int idCandidato, int numeroDocumento, String clave, Cuestionario cuestionario,
+	public void createCandidato(int numeroDocumento, String clave, Cuestionario cuestionario,
 			String tipoDocumento, List<Cuestionario> cuestionariosTerminados, int nroCandidato, String nombre,
 			String apellido, Date fechaNacimiento, String nacionalidad, String email, String escolaridad,
 			Boolean eliminacion) {
-		Candidato candidato = new Candidato(idCandidato, numeroDocumento, clave, cuestionario, tipoDocumento,
+		Candidato candidato = new Candidato(numeroDocumento, clave, cuestionario, tipoDocumento,
 				cuestionariosTerminados, nroCandidato, nombre, apellido, fechaNacimiento, nacionalidad, email,
 				escolaridad, eliminacion);
 		dao.createCandidato(candidato);
@@ -75,8 +73,8 @@ public class GestorDeCandidato implements CandidatoDao {
 	}
 
 	@Override
-	public Candidato getCandidatoByNroDocumento(int numeroDeDocumento) {
+	public Candidato getCandidatoByNroDocumento(String tipoDocumento, int numeroDeDocumento) {
 		// TODO Auto-generated method stub
-		return dao.getCandidatoByNroDocumento(numeroDeDocumento);
+		return dao.getCandidatoByNroDocumento(tipoDocumento, numeroDeDocumento);
 	};
 }

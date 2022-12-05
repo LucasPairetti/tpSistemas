@@ -3,10 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-
-import entidades.Consultor;
 import gestores.GestorDeAutenticacion;
-import gestores.GestorDeConsultor;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -143,6 +140,8 @@ public class IngresoConsultorController implements Initializable {
     	 }else errorPasswordText.setOpacity(0);
     		
     	 return flag;
+    	 
+    	//Controlar largo
     	 
      }
 

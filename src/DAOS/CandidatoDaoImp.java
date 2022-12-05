@@ -4,9 +4,7 @@ import java.util.List;
 
 import org.hibernate.PersistentObjectException;
 import org.hibernate.Session;
-
 import entidades.Candidato;
-import entidades.Consultor;
 import interfaces.CandidatoDao;
 import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
@@ -126,7 +124,7 @@ public class CandidatoDaoImp implements CandidatoDao {
 	}
 
 	@Override
-	public Candidato getCandidatoByNroDocumento(int numeroDeDocumento) {
+	public Candidato getCandidatoByNroDocumento(String tipoDoc, int numeroDeDocumento) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -137,7 +135,9 @@ public class CandidatoDaoImp implements CandidatoDao {
 	    CriteriaQuery<Candidato> criteria = builder.createQuery(Candidato.class);
 	    Root<Candidato> from = criteria.from(Candidato.class);
 	    criteria.select(from);
-	    criteria.where(builder.equal(from.get("numeroDeDocumento"), numeroDeDocumento));
+	    criteria.where(builder.equal(from.get("numeroDocumento"), numeroDeDocumento), 
+	    		builder.equal(from.get("tipoDocumento"), tipoDoc));
+	    
 	    TypedQuery<Candidato> typed = session.createQuery(criteria);
 		
 	    Candidato candidato = typed.getSingleResult();

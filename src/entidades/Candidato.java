@@ -48,12 +48,11 @@ public class Candidato {
 		super();
 	}
 	
-	public Candidato(int idCandidato, int numeroDocumento, String clave, Cuestionario cuestionario,
+	public Candidato(int numeroDocumento, String clave, Cuestionario cuestionario,
 			String tipoDocumento, List<Cuestionario> cuestionariosTerminados, int nroCandidato, String nombre,
 			String apellido, Date fechaNacimiento, String nacionalidad, String email, String escolaridad,
 			Boolean eliminacion) {
 		super();
-		this.idCandidato = idCandidato;
 		this.numeroDocumento = numeroDocumento;
 		this.clave = clave;
 		this.cuestionario = cuestionario;

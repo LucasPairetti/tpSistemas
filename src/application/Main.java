@@ -1,6 +1,9 @@
 package application;
 	
 
+import java.util.Date;
+
+import gestores.GestorDeCandidato;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -25,8 +28,13 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		//Date fecha = new Date(2020,11,03);
+		//GestorDeCandidato gestorDeCandidato = GestorDeCandidato.getInstance();
+		//gestorDeCandidato.createCandidato(1234567, "ABCDEF123", null, "DNI", null, 1, "Lucas",
+				//"Pairetti", fecha, "Argentina", "ljp@gmail.com", "secundario", false);
 		
 		launch(args);
+		
 		//GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
 		//gestorDeConsultor.createConsultor("TomasDannunzio", "Ramona123");
 		/*

@@ -68,7 +68,8 @@ public class IngresoConsultorController implements Initializable {
     	String password = passwordFieldHidden.getText();
     	String usuario = usuarioTextField.getText();
     	
-    	if(passwordFieldShowed.getText().length() >= passwordFieldHidden.getText().length()) password = passwordFieldShowed.getText();
+    	
+    	if(!passwordFieldHidden.isVisible()) password = passwordFieldShowed.getText();
     	
     	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	

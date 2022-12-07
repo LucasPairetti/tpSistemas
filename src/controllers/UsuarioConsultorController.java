@@ -52,7 +52,21 @@ public class UsuarioConsultorController {
 
     @FXML
     void evaluarCandidatosButtonClicked(ActionEvent event) {
+    	Parent root;
+		try {
+			root = FXMLLoader.load((getClass().getResource("/views/EvaluarBusquedaCandidatos.fxml")));
+			Stage window = (Stage)evaluarCandidatosButton.getScene().getWindow();
+			window.setTitle("Gestionar Puestos");
+	    	window.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
+    	
+    	
+    	
+    	
     }
 
     @FXML

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="scenePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.EvaluarBusquedaController">
+   <children>
+      <Button fx:id="salirButton" layoutX="1131.0" layoutY="676.0" mnemonicParsing="false" onAction="#salirClicked" prefHeight="30.0" prefWidth="135.0" text="Salir" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="200.0" layoutX="404.0" layoutY="62.0" stroke="BLACK" strokeType="INSIDE" width="808.0">
+         <fill>
+            <LinearGradient endX="0.5450236966824644" endY="1.0" startX="0.0947867298578199" startY="0.6303317535545023">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.75" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <TableView fx:id="buscarCandidatoTableView" layoutX="466.0" layoutY="92.0" prefHeight="141.0" prefWidth="608.0">
+        <columns>
+          <TableColumn fx:id="nombreBuscarColumn" prefWidth="170.0" text="Nombre" />
+          <TableColumn fx:id="apellidoBuscarColumn" prefWidth="195.0" text="apellido" />
+            <TableColumn fx:id="nroBuscarColumn" minWidth="0.0" prefWidth="242.0" text="Nº de candidato" />
+        </columns>
+      </TableView>
+      <Button fx:id="agregarButton" layoutX="1122.0" layoutY="218.0" mnemonicParsing="false" onAction="#agregarButtonClicked" text="Agregar" />
+      <Text layoutX="54.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido:" />
+      <Text layoutX="54.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre:" />
+      <TextField fx:id="apellidoTextField" layoutX="113.0" layoutY="80.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="nombreTextField" layoutX="113.0" layoutY="134.0" prefHeight="25.0" prefWidth="208.0" />
+      <TextField fx:id="nroTextField" layoutX="155.0" layoutY="193.0" prefHeight="25.0" prefWidth="166.0" />
+      <Text layoutX="55.0" layoutY="210.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nº de candidato:" />
+      <Button fx:id="buscarButton" layoutX="321.0" layoutY="243.0" mnemonicParsing="false" onAction="#buscarButtonClicked" text="Buscar" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" height="345.0" layoutX="54.0" layoutY="309.0" stroke="BLACK" strokeType="INSIDE" width="1157.0">
+         <fill>
+            <LinearGradient endX="0.5450236966824644" endY="1.0" startX="0.0947867298578199" startY="0.6303317535545023">
+               <stops>
+                  <Stop>
+                     <color>
+                        <Color green="0.75" blue="1.0" />
+                     </color>
+                  </Stop>
+                  <Stop offset="1.0">
+                     <color>
+                        <Color red="1.0" green="1.0" blue="1.0" />
+                     </color>
+                  </Stop>
+               </stops>
+            </LinearGradient>
+         </fill>
+      </Rectangle>
+      <TableView fx:id="CandidatoTableView" layoutX="100.0" layoutY="344.0" prefHeight="284.0" prefWidth="888.0">
+        <columns>
+          <TableColumn fx:id="nombreColumn" prefWidth="284.0" text="Nombre" />
+          <TableColumn fx:id="apellidoColumn" prefWidth="603.0" text="Apellido" />
+        </columns>
+      </TableView>
+      <Button fx:id="quitarButton" layoutX="1023.0" layoutY="603.0" mnemonicParsing="false" onAction="#quitarButtonClicked" text="Quitar" />
+      <Button fx:id="siguienteButton" layoutX="970.0" layoutY="676.0" mnemonicParsing="false" onAction="#siguienteButtonClicked" prefHeight="30.0" prefWidth="135.0" text="Siguiente" />
+   </children>
+</AnchorPane>

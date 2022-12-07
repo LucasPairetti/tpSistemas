@@ -1,7 +1,8 @@
 package controllers;
 
 import java.io.IOException;
-
+import java.util.List;
+import entidades.Candidato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -88,17 +89,28 @@ public class EvaluarBusquedaController {
     void siguienteButtonClicked(ActionEvent event) {
 
     	
+    	alertaUsuarioEnCurso(null);
+
+    }
+    
+    
+    void alertaUsuarioEnCurso(List<Candidato> listaEnCurso) {
+    
+    	Stage alertaStage = new Stage();
     	Parent root;
 		try {
 			root = FXMLLoader.load((getClass().getResource("/views/alertaUsuariosEnCurso.fxml")));
-			Stage window = (Stage)siguienteButton.getScene().getWindow();
-			window.setTitle("Gestionar Puestos");
-	    	window.setScene(new Scene(root));
+			Scene scene = new Scene(root);
+			alertaStage.setTitle("Candidatos en curso");
+			alertaStage.setScene(scene);
+			alertaStage.show();
+	    	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-
+		
+		
     }
 
 }

@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.*;
@@ -16,20 +17,33 @@ public class Competencia {
 	private String nombreCompetencia;
 	@Column(nullable = false)
 	private String descripcion;
+	@OneToMany
+	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , 
+	foreignKey=@ForeignKey(name="FK_Factor_Comp", value=ConstraintMode.CONSTRAINT))
+	private List<Factor> factores;
+
+	public Competencia(int codigo, String nombreCompetencia, String descripcion,
+			List<Factor> factores) {
+		super();
+		this.codigo = codigo;
+		this.nombreCompetencia = nombreCompetencia;
+		this.descripcion = descripcion;
+		this.factores = factores;
+	}
 
 	public Competencia() {
 		super();
 		
 	}
-	
-	public Competencia(int codigo, String nombreCompetencia, String descripcion) {
-		super();
-		this.codigo = codigo;
-		this.nombreCompetencia = nombreCompetencia;
-		this.descripcion = descripcion;
+
+
+	public List<Factor> getFactores() {
+		return factores;
 	}
 
-
+	public void setFactores(List<Factor> factores) {
+		this.factores = factores;
+	}
 
 	public int getIdCompetencia() {
 		return idCompetencia;

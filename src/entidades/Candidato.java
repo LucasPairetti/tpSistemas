@@ -40,6 +40,7 @@ public class Candidato {
 	@Column
 	private Boolean eliminacion;
 	
+//@Primary Key(
 	
 	//NOTA: Este constructor se utiliza para fines practicos de la implementacion. Por consigna,
 	//los candidatos deben ser importados de un archivo externo.

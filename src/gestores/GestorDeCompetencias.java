@@ -6,6 +6,7 @@ import java.util.List;
 import DAOS.*;
 import DTOS.CompetenciaDTO;
 import entidades.Competencia;
+import entidades.Factor;
 import interfaces.*;
 
 public class GestorDeCompetencias implements CompetenciasDao {
@@ -28,9 +29,9 @@ public class GestorDeCompetencias implements CompetenciasDao {
 	
 	//metodos
 	
-	public void createCompetencia(int codigo, String nombre, String descripcion) {
+	public void createCompetencia(int codigo, String nombre, String descripcion, List<Factor> factores) {
 		// TODO Auto-generated method stub
-		Competencia competencia = new Competencia(codigo, nombre, descripcion);
+		Competencia competencia = new Competencia(codigo, nombre, descripcion, factores);
 		dao.createCompetencia(competencia);
 	}
 	@Override

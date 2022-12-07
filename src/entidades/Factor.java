@@ -16,10 +16,6 @@ public class Factor {
 	private int codigo;
 	@Column(nullable = false)
 	private String descripcion;
-	@ManyToOne
-	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , 
-	foreignKey=@ForeignKey(name="FK_Factor_Comp", value=ConstraintMode.CONSTRAINT))
-	private Competencia competencia;
 	@Column(nullable = false)
 	private int nroOrden;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -31,13 +27,12 @@ public class Factor {
 		super();
 	}
 	
-	public Factor(String nombreFactor, int codigo, String descripcion, Competencia competencia,
+	public Factor(String nombreFactor, int codigo, String descripcion, 
 			int nroOrden, List<Pregunta> preguntas) {
 		super();
 		this.nombreFactor = nombreFactor;
 		this.codigo = codigo;
 		this.descripcion = descripcion;
-		this.competencia = competencia;
 		this.nroOrden = nroOrden;
 		this.preguntas = preguntas;
 	}
@@ -64,12 +59,7 @@ public class Factor {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public Competencia getCompetencia() {
-		return competencia;
-	}
-	public void setCompetencia(Competencia competencia) {
-		this.competencia = competencia;
-	}
+
 	public int getNroOrden() {
 		return nroOrden;
 	}

@@ -16,15 +16,18 @@ public class Bloque {
 	private List<PreguntaEnCuestionario> preguntas;
 	@Column(nullable = false)
 	private int numeroBloque;
+	@Column(nullable = false)
+	private boolean completado;
 	
 	public Bloque() {
 		super();
 	}
 	
-	public Bloque(List<PreguntaEnCuestionario> preguntas, int numeroBloque) {
+	public Bloque(List<PreguntaEnCuestionario> preguntas, int numeroBloque, boolean completado) {
 		super();
 		this.preguntas = preguntas;
 		this.numeroBloque = numeroBloque;
+		this.completado = completado;
 	}
 
 	public int getIdBloque() {

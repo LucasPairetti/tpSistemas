@@ -5,18 +5,19 @@ import java.util.List; //o java.sql?
 import jakarta.persistence.*;
 
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint( columnNames = { "numeroDocumento", "tipoDocumento" } ) } )
 public class Candidato {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="idCandidato")
 	private int idCandidato;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = true, name = "numeroDocumento")
 	private int numeroDocumento;
 	@Column(nullable = false, unique = true)
 	private String clave;
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Cuestionario cuestionario;
-	@Column(nullable = false, unique = false)
+	@Column(nullable = false, unique = false, name = "tipoDocumento")
 	private String tipoDocumento;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="candidato_id", nullable = false, referencedColumnName="idCandidato" , 

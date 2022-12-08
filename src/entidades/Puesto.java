@@ -22,9 +22,9 @@ public class Puesto  {
 		@JoinColumn(name="puesto_id", nullable = false, referencedColumnName="idPuesto" , 
 					foreignKey=@ForeignKey(name="FK_Item_Puesto", value=ConstraintMode.CONSTRAINT))
 		private List<ItemCompetencia> competencias;
+		@OneToOne
 		@Column(nullable = true)
-		private int idAuditoria = -1;
-		//auditoria
+		private Auditoria idAuditoria;
 	
 	public Puesto() {
 		super();

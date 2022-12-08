@@ -43,6 +43,7 @@ public class HibernateUtil {
 					sources.addAnnotatedClass( entidades.PuntajePorCompetencia.class );
 					sources.addAnnotatedClass( entidades.Respuesta.class );
 					sources.addAnnotatedClass( entidades.RespuestaEnCuestionario.class );
+					sources.addAnnotatedClass( entidades.Auditoria.class );
 				
 			Metadata metadata = sources.buildMetadata();
 				    

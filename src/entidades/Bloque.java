@@ -11,8 +11,8 @@ public class Bloque {
 	@Column(name="idBloque")
 	private int idBloque;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	//@JoinColumn(name="bloque_id", nullable = false, referencedColumnName="idBloque" , 
-	//foreignKey=@ForeignKey(name="FK_Bloque_PreguntaEnCuestionario", value=ConstraintMode.CONSTRAINT))
+	@JoinColumn(name="bloque_id", nullable = false, referencedColumnName="idBloque" , 
+	foreignKey=@ForeignKey(name="FK_Bloque_PreguntaEnCuestionario", value=ConstraintMode.CONSTRAINT))
 	private List<PreguntaEnCuestionario> preguntas;
 	@Column(nullable = false)
 	private int numeroBloque;
@@ -27,6 +27,14 @@ public class Bloque {
 		super();
 		this.preguntas = preguntas;
 		this.numeroBloque = numeroBloque;
+		this.completado = completado;
+	}
+
+	public boolean isCompletado() {
+		return completado;
+	}
+
+	public void setCompletado(boolean completado) {
 		this.completado = completado;
 	}
 

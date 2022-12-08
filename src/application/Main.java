@@ -1,9 +1,11 @@
 package application;
 	
-
 import java.util.Date;
-
-import gestores.GestorDeCandidato;
+import java.util.List;
+import java.util.ArrayList;
+import java.util.Calendar;
+import gestores.*;
+import entidades.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -28,23 +30,31 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		Pregunta pregunta1 = new Pregunta(null, "Pregunta1", "Con cuál de las siguientes frases te identificas más\r\n"
+				+ "en tu vida profesional:", "", null, null);
+		Pregunta pregunta2 = new Pregunta(null, "Pregunta2", "Para mí el logro de objetivos colectivos es\r\n"
+				+ "importante porque:", "", null, null);
+		List<Pregunta> listaDePreguntas = new ArrayList<Pregunta>();
+		listaDePreguntas.add(pregunta1);
+		listaDePreguntas.add(pregunta2);
+		Factor factor1 = new Factor("Credibilidad", 1, "Debe ser honesto y poder probarlo.", 1, listaDePreguntas);
+		Factor factor2 = new Factor("Compromiso", 1, "Debe mostrar compromiso con sus tareas.", 1, null);
+		List<Factor> listaDeFactores = new ArrayList<Factor>();
+		listaDeFactores.add(factor1);
+		listaDeFactores.add(factor2);
+		GestorDeCompetencias gestorDeCompetencia = GestorDeCompetencias.getInstance();
+		gestorDeCompetencia.createCompetencia(1, "Lealtad", "Debe ser leal a la empresa.", listaDeFactores);
+		GestorDePuesto gestorDePuesto = GestorDePuesto.getInstance();
+		gestorDePuesto.createPuesto(1, "Gerente", "McDonalds", "3 anios de experiencia como minimo.", null);
+		Calendar calendario = Calendar.getInstance();
+		calendario.set(2000, 11, 3);
+		Date fechaNacimiento = calendario.getTime();
+		GestorDeConsultor gestorConsultor = GestorDeConsultor.getInstance();
+		gestorConsultor.createConsultor("TomasDannunzio", "Ramona123");
+		GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
+		gestorCandidato.createCandidato(42870674, "ABCDE123", null, "DNI", null, 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
 		
 		launch(args);
 		
-		//Date fecha = new Date(2020,11,03);
-		//GestorDeCandidato gestorDeCandidato = GestorDeCandidato.getInstance();
-		//gestorDeCandidato.createCandidato(1234567, "ABCDEF123", null, "DNI", null, 1, "Lucas",
-				//"Pairetti", fecha, "Argentina", "ljp@gmail.com", "secundario", false);
-		//GestorDeConsultor gestorDeConsultor = GestorDeConsultor.getInstance();
-		//gestorDeConsultor.createConsultor("TomasDannunzio", "Ramona123");
-		/*
-		Competencia comp = new Competencia(345,"liderazgo","debe poder liderar su grupo de trabajo");
-		GestorDeCompetencias.getInstance().createCompetencia(comp);
-		List<ItemCompetencia> competencias = new ArrayList<ItemCompetencia>();
-		Puesto puesto = new Puesto(123, "gerente", "McDonalds", "Se necesita para el 3/10", competencias);
-		puesto.addItemCompetencia(new ItemCompetencia(comp, 10));
-		GestorDePuesto.getInstance();
-		GestorDePuesto.getDao().createPuesto(puesto);
-		*/
 	}
 }

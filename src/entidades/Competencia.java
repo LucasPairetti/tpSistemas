@@ -17,8 +17,8 @@ public class Competencia {
 	private String nombreCompetencia;
 	@Column(nullable = false)
 	private String descripcion;
-	@OneToMany
-	@JoinColumn(name="competencia_id", nullable = false, referencedColumnName="idCompetencia" , 
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="competencia_id", nullable = true, referencedColumnName="idCompetencia" , 
 	foreignKey=@ForeignKey(name="FK_Factor_Comp", value=ConstraintMode.CONSTRAINT))
 	private List<Factor> factores;
 

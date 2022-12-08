@@ -18,8 +18,8 @@ public class Factor {
 	private String descripcion;
 	@Column(nullable = false)
 	private int nroOrden;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="factor_id", nullable = false, referencedColumnName="idFactor" , 
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER) 
+	@JoinColumn(name="factor_id", nullable = true, referencedColumnName="idFactor", 
 	foreignKey=@ForeignKey(name="FK_Factor_Pregunta", value=ConstraintMode.CONSTRAINT))
 	private List<Pregunta> preguntas;
 	

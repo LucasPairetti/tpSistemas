@@ -13,7 +13,7 @@ public class OpcionDeRespuesta {
 	private String nombre;
 	@Column(nullable= false, unique= false)
 	private String descripcion;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="opcionDeRespuesta_id", nullable = false, referencedColumnName="idOpcionDeRespuesta" , 
 				foreignKey=@ForeignKey(name="FK_Opcion_Respuesta", value=ConstraintMode.CONSTRAINT))
 	private List<Respuesta> listaRespuestas;

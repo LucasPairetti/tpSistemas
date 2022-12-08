@@ -10,15 +10,17 @@ public class Pregunta {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="idPregunta")
 	private int idPregunta;
-	@ManyToOne
-	private Factor factor;
+	/*@ManyToOne
+	@JoinColumn(name="factor_id", nullable = false, referencedColumnName="idFactor", 
+				foreignKey=@ForeignKey(name="FK_Factor_Pregunta", value=ConstraintMode.CONSTRAINT))
+	private Factor factor;*/
 	@Column(nullable = false, unique = true)
 	private String nombre;
 	@Column(nullable = false, unique = true)
 	private String textoPregunta;
 	@Column(nullable = false)
 	private String descripcion;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="opcionDeRta_id", nullable = false, referencedColumnName="idOpcionDeRespuesta", 
 				foreignKey=@ForeignKey(name="FK_Pregunta_Opcion", value=ConstraintMode.CONSTRAINT))
 	private OpcionDeRespuesta opcionDeRespuesta;
@@ -34,7 +36,7 @@ public class Pregunta {
 	public Pregunta(Factor factor, String nombre, String textoPregunta, String descripcion,
 			OpcionDeRespuesta opcionDeRespuesta, List<PonderacionRespuesta> respuestas) {
 		super();
-		this.factor = factor;
+		//this.factor = factor;
 		this.nombre = nombre;
 		this.textoPregunta = textoPregunta;
 		this.descripcion = descripcion;
@@ -46,12 +48,12 @@ public class Pregunta {
 		return idPregunta;
 	}
 
-	public Factor getFactor() {
-		return factor;
-	}
-	public void setFactor(Factor factor) {
-		this.factor = factor;
-	}
+	//public Factor getFactor() {
+	//	return factor;
+	//}
+	//public void setFactor(Factor factor) {
+	//	this.factor = factor;
+	//}
 	public String getNombre() {
 		return nombre;
 	}

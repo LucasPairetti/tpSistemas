@@ -23,8 +23,9 @@ public class Puesto  {
 					foreignKey=@ForeignKey(name="FK_Item_Puesto", value=ConstraintMode.CONSTRAINT))
 		private List<ItemCompetencia> competencias;
 		@OneToOne
-		@Column(nullable = true)
-		private Auditoria idAuditoria;
+		@JoinColumn(name="idAuditoria", nullable = true, referencedColumnName="idAuditoria" , 
+					foreignKey=@ForeignKey(name="FK_Auditoria_Puesto", value=ConstraintMode.CONSTRAINT))
+		private Auditoria auditoria;
 	
 	public Puesto() {
 		super();

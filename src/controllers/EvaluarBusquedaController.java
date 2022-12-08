@@ -89,7 +89,7 @@ public class EvaluarBusquedaController {
     void siguienteButtonClicked(ActionEvent event) {
 
     	
-    	alertaUsuarioEnCurso(null);
+    	EvaluarFuncionInterfaz(null);
 
     }
     
@@ -112,5 +112,23 @@ public class EvaluarBusquedaController {
 		
 		
     }
+    
+   void EvaluarFuncionInterfaz(List<Candidato> listaCandidatos) {
+	   
+		Parent root;
+		try {
+			root = FXMLLoader.load((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
+			Stage window = (Stage)siguienteButton.getScene().getWindow();
+			window.setTitle("Gestionar Puestos");
+	    	window.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	   
+	   
+	   
+   }
 
 }

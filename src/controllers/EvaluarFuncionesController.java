@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
-
+import DTOS.*;
 import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
@@ -23,43 +23,59 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class EvaluarFuncionesController implements Initializable {
+
+public class EvaluarFuncionesController implements Initializable{
 
     @FXML
-    private TableView<?> CandidatoTableView;
+    private TableView<CandidatoDTO> CandidatoTableView;
 
     @FXML
-    private TableColumn<?, ?> apellidoColumn;
+    private TableColumn<CandidatoDTO, String> apellidoColumn;
 
     @FXML
     private Button cancelarButton;
 
     @FXML
-    private TableColumn<?, ?> competenciaColumn;
+    private TableColumn<CandidatoDTO, String> claveIngresoColumn;
 
     @FXML
-    private TableView<?> competenciasTableView;
+    private TableColumn<ItemCompetencia, String> competenciaColumn;
+
+    @FXML
+    private TableView<ItemCompetencia> competenciasTableView;
+
+    @FXML
+    private TableColumn<PuestoDTO, String> empresaPuestoColumn;
 
     @FXML
     private Button finalizarButton;
 
     @FXML
-    private TableColumn<?, ?> nombreColumn;
+    private TableColumn<CandidatoDTO, String> nombreColumn;
 
     @FXML
-    private TableColumn<?, ?> ponderacionColumn;
+    private TableColumn<PuestoDTO, String> nombrePuestoColumn;
 
     @FXML
-    private ChoiceBox<?> puestosChoiceBox;
+    private TableColumn<CandidatoDTO, String> numeroDocColumn;
 
     @FXML
-    private Button salirButton;
+    private TableColumn<ItemCompetencia, String> ponderacionColumn;
+
+    @FXML
+    private TableView<PuestoDTO> puestoTableView;
 
     @FXML
     private AnchorPane scenePane;
 
     @FXML
+    private Button seleccionarButton;
+
+    @FXML
     private Button siguienteButton;
+
+    @FXML
+    private TableColumn<CandidatoDTO, String> tipoDocColumn;
 
     @FXML
     void cancelarButtonClicked(ActionEvent event) {
@@ -72,21 +88,33 @@ public class EvaluarFuncionesController implements Initializable {
     }
 
     @FXML
-    void salirClicked(ActionEvent event) {
-
-    }
-
-    @FXML
-    void siguienteButtonClicked(ActionEvent event) {
+    void seleccionarButtonClicked(ActionEvent event) {
     	
     	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
     	if(!gestorPuesto.validarFactores(puestoDTO) {alertaCompetencias(null); return;}
     	
     	//Se muestran itemCompetencia
-    	
+
+
     }
-    
-    
+
+    @FXML
+    void siguienteButtonClicked(ActionEvent event) {
+
+    }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+				GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
+				List<Puesto> listaPuestos = gestorPuesto.getAllPuestos();
+
+				
+				//hay que setear lo mismo que AltaPuesto sobre itemCompetencia para mostrar el STRING de la competencia en item competencia
+		
+	}
+	
     void alertaCompetencias(List<Competencia> listaCompetencias) {
     	Stage alertaStage = new Stage();
     	Parent root;
@@ -104,11 +132,5 @@ public class EvaluarFuncionesController implements Initializable {
     	
     }
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
-		GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
-		List<Puesto> listaPuestos = gestorPuesto.getAllPuestos();
-	}
 
 }

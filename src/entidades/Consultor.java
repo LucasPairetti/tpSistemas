@@ -15,6 +15,13 @@ public class Consultor {
 	@Column(nullable = false)
 	private String constrasenia;
 	
+	@Transient
+	public static Consultor instance;
+	
+	public static void setInstance(Consultor c) {
+		Consultor.instance = c;
+	}
+	
 	public Consultor() {
 		super();
 	}

@@ -5,7 +5,7 @@ import java.util.Objects;
 import jakarta.persistence.*;
 
 @Entity
-public class Puesto  {
+public class Puesto {
 		@Id
 		@GeneratedValue(strategy= GenerationType.IDENTITY)
 		@Column(name="idPuesto")
@@ -31,6 +31,7 @@ public class Puesto  {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
 	public Puesto(int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias) {
 		super();
 		this.codigo = codigo;
@@ -38,6 +39,7 @@ public class Puesto  {
 		this.empresa = empresa;
 		this.descripcion=descripcion;
 		this.competencias = competencias;
+		this.auditoria = null;
 	}
 	public int getIdPuesto() {
 		return idPuesto;
@@ -96,6 +98,16 @@ public class Puesto  {
 	public void addItemCompetencia(ItemCompetencia itemCompetencia) {
 		// TODO Auto-generated method stub
 		this.competencias.add(itemCompetencia);
+	}
+	
+	public void getAuditoria(Auditoria auditoria) {
+		// TODO Auto-generated method stub
+		this.auditoria = auditoria;
+	}
+	
+	public Auditoria getAuditoria() {
+		// TODO Auto-generated method stub
+		return this.auditoria;
 	}
 
 	

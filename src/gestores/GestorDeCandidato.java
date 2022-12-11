@@ -1,11 +1,17 @@
 package gestores;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import DAOS.CandidatoDaoImp;
 import entidades.Candidato;
+import entidades.Competencia;
 import entidades.Cuestionario;
+import entidades.Estado;
+import entidades.ItemCompetencia;
+import entidades.Puesto;
+import entidades.PuntajePorCompetencia;
 import interfaces.CandidatoDao;
 
 public class GestorDeCandidato {
@@ -101,4 +107,79 @@ public class GestorDeCandidato {
 		return true;
 	}
 	
+	public void evaluarCandidatos(List<CandidatoDTO> listaCandidatosDTO, PuestoDTO p) {
+		
+		//Convierto a Candidato los DTOs
+		GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
+		
+		Puesto puesto = gestorPuesto.getPuestoByPuestoDTO(p);
+		
+		List<Candidato> listaCandidatos = new ArrayList<Candidato>();
+		
+		for(CandidatoDTO candidatoDto : listaCandidatosDTO) {
+			listaCandidatos.add(this.getCandidatoByDTO(candidatoDto));
+		}
+		
+		//Creo cuestionarios
+		
+		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
+		Cuestionario punteroCuestionario;
+		List<Cuestionario> listaCuestionarios = new ArrayList<Cuestionario>();
+		
+		for(Candidato c : listaCandidatos) {
+			
+			//Crear clave
+		    
+				int len = 8;
+			
+		        final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+		 
+		        SecureRandom random = new SecureRandom();
+		        StringBuilder sb = new StringBuilder();
+		        
+		        for (int i = 0; i < len; i++)
+		        {
+		            int randomIndex = random.nextInt(chars.length());
+		            sb.append(chars.charAt(randomIndex));
+		        }
+		 
+		        String clave = sb.toString();
+		        
+			//Crear Estado
+		        
+		        Estado estado = new Estado(new Date(), "Activo");
+		        
+			//Crear puntajesXCompetencia
+		        
+		        List<ItemCompetencia> listaItems = puesto.getCompetencias();
+		        List<Competencia> competenciasDelPuesto = new ArrayList<Competencia>();
+		        for(ItemCompetencia item : listaItems) {
+		        	competenciasDelPuesto.add(item.getCompetencia());
+		        }
+		        
+		        List<PuntajePorCompetencia> puntajesXCompetencia = new ArrayList<PuntajePorCompetencia>();
+		        
+		        for(Competencia competencia : competenciasDelPuesto) {
+		        	puntajesXCompetencia.add(new PuntajePorCompetencia(0, competencia)); 
+		        }
+		     
+		    //Creo cuestionario
+			punteroCuestionario = gestorCuestionario.createCuestionario(c, clave, estado, 0, new Date(), null,
+					puntajesXCompetencia, 0, null, null);
+			
+			//Seteo cuestionario en candidato
+			c.setCuestionario(punteroCuestionario);
+			
+			//Aniado a lista para luego crear evaluacion
+			listaCuestionarios.add(punteroCuestionario);
+			
+		}
+		
+		//Creo evaluacion
+		
+		GestorDeEvaluacion gestorEvaluacion = GestorDeEvaluacion.getInstance();
+		
+		gestorEvaluacion.createEvaluacion("Incompleta", null, null, listaCuestionarios, puesto);
+		
+	}
 }

@@ -101,7 +101,9 @@ public class IngresoCandidatoController implements Initializable {
     	
     	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	
-    	if(!gestorDeAutenticacion.autenticarCandidato(tipoDoc, nroDoc, clave)) return;
+    	if(!gestorDeAutenticacion.autenticarCandidato(tipoDoc, nroDoc, clave)) {
+    		System.out.println("Los datos ingresados no son válidos o no existe un cuestionario para el Candidato"); 
+    		return;}
     	
     	/*
     	 * tenes tipoDoc, nroDoc y clave para como atributos para hacer la validacion

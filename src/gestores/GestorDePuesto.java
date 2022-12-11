@@ -34,12 +34,9 @@ public class GestorDePuesto implements PuestoDao{
 	public void createPuesto(int codigo, String nombre, String empresa, String descripcion,
 			List<ItemCompetencia> competencias) {
 		GestorDeCompetencias gc = GestorDeCompetencias.getInstance();
+		
 		for(ItemCompetencia item: competencias) {
-			if(item.getCompetencia().getClass()==CompetenciaDTO.class) {
-				Competencia comp = gc.getCompetenciaByDTO(item.getCompetencia());
-				System.out.println(comp);
-				item.setCompetencia(comp);
-			};
+			item.setCompetencia(gc.getCompetenciaByDTO(item.getCompetencia()));
 		};
 		Puesto puesto = new Puesto(codigo, nombre, empresa, descripcion, competencias);
 		dao.createPuesto(puesto);
@@ -100,7 +97,7 @@ public class GestorDePuesto implements PuestoDao{
 			
 		}
 	
-		PuestoDTO puestoDTO = new PuestoDTO(puesto.getCodigo(),puesto.getNombrePuesto(),puesto.getEmpresa(),puesto.getDescripcion(),competenciasDTO);
+		PuestoDTO puestoDTO = new PuestoDTO(puesto.getCodigo(),puesto.getNombrePuesto(),puesto.getEmpresa(),puesto.getDescripcion(),competenciasDTO,puesto.getAuditoria());
 		
 		
 		return puestoDTO;

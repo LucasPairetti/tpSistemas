@@ -3,6 +3,7 @@ package DTOS;
 import java.util.List;
 import java.util.Objects;
 
+import entidades.Auditoria;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
 
@@ -15,20 +16,21 @@ public class PuestoDTO extends Puesto {
 	private String empresa;
 	private String descripcion;
 	private List<ItemCompetencia> competencias;
-	private int idAuditoria = -1;
-	//auditoria
+	private Auditoria auditoria;
+
 	
 	public PuestoDTO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public PuestoDTO(int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias) {
+	public PuestoDTO(int codigo, String nombrePuesto, String empresa, String descripcion, List<ItemCompetencia> competencias, Auditoria auditoria) {
 		super();
 		this.codigo = codigo;
 		this.nombrePuesto = nombrePuesto;
 		this.empresa = empresa;
 		this.descripcion=descripcion;
 		this.competencias = competencias;
+		this.setAuditoria(auditoria);
 	}
 	public int getIdPuesto() {
 		return idPuesto;
@@ -71,7 +73,7 @@ public class PuestoDTO extends Puesto {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	@Override
+	
 	public boolean equals(Object obj) {
 		if (this == obj)
 			return true;
@@ -87,6 +89,12 @@ public class PuestoDTO extends Puesto {
 	public void addItemCompetencia(ItemCompetencia itemCompetencia) {
 		// TODO Auto-generated method stub
 		this.competencias.add(itemCompetencia);
+	}
+	public Auditoria getAuditoria() {
+		return auditoria;
+	}
+	public void setAuditoria(Auditoria auditoria) {
+		this.auditoria = auditoria;
 	}
 
 

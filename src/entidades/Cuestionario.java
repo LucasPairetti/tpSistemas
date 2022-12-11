@@ -2,7 +2,6 @@ package entidades;
 
 import java.util.Date;
 import java.util.List;
-
 import jakarta.persistence.*;
 
 @Entity
@@ -43,11 +42,10 @@ public class Cuestionario {
 		super();
 	}
 	
-	public Cuestionario(int idCuestionario, Candidato candidato, String clave, Estado estado, int cantidadAccesos,
+	public Cuestionario(Candidato candidato, String clave, Estado estado, int cantidadAccesos,
 			Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
 			int resultadoFinal, Date fechaFinal, Date ultimoAcceso) {
 		super();
-		this.idCuestionario = idCuestionario;
 		this.candidato = candidato;
 		this.clave = clave;
 		this.estado = estado;

@@ -100,7 +100,7 @@ public class EvaluarFuncionesController implements Initializable{
 
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
-
+    	
     }
 
 	@Override

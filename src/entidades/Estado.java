@@ -14,20 +14,19 @@ public class Estado {
 	private Date fecha;
 	@Column(nullable = false)
 	private String tipoEstado;
-	@OneToOne
+	/*@OneToOne
 	@JoinColumn(name="idEstado", nullable = false, referencedColumnName="idEstado" , 
 				foreignKey=@ForeignKey(name="FK_Estado_Cuestionario", value=ConstraintMode.CONSTRAINT))
-	private Cuestionario cuestionario;
+	private Cuestionario cuestionario;*/
 	
 	public Estado() {
 		super();
 	}
 	
-	public Estado(Date fecha, String estado, Cuestionario cuestionario) {
+	public Estado(Date fecha, String estado) {
 		super();
 		this.fecha = fecha;
 		tipoEstado = estado;
-		this.cuestionario = cuestionario;
 	}
 	
 	public int getIdEstado() {
@@ -46,10 +45,5 @@ public class Estado {
 	public void setEstado(String estado) {
 		tipoEstado = estado;
 	}
-	public Cuestionario getCuestionario() {
-		return cuestionario;
-	}
-	public void setCuestionario(Cuestionario cuestionario) {
-		this.cuestionario = cuestionario;
-	}
+
 }

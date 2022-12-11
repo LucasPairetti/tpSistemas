@@ -74,7 +74,7 @@ public class IngresoConsultorController implements Initializable {
     	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	
     	if(!gestorDeAutenticacion.autenticarConsultor(usuario, password)) return;
-    
+    	
     	//Salto a otra interfaz
     	Parent root;
 		try {

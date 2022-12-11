@@ -1,5 +1,7 @@
 package application;
 
+import java.util.Date;
+
 /*
 import java.util.Date;
 import java.util.List;
@@ -32,6 +34,9 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
+		Date fecha = new java.util.Date();
+		System.out.println(fecha);
 		
 		/*
 		//Creo respuestas

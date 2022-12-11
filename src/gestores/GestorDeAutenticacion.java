@@ -2,6 +2,7 @@ package gestores;
 
 import entidades.Candidato;
 import entidades.Consultor;
+import entidades.Cuestionario;
 
 public class GestorDeAutenticacion {
 	private static GestorDeAutenticacion instance;
@@ -38,6 +39,9 @@ public class GestorDeAutenticacion {
     		return false;
     			}
     		}
+    	
+    	Consultor.setInstance(usuarioValidado);
+    	
 		return true;
 	}
 
@@ -47,7 +51,19 @@ public class GestorDeAutenticacion {
 		
 		if(candidato == null || !candidato.getClave().equals(clave)) {
 			System.out.println("El usuario o la contraseña no son válidos"); return false;}
-		else return true;
-		}
+		
+		//Falta alerta
+		
+		//Chequeo cuestionario
+		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
+		
+		Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato.getIdCandidato(), clave);
+		///////////Cambiar en diagrama de secuencia
+		
+		if(!cuestionario.getEstado().getEstado().equals("EnProceso") || 
+				!cuestionario.getEstado().getEstado().equals("Activo")) return false; 
+		
+		return true;
+	}
 		
 }

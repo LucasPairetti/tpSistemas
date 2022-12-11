@@ -155,5 +155,40 @@ public class CandidatoDaoImp implements CandidatoDao {
 		        return null;
 		    }
 	}
-
+	
+	@Override
+	public List<Candidato> buscarCandidatos(String apellido, String nombre, int nroCandidato){
+		
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		try {
+			
+			CriteriaBuilder builder = session.getCriteriaBuilder();
+		    CriteriaQuery<Candidato> criteria = builder.createQuery(Candidato.class);
+		    Root<Candidato> from = criteria.from(Candidato.class);
+		    criteria.select(from);
+		    if(!nombre.equals("")) criteria.where(builder.equal(from.get("nombre"), nombre));
+		    if(!apellido.equals("")) criteria.where(builder.equal(from.get("apellido"), apellido));
+		    if(nroCandidato!=-1) criteria.where(builder.equal(from.get("nroCandidato"), nroCandidato));
+		    //Soluciona que esten vacios?
+		    
+		    TypedQuery<Candidato> typed = session.createQuery(criteria);
+			
+		    List<Candidato> candidatos = typed.getResultList();
+		    
+			session.getTransaction().commit();
+			session.close();
+			
+			return candidatos;
+			
+			 } catch (final NoResultException nre) {
+				 
+				 	session.getTransaction().commit();
+					session.close();
+					
+			        return null;
+			    }
+		
+	}
 }

@@ -7,6 +7,7 @@ import DAOS.*;
 import DTOS.CompetenciaDTO;
 import DTOS.PuestoDTO;
 import entidades.Competencia;
+import entidades.Factor;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
 import interfaces.PuestoDao;
@@ -126,6 +127,26 @@ public class GestorDePuesto implements PuestoDao{
 		Puesto puesto = dao.getPuestoById(puestodto.getIdPuesto());
 		
 		return puesto;
+		
+	}
+	
+	public Boolean validarFactores(PuestoDTO p) {
+		
+		GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
+		
+		Puesto puesto = gestorPuesto.getPuestoByDTO(p);
+		
+		List<Factor> listaFactores = new ArrayList<Factor>();
+		
+		for(ItemCompetencia item : puesto.getCompetencias()) {
+			listaFactores.addAll(item.getCompetencia().getFactores());
+		}
+		
+		for(Factor factor : listaFactores) {
+			if(factor.getPreguntas().size() < 2) return false; 
+		}
+		
+		return true;
 		
 	}
 	

@@ -1,16 +1,15 @@
 package application;
-	
+
+/*
 import java.util.Date;
 import java.util.List;
-
 import org.hibernate.Session;
-
 import DAOS.HibernateUtil;
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import gestores.*;
 import entidades.*;
+*/
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -21,8 +20,6 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			
-			
 			Parent root = FXMLLoader.load((getClass().getResource("/views/PantallaIngreso.fxml")));
 			
 			Scene scene = new Scene(root);
@@ -36,6 +33,7 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
+		/*
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);
 		Respuesta respuesta2 = new Respuesta("Cumplo de manera íntegra con lo que se me pide en el trabajo.", 2);
@@ -147,6 +145,7 @@ public class Main extends Application {
 		Date fechaNacimiento = calendario.getTime();
 		GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
 		gestorCandidato.createCandidato(42870674, "ABCDE123", null, "DNI", null, 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
+		*/
 		
 		launch(args);
 		

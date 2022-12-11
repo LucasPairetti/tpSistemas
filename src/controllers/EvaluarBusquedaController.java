@@ -3,6 +3,7 @@ package controllers;
 import java.io.IOException;
 import java.util.List;
 import entidades.Candidato;
+import gestores.GestorDeCandidato;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -16,7 +17,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class EvaluarBusquedaController {
-
+	
+	//public List<Candidato> listaCandidatos;
+	
     @FXML
     private TableView<?> CandidatoTableView;
 
@@ -67,17 +70,24 @@ public class EvaluarBusquedaController {
 
     @FXML
     void agregarButtonClicked(ActionEvent event) {
-
+    	
     }
 
     @FXML
     void buscarButtonClicked(ActionEvent event) {
-
+    	GestorDeCandidato gestorCandidatos = GestorDeCandidato.getInstance();
+    	int nroCandidato;
+    	if(nroTextField.equals("")) nroCandidato = -1; else nroCandidato = Integer.parseInt(nroTextField.getText());
+    	List<Candidato> candidatosEncontrados = 
+    			gestorCandidatos.buscarCandidatos(apellidoTextField.getText(), 
+    			nombreTextField.getText(), 
+    			nroCandidato);
+    	
     }
 
     @FXML
     void quitarButtonClicked(ActionEvent event) {
-
+    	
     }
 
     @FXML
@@ -87,8 +97,11 @@ public class EvaluarBusquedaController {
 
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
-
     	
+    	/*
+    	GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
+    	if(gestorCandidato.validarCuestionarios(listaCandidatos)) llamo interfaz;
+    	//else IncluirAlerta()*/
     	EvaluarFuncionInterfaz(null);
 
     }
@@ -119,7 +132,7 @@ public class EvaluarBusquedaController {
 		try {
 			root = FXMLLoader.load((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
 			Stage window = (Stage)siguienteButton.getScene().getWindow();
-			window.setTitle("Gestionar Puestos");
+			window.setTitle("Evaluar Candidatos");
 	    	window.setScene(new Scene(root));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

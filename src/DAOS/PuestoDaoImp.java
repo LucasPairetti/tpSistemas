@@ -62,7 +62,7 @@ public class PuestoDaoImp implements PuestoDao{
 		session.beginTransaction();
 		
 		List<Puesto> puestos = session
-				.createQuery("SELECT a FROM Puesto a WHERE idAuditoria = -1", Puesto.class)
+				.createQuery("SELECT a FROM Puesto a WHERE Auditoria IS NULL", Puesto.class)
 				.getResultList();
 		
 		session.getTransaction().commit();

@@ -17,7 +17,7 @@ import interfaces.CandidatoDao;
 public class GestorDeCandidato {
 	
 	private static GestorDeCandidato instance;
-	private static CandidatoDaoImp dao;
+	private static CandidatoDao dao;
 	
 	public GestorDeCandidato() {
 		super();

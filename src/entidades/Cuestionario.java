@@ -2,6 +2,8 @@ package entidades;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -125,5 +127,11 @@ public class Cuestionario {
 	}
 	public void setUltimoAcceso(Date ultimoAcceso) {
 		this.ultimoAcceso = ultimoAcceso;
+	}
+	public Bloque getBloqueByNro(int numero) {
+		for(Bloque b : this.bloques) {
+			if(numero == b.getNumeroBloque()) return b;
+		}
+		return null;
 	}
 }

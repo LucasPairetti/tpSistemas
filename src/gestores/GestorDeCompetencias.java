@@ -71,7 +71,8 @@ public class GestorDeCompetencias implements CompetenciasDao {
 	
 	public CompetenciaDTO getCompetenciaDTO (Competencia competencia) {
 		
-		CompetenciaDTO competenciaDTO = new CompetenciaDTO(competencia.getCodigo(), competencia.getNombreCompetencia(), competencia.getDescripcion());
+		CompetenciaDTO competenciaDTO = new CompetenciaDTO(competencia.getCodigo(), 
+				competencia.getNombreCompetencia(), competencia.getDescripcion());
 		
 		return competenciaDTO;
 		

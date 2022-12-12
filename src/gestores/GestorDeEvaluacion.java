@@ -1,10 +1,10 @@
 package gestores;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
-
 import DAOS.CandidatoDaoImp;
 import DAOS.EvaluacionDaoImp;
+import DTOS.EvaluacionDTO;
 import entidades.Cuestionario;
 import entidades.Evaluacion;
 import entidades.Puesto;
@@ -53,8 +53,8 @@ public class GestorDeEvaluacion {
 
 	        return dao.getAllEvaluacion(); 
 	    }
-
-	   /* public EvaluacionDTO getEvaluacionDTO(Evaluacion evaluacion) {
+	    
+	    public EvaluacionDTO getEvaluacionDTO(Evaluacion evaluacion) {
 
 	        EvaluacionDTO evaluacionDTO = new EvaluacionDTO();
 	        evaluacionDTO.setEstado(evaluacion.getEstado());
@@ -64,6 +64,6 @@ public class GestorDeEvaluacion {
 	        evaluacionDTO.setPuesto(evaluacion.getPuesto());
 
 	        return evaluacionDTO;
-	    }*/
+	    }
 	
 }

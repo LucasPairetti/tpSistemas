@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.PreguntaDaoImp;
+import DTOS.PonderacionRespuestaDTO;
+import DTOS.PreguntaDTO;
+import DTOS.PreguntaEnCuestionarioDTO;
 import entidades.Factor;
 import entidades.OpcionDeRespuesta;
 import entidades.PonderacionRespuesta;
@@ -72,6 +75,56 @@ public class GestorDePregunta {
 		PreguntaEnCuestionario preguntaEnCuestionario = new PreguntaEnCuestionario(factor, pregunta);
 		
 		return preguntaEnCuestionario;
+	}
+	
+	public PreguntaDTO getPreguntaDTO(Pregunta pregunta) {
+
+        PreguntaDTO preguntaDTO = new PreguntaDTO();
+        preguntaDTO.setNombre(pregunta.getNombre());
+        preguntaDTO.setTextoPregunta(pregunta.getTextoPregunta());
+        preguntaDTO.setDescripcion(pregunta.getDescripcion());
+        //preguntaDTO.setOpcionDeRespuesta(pregunta.getOpcionDeRespuesta()); deberia ser DTO
+
+        GestorDePregunta gestorRespuesta = GestorDePregunta.getInstance();
+
+        PonderacionRespuestaDTO pr;
+
+        List<PonderacionRespuestaDTO> listaRtaDTO = new ArrayList<PonderacionRespuestaDTO>();
+
+        for(PonderacionRespuesta ponderacion : pregunta.getRespuestas()) {
+
+            pr = gestorRespuesta.getPonderacionRespuestaDTO(ponderacion);
+            listaRtaDTO.add(pr);
+
+        }
+        preguntaDTO.setRespuestas(listaRtaDTO);
+
+        return preguntaDTO;
+    }
+	
+	private PonderacionRespuestaDTO getPonderacionRespuestaDTO(PonderacionRespuesta ponderacion) {
+        // TODO Auto-generated method stub
+        PonderacionRespuestaDTO ponderacionRespuestaDTO = new PonderacionRespuestaDTO();
+
+        ponderacionRespuestaDTO.setPonderacion(ponderacion.getPonderacion());
+        ponderacionRespuestaDTO.setRespuesta(ponderacion.getRespuesta()); //deberia ser DTO
+
+        return ponderacionRespuestaDTO;
+    }
+	public PreguntaEnCuestionarioDTO getPreguntaEnCuestionarioDTO(PreguntaEnCuestionario pregunta) {
+		// TODO Auto-generated method stub
+		
+		PreguntaEnCuestionarioDTO preguntaEnCuestionarioDTO = new PreguntaEnCuestionarioDTO();
+		
+		preguntaEnCuestionarioDTO.setDescripcion(pregunta.getDescripcion());
+		preguntaEnCuestionarioDTO.setTextoPregunta(pregunta.getTextoPregunta());
+		preguntaEnCuestionarioDTO.setFactor(pregunta.getFactor());
+		preguntaEnCuestionarioDTO.setNombre(pregunta.getNombre());
+		preguntaEnCuestionarioDTO.setRespuestas(pregunta.getRespuestas());
+		preguntaEnCuestionarioDTO.setRtaSeleccionada(pregunta.getRtaSeleccionada());
+		
+		return preguntaEnCuestionarioDTO;
+		
 	}
 	
 }

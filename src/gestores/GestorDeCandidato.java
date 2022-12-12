@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import DAOS.CandidatoDaoImp;
+import DTOS.CandidatoDTO;
+import DTOS.PuestoDTO;
 import entidades.Bloque;
 import entidades.Candidato;
 import entidades.Competencia;
@@ -184,4 +186,32 @@ public class GestorDeCandidato {
 		gestorEvaluacion.createEvaluacion("Incompleta", null, null, listaCuestionarios, puesto);
 		
 	}
+	
+	private Candidato getCandidatoByDTO(CandidatoDTO candidatoDto) {
+		// TODO Auto-generated method stub
+		return this.getCandidatoById(candidatoDto.getIdCandidato());
+	}
+
+	public CandidatoDTO getCandidatoDTO(Candidato candidato) {
+
+        CandidatoDTO candidatoDTO = new CandidatoDTO();
+        candidatoDTO.setNumeroDocumento(candidato.getNumeroDocumento());
+        candidatoDTO.setClave(candidato.getClave());
+        candidatoDTO.setCuestionario(candidato.getCuestionario());
+        //candidatoDTO.setCuestionario(candidato.)
+        candidatoDTO.setTipoDocumento(candidato.getTipoDocumento());
+        candidatoDTO.setCuestionariosTerminados(candidato.getCuestionariosTerminados());
+        candidatoDTO.setNroCandidato(candidato.getNroCandidato());
+        candidatoDTO.setNombre(candidato.getNombre());
+        candidatoDTO.setApellido(candidato.getApellido());
+        candidatoDTO.setNacionalidad(candidato.getNacionalidad());
+        candidatoDTO.setEmail(candidato.getEmail());
+        candidatoDTO.setEscolaridad(candidato.getEscolaridad());
+        candidatoDTO.setEliminacion(candidato.getEliminacion());
+
+        return candidatoDTO;
+
+    }
+	
 }
+	

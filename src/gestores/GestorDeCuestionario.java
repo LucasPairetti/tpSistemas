@@ -8,6 +8,7 @@ import java.util.Random;
 
 import DAOS.CuestionarioDaoImp;
 import DAOS.ParametrosDaoImp;
+import DTOS.BloqueDTO;
 import entidades.Bloque;
 import entidades.Candidato;
 import entidades.Competencia;
@@ -131,7 +132,7 @@ public class GestorDeCuestionario {
     	 	
     	 	GestorDeBloque gestorBloque = GestorDeBloque.getInstance();
     	 	
-    	 	return dao.getBloqueDTO(bloqueSiguiente);
+    	 	return gestorBloque.getBloqueDTO(bloqueSiguiente);
     	 	
     	 	
     	 }
@@ -157,6 +158,8 @@ public class GestorDeCuestionario {
 	    	 return true;
 	    	 
     	 }
+    	 
+    	 return new Exception("No esta ni en proceso ni en activo.");
 	}
 	
 	public BloqueDTO IniciarCuestionario(int idCuestionario) {
@@ -191,8 +194,10 @@ public class GestorDeCuestionario {
 			
 			if(preguntasEnCuestionario.size() <= sizeInicial) {
 				//Solucionar
-				throw new Exception();
+				//Alarma. La competencia no tiene factores con mas de 2 preguntas. No puede ser evaluado.
+				return null;
 			}
+		}
 			
 			Collections.shuffle(preguntasEnCuestionario);
 			
@@ -231,9 +236,7 @@ public class GestorDeCuestionario {
 			this.updateCuestionario(cuestionario);
 			
 			//EncuentroPrimerBloque
-			Bloque primerBloque;
-			
-			gestorBloque.getBloqueById(cuestionario.getBloqueByNro(1).getIdBloque());
+			Bloque primerBloque = gestorBloque.getBloqueById(cuestionario.getBloqueByNro(1).getIdBloque());
 			
 			return gestorBloque.getBloqueDTO(primerBloque);
 			
@@ -242,5 +245,3 @@ public class GestorDeCuestionario {
 		
 		
 	} 
-	
-}

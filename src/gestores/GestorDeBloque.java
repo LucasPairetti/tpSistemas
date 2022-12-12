@@ -1,9 +1,12 @@
 package gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.BloqueDaoImp;
 import DAOS.CandidatoDaoImp;
+import DTOS.BloqueDTO;
+import DTOS.PreguntaEnCuestionarioDTO;
 import entidades.Bloque;
 import entidades.PreguntaEnCuestionario;
 import interfaces.BloqueDao;
@@ -57,4 +60,27 @@ public class GestorDeBloque {
 		// TODO Auto-generated method stub
 		return dao.getBloqueByCuestionario(idCuestionario);
 	}
+	
+	public BloqueDTO getBloqueDTO(Bloque bloque) {
+
+        BloqueDTO bloqueDTO = new BloqueDTO();
+        bloqueDTO.setNumeroBloque(bloque.getNumeroBloque());
+        bloqueDTO.setCompletado(bloque.isCompletado());
+
+        GestorDePregunta gestorPregunta = GestorDePregunta.getInstance();
+        PreguntaEnCuestionarioDTO p;
+        List<PreguntaEnCuestionarioDTO> listaPreguntaDTO = new ArrayList<PreguntaEnCuestionarioDTO>();
+
+        for(PreguntaEnCuestionario pregunta : bloque.getPreguntas()) {
+            p = gestorPregunta.getPreguntaEnCuestionarioDTO(pregunta);
+            listaPreguntaDTO.add(p);
+
+        }
+
+        bloqueDTO.setPreguntas(listaPreguntaDTO);
+
+        return bloqueDTO;
+
+    }
+	
 }

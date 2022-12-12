@@ -146,5 +146,9 @@ public class GestorDePuesto implements PuestoDao{
 		return true;
 		
 	}
+	private Puesto getPuestoByDTO(PuestoDTO p) {
+		// TODO Auto-generated method stub
+		return this.getPuestoById(p.getIdPuesto());
+	}
 	
 }

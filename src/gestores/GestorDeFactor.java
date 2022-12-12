@@ -1,8 +1,11 @@
 package gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.FactorDaoImp;
+import DTOS.FactorDTO;
+import DTOS.PreguntaDTO;
 import entidades.Factor;
 import entidades.Pregunta;
 import interfaces.FactorDao;
@@ -61,4 +64,29 @@ public class GestorDeFactor {
 		// TODO Auto-generated method stub
 		return dao.getFactorByNombre(nombre);
 	}
+	
+	public FactorDTO getFactorDTO(Factor factor) {
+
+        FactorDTO factorDTO = new FactorDTO();
+        factorDTO.setNombreFactor(factor.getNombreFactor());
+        factorDTO.setCodigo(factor.getCodigo());
+        factorDTO.setDescripcion(factor.getDescripcion());
+        factorDTO.setNroOrden(factor.getNroOrden());
+
+        GestorDePregunta gestorDePregunta = GestorDePregunta.getInstance();
+
+        List<PreguntaDTO> listaPreguntasDTO = new ArrayList<PreguntaDTO>();
+        PreguntaDTO p;
+        for(Pregunta pregunta : factor.getPreguntas()) {
+
+            p = gestorDePregunta.getPreguntaDTO(pregunta);
+            listaPreguntasDTO.add(p);
+        }
+
+        factorDTO.setPreguntas(listaPreguntasDTO);
+
+        return factorDTO;
+
+    }
+	
 }

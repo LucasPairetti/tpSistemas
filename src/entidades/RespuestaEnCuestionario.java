@@ -17,10 +17,10 @@ public class RespuestaEnCuestionario {
 		super();
 	}
 	
-	public RespuestaEnCuestionario(String descripcion, int ordenDeVisualizacion) {
+	public RespuestaEnCuestionario(Respuesta respuesta) {
 		super();
-		this.descripcion = descripcion;
-		this.ordenDeVisualizacion = ordenDeVisualizacion;
+		this.descripcion = respuesta.getDescripcion();
+		this.ordenDeVisualizacion = respuesta.getOrdenDeVisualizacion();
 	}
 
 	public int getIdRespuestaEnCuestionario() {

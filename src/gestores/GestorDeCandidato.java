@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import DAOS.CandidatoDaoImp;
+import entidades.Bloque;
 import entidades.Candidato;
 import entidades.Competencia;
 import entidades.Cuestionario;
@@ -164,7 +165,8 @@ public class GestorDeCandidato {
 		        }
 		     
 		    //Creo cuestionario
-			punteroCuestionario = gestorCuestionario.createCuestionario(c, clave, estado, 0, new Date(), null,
+			punteroCuestionario = gestorCuestionario.createCuestionario(c, clave, estado, 0, null, 
+					new ArrayList<Bloque>(),
 					puntajesXCompetencia, 0, null, null);
 			
 			//Seteo cuestionario en candidato

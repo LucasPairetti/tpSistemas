@@ -26,11 +26,12 @@ public class GestorDeBloque {
 	}
 
 	
-	public void createBloque(List<PreguntaEnCuestionario> preguntas, int numeroBloque, 
+	public Bloque createBloque(List<PreguntaEnCuestionario> preguntas, int numeroBloque, 
 			boolean completado) {
 		// TODO Auto-generated method stub
 		Bloque bloque = new Bloque(preguntas, numeroBloque, completado);
 		dao.createBloque(bloque);
+		return bloque;
 	}
 
 	

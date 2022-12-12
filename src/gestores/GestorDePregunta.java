@@ -1,12 +1,16 @@
 package gestores;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import DAOS.PreguntaDaoImp;
 import entidades.Factor;
 import entidades.OpcionDeRespuesta;
 import entidades.PonderacionRespuesta;
+import entidades.PonderacionRtaCuestionario;
 import entidades.Pregunta;
+import entidades.PreguntaEnCuestionario;
+import entidades.RespuestaEnCuestionario;
 import interfaces.PreguntaDao;
 
 public class GestorDePregunta {
@@ -62,5 +66,12 @@ public class GestorDePregunta {
 		// TODO Auto-generated method stub
 		return dao.getPreguntaById(idPregunta);
 	}
-
+	
+	public PreguntaEnCuestionario crearPreguntaEnCuestionario(Factor factor, Pregunta pregunta) {
+		
+		PreguntaEnCuestionario preguntaEnCuestionario = new PreguntaEnCuestionario(factor, pregunta);
+		
+		return preguntaEnCuestionario;
+	}
+	
 }

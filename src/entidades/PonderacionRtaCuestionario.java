@@ -20,10 +20,10 @@ public class PonderacionRtaCuestionario {
 		super();
 	}
 	
-	public PonderacionRtaCuestionario(int ponderacion, RespuestaEnCuestionario respuesta) {
+	public PonderacionRtaCuestionario(PonderacionRespuesta ponderacion) {
 		super();
-		this.ponderacion = ponderacion;
-		this.respuesta = respuesta;
+		this.ponderacion = ponderacion.getPonderacion();
+		this.respuesta = new RespuestaEnCuestionario(ponderacion.getRespuesta());
 	}
 
 	public int getIdPonderacionRtaCuestionario() {

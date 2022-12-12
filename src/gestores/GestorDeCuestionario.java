@@ -1,15 +1,24 @@
 package gestores;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 import DAOS.CuestionarioDaoImp;
+import DAOS.ParametrosDaoImp;
 import entidades.Bloque;
 import entidades.Candidato;
+import entidades.Competencia;
 import entidades.Cuestionario;
 import entidades.Estado;
+import entidades.Factor;
+import entidades.Pregunta;
+import entidades.PreguntaEnCuestionario;
 import entidades.PuntajePorCompetencia;
 import interfaces.CuestionarioDao;
+import interfaces.ParametrosDao;
 import javafx.scene.control.Alert;
 
 public class GestorDeCuestionario {
@@ -76,7 +85,7 @@ public class GestorDeCuestionario {
 		return dao.getCuestionarioByCandidato(idCandidato, clave);
 	}
 	
-	public BloqueDTO verificarCuestionario(int idCuestionario) {
+	public Object verificarCuestionario(int idCuestionario) {
 		
     	Cuestionario cuestionario = this.getCuestionarioById(idCuestionario);
     	  
@@ -94,7 +103,7 @@ public class GestorDeCuestionario {
 	            	alerta.setContentText("El tiempo del cuestionario a expirado");
 	            	alerta.showAndWait();
 	           
-	            	return null; 
+	            	return new Exception(); 
             	
     	 }
 	    	 
@@ -104,10 +113,10 @@ public class GestorDeCuestionario {
 	    	  
 		    	  Alert alerta= new Alert(Alert.AlertType.WARNING);
 		            	alerta.setTitle("Cantidad de accesos");
-		            	alerta.setContentText("A superado la cantidad de ingresos permitidos");
+		            	alerta.setContentText("Ha superado la cantidad de ingresos permitidos");
 		            	alerta.showAndWait();
 	    	  
-		          return null; 
+		          return new Exception(); 
     	 }
     	  	
     	 	cuestionario.setCantidadAccesos(cuestionario.getCantidadAccesos()+1);
@@ -126,6 +135,112 @@ public class GestorDeCuestionario {
     	 	
     	 	
     	 }
+    	 
+    	 if(cuestionario.getEstado().getEstado().equals("Activo")) {
+    		 
+    		 int milisecondsByDay = 86400000;
+    		 int dias = (int) (((new Date()).getTime() - cuestionario.getFechaComienzo().getTime()) / milisecondsByDay);
+    		 
+	    	 if(dias > 15){
+	    		 Estado estado = new Estado(new Date(), "Sin contestar");
+	    		 cuestionario.setEstado(estado);
+	    	   
+	    	  Alert alerta= new Alert(Alert.AlertType.WARNING);
+	            	alerta.setTitle("El tiempo ha expirado");
+	            	alerta.setContentText("El tiempo para iniciar el cuestionario a expirado");
+	            	alerta.showAndWait();
+	           
+	            	return new Exception(); 
+	            	//Ojo
+	    	 }
+	    	 
+	    	 return true;
+	    	 
+    	 }
 	}
+	
+	public BloqueDTO IniciarCuestionario(int idCuestionario) {
+		
+		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();		
+		Cuestionario cuestionario = gestorCuestionario.getCuestionarioById(idCuestionario);
+		
+		GestorDePregunta gestorPregunta = GestorDePregunta.getInstance();
+		
+		List<Factor> factores;
+		Random rand = new Random();
+		
+		List<Pregunta> listaPreguntas;
+		List<PreguntaEnCuestionario> preguntasEnCuestionario = new ArrayList<PreguntaEnCuestionario>();
+		Pregunta p;
+		
+		for(PuntajePorCompetencia puntaje : cuestionario.getResultadoXCompetencia()) {
+			
+			int sizeInicial = preguntasEnCuestionario.size();
+			
+			factores = puntaje.getCompetencia().getFactores();
+			
+			for(Factor f : factores) {
+				
+				listaPreguntas = f.getPreguntas();
+				
+				if(!(listaPreguntas.size() < 2)) {
+					p = listaPreguntas.get(rand.nextInt(f.getPreguntas().size()));
+					preguntasEnCuestionario.add(new PreguntaEnCuestionario(f, p));
+				} 
+			}
+			
+			if(preguntasEnCuestionario.size() <= sizeInicial) {
+				//Solucionar
+				throw new Exception();
+			}
+			
+			Collections.shuffle(preguntasEnCuestionario);
+			
+			//Creo bloques
+			ParametrosDao parametros = new ParametrosDaoImp();
+			int preguntasPorBloque = parametros.getPreguntasPorBloque();
+			
+			GestorDeBloque gestorBloque = GestorDeBloque.getInstance();
+			
+			int cantidadDeBloques = (int) (preguntasEnCuestionario.size()/preguntasPorBloque) + 1;
+			
+			Bloque bloqueX;
+			
+			for(int j = 0; j<cantidadDeBloques; j++) {
+				
+				List<PreguntaEnCuestionario> preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
+				
+				int h = 0;
+				
+				while(h < preguntasPorBloque) {
+					preguntasEnBloque.add(preguntasEnCuestionario.get(h));
+					h++;
+				}
+				
+				bloqueX = gestorBloque.createBloque(preguntasEnBloque, j+1, false);
+				
+				cuestionario.getBloques().add(bloqueX);
+				
+			}
+			
+			cuestionario.setFechaComienzo(new Date());
+			cuestionario.setEstado(new Estado(new Date(), "Activo"));
+			cuestionario.setCantidadAccesos(1);
+			cuestionario.setUltimoAcceso(new Date());
+			
+			this.updateCuestionario(cuestionario);
+			
+			//EncuentroPrimerBloque
+			Bloque primerBloque;
+			
+			gestorBloque.getBloqueById(cuestionario.getBloqueByNro(1).getIdBloque());
+			
+			return gestorBloque.getBloqueDTO(primerBloque);
+			
+		}
+		
+		
+		
+	} 
 	
 }

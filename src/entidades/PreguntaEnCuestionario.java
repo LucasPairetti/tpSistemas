@@ -1,5 +1,6 @@
 package entidades;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.*;
@@ -31,15 +32,20 @@ public class PreguntaEnCuestionario {
 		super();
 	}
 	
-	public PreguntaEnCuestionario(Factor factor, String nombre, String textoPregunta, String descripcion,
-			List<PonderacionRtaCuestionario> respuestas, RespuestaEnCuestionario rtaSeleccionada) {
+	public PreguntaEnCuestionario(Factor factor, Pregunta pregunta) {
 		super();
 		this.factor = factor;
-		this.nombre = nombre;
-		this.textoPregunta = textoPregunta;
-		this.descripcion = descripcion;
-		this.respuestas = respuestas;
-		this.rtaSeleccionada = rtaSeleccionada;
+		this.nombre = pregunta.getNombre();
+		this.textoPregunta = pregunta.getTextoPregunta();
+		this.descripcion = pregunta.getDescripcion();
+		
+		this.respuestas = new ArrayList<PonderacionRtaCuestionario>();
+		
+		for(PonderacionRespuesta p : pregunta.getRespuestas()) {
+		this.respuestas.add( new PonderacionRtaCuestionario(p));
+		}
+		
+		this.rtaSeleccionada = null;
 	}
 
 	public int getIdPreguntaEnCuestionario() {

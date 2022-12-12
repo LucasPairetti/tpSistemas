@@ -110,9 +110,12 @@ public class IngresoCandidatoController implements Initializable {
     	 * misma logica que en validar consultor, solo que aun no tengo pensada la interfaz que le sigue a esto
     	 * 
     	 */
+    	
+    	
+    	//ahora necesito obtener el idCuestionario para pasarselo a la interfaz Instrucciones
     	Parent root;
 		try {
-			root = FXMLLoader.load((getClass().getResource("/views/CompletarCuestionario.fxml")));
+			root = FXMLLoader.load((getClass().getResource("/views/Instrucciones.fxml")));
 			Stage window = (Stage)ingresarButton.getScene().getWindow();
 			window.setTitle("Usuario consultor");
 	    	window.setScene(new Scene(root));

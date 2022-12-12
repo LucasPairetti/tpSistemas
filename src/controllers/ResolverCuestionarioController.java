@@ -1,12 +1,16 @@
 package controllers;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
 
-public class ResolverCuestionarioController {
+public class ResolverCuestionarioController implements Initializable{
 
     @FXML
     private Button atrasButton;
@@ -46,6 +50,11 @@ public class ResolverCuestionarioController {
 
     @FXML
     private Text tiempoRestanteText;
+    
+    private int idcuestionario;
+    
+    
+    
 
     @FXML
     void atrasButtonClicked(ActionEvent event) {
@@ -61,5 +70,17 @@ public class ResolverCuestionarioController {
     void siguienteButtonClicked(ActionEvent event) {
 
     }
+
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+	
+		
+		
+		
+	}
+	public void setIdCuestionario(int id) {
+		idcuestionario=id;
+	}
+
 
 }

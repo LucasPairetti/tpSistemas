@@ -1,15 +1,21 @@
 package controllers;
 
+import javafx.beans.property.ReadOnlyStringWrapper;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import DTOS.*;
+import entidades.Candidato;
 import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
+import gestores.GestorDeCompetencias;
 import gestores.GestorDePuesto;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -20,23 +26,27 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 
 public class EvaluarFuncionesController implements Initializable{
+	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
+	GestorDeCompetencias gestorCompetencias = GestorDeCompetencias.getInstance();
+	
 
     @FXML
-    private TableView<CandidatoDTO> CandidatoTableView;
+    private TableView<Candidato> CandidatoTableView;
 
     @FXML
-    private TableColumn<CandidatoDTO, String> apellidoColumn;
+    private TableColumn<Candidato, String> apellidoColumn;
 
     @FXML
     private Button cancelarButton;
 
     @FXML
-    private TableColumn<CandidatoDTO, String> claveIngresoColumn;
+    private TableColumn<Candidato, String> claveIngresoColumn;
 
     @FXML
     private TableColumn<ItemCompetencia, String> competenciaColumn;
@@ -51,16 +61,16 @@ public class EvaluarFuncionesController implements Initializable{
     private Button finalizarButton;
 
     @FXML
-    private TableColumn<CandidatoDTO, String> nombreColumn;
+    private TableColumn<Candidato, String> nombreColumn;
 
     @FXML
     private TableColumn<PuestoDTO, String> nombrePuestoColumn;
 
     @FXML
-    private TableColumn<CandidatoDTO, String> numeroDocColumn;
+    private TableColumn<Candidato, Integer> numeroDocColumn;
 
     @FXML
-    private TableColumn<ItemCompetencia, String> ponderacionColumn;
+    private TableColumn<ItemCompetencia, Integer> ponderacionColumn;
 
     @FXML
     private TableView<PuestoDTO> puestoTableView;
@@ -75,50 +85,111 @@ public class EvaluarFuncionesController implements Initializable{
     private Button siguienteButton;
 
     @FXML
-    private TableColumn<CandidatoDTO, String> tipoDocColumn;
+    private TableColumn<Candidato, String> tipoDocColumn;
+    
+    
+    private List<Candidato> candidatos;
+    ObservableList<Candidato> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
+    ObservableList<PuestoDTO> listaPuestos = FXCollections.observableArrayList();
+    ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
+    
+    @Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
+    	
+    	nombrePuestoColumn.setCellValueFactory(new PropertyValueFactory<>("nombrePuesto"));
+    	empresaPuestoColumn.setCellValueFactory(new PropertyValueFactory<>("empresa"));
+    	
+    	apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+    	nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    	numeroDocColumn.setCellValueFactory(new PropertyValueFactory<>("numeroDocumento"));
+    	claveIngresoColumn.setCellValueFactory(new PropertyValueFactory<>("clave"));
+    	tipoDocColumn.setCellValueFactory(new PropertyValueFactory<>("tipoDocumento"));
+    	
+    	competenciaColumn.setCellValueFactory(data ->{
+            ItemCompetencia itemcompetencia = data.getValue();
+            Competencia competencia = itemcompetencia.getCompetencia();
+            String nombreCompetencia = competencia.getNombreCompetencia();
+            return new ReadOnlyStringWrapper(nombreCompetencia);
+            
+            
+            
+
+        });
+        ponderacionColumn.setCellValueFactory(new PropertyValueFactory<>("ponderacion"));
+    	
+    	
+				
+				List<PuestoDTO> listaPuestos = gestorPuesto.getAllpuestosDTO();
+				puestoTableView.setItems((ObservableList<PuestoDTO>) listaPuestos);
+
+		
+	}
 
     @FXML
     void cancelarButtonClicked(ActionEvent event) {
-
+    	Parent root;
+		try {
+			root = FXMLLoader.load((getClass().getResource("/views/EvaluarBusquedaCandidatos.fxml")));
+			Stage window = (Stage)cancelarButton.getScene().getWindow();
+			window.setTitle("Gestionar Puestos");
+	    	window.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
 
     @FXML
     void finalizarButtonClicked(ActionEvent event) {
-
+    	//aca se genera por cada candidato un cuestionario?
+    	
+    	
+    	
     }
 
     @FXML
     void seleccionarButtonClicked(ActionEvent event) {
+    	if(puestoTableView.getSelectionModel().getSelectedItem()==null) return;
+    	PuestoDTO puesto = puestoTableView.getSelectionModel().getSelectedItem();
+    	if(!gestorPuesto.validarFactores(puesto)) {
+    		List<CompetenciaDTO> lista = new ArrayList<CompetenciaDTO>();
+    		for(ItemCompetencia item: puesto.getCompetencias()) {
+    			lista.add(gestorCompetencias.getCompetenciaDTO(item.getCompetencia()));
+    		}
+    		
+    		alertaCompetencias(lista); 
+    }else {
+    	listaItemCompetencia.addAll(puesto.getCompetencias());
+    	competenciasTableView.setItems(listaItemCompetencia);
     	
-    	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
-    	if(!gestorPuesto.validarFactores(puestoDTO) {alertaCompetencias(null); return;}
     	
-    	//Se muestran itemCompetencia
-
-
+    }
+    
     }
 
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
+    	listaCandidatosSeleccionados.addAll(candidatos);
+    	CandidatoTableView.setItems(listaCandidatosSeleccionados);
     	
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
-				GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
-				List<Puesto> listaPuestos = gestorPuesto.getAllPuestos();
-
-				
-				//hay que setear lo mismo que AltaPuesto sobre itemCompetencia para mostrar el STRING de la competencia en item competencia
-		
-	}
 	
-    void alertaCompetencias(List<Competencia> listaCompetencias) {
+	
+    void alertaCompetencias(List<CompetenciaDTO> listaCompetencias) {
+    	
+    	FXMLLoader loader = new FXMLLoader();
+    	loader.setLocation(getClass().getResource("/views/alertaCompetenciaEvaluar.fxml"));
+    	
     	Stage alertaStage = new Stage();
     	Parent root;
 		try {
+			loader.load();
+			AlertaCompetenciasController display = loader.getController();
+			display.agregarCompetencias(listaCompetencias);
+			
 			root = FXMLLoader.load((getClass().getResource("/views/alertaCompetenciaEvaluar.fxml")));
 			Scene scene = new Scene(root);
 			alertaStage.setTitle("Candidatos en curso");
@@ -132,5 +203,9 @@ public class EvaluarFuncionesController implements Initializable{
     	
     }
 
+    public void setCandidatos(List<Candidato> lista) {
+    	candidatos= lista;
+    }
 
 }
+

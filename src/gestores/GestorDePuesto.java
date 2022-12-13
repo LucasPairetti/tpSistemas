@@ -133,6 +133,7 @@ public class GestorDePuesto implements PuestoDao{
 		
 		Puesto puesto = gestorPuesto.getPuestoByDTO(p);
 		
+		
 		List<Factor> listaFactores = new ArrayList<Factor>();
 		
 		for(ItemCompetencia item : puesto.getCompetencias()) {

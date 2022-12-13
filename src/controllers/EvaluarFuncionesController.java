@@ -88,7 +88,7 @@ public class EvaluarFuncionesController implements Initializable{
     private TableColumn<CandidatoDTO, String> tipoDocColumn;
     
     
-    private List<CandidatoDTO> candidatos;
+    List<CandidatoDTO> candidatos;
     ObservableList<CandidatoDTO> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
     ObservableList<PuestoDTO> listaPuestos = FXCollections.observableArrayList();
     ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
@@ -124,7 +124,7 @@ public class EvaluarFuncionesController implements Initializable{
         		listaPuestos.addAll(gestorPuesto.getAllpuestosDTO());
 				puestoTableView.setItems(listaPuestos);
 
-		
+				System.out.println(candidatos);
 	}
 
     @FXML
@@ -152,9 +152,17 @@ public class EvaluarFuncionesController implements Initializable{
     @FXML
     void seleccionarButtonClicked(ActionEvent event) {
     	if(puestoTableView.getSelectionModel().getSelectedItem()==null) return;
+    	
+    	
     	PuestoDTO puesto = puestoTableView.getSelectionModel().getSelectedItem();
+    	
+    	System.out.println(puesto.getIdPuesto());
+    	
+    	
     	if(!gestorPuesto.validarFactores(puesto)) {
     		List<CompetenciaDTO> lista = new ArrayList<CompetenciaDTO>();
+    		System.out.println(puesto+ "despues del if");
+    		
     		for(ItemCompetencia item: puesto.getCompetencias()) {
     			lista.add(gestorCompetencias.getCompetenciaDTO(item.getCompetencia()));
     		}
@@ -204,7 +212,7 @@ public class EvaluarFuncionesController implements Initializable{
     }
 
     public void setCandidatos(List<CandidatoDTO> lista) {
-    	candidatos= lista;
+    	candidatos.addAll(lista);
     }
 
 }

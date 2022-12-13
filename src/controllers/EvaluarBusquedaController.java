@@ -201,13 +201,21 @@ public class EvaluarBusquedaController implements Initializable {
     }
     
    void EvaluarFuncionInterfaz(List<CandidatoDTO> listaCandidatosSeleccionados2) {
-	   
-		Parent root;
+	   	System.out.println(listaCandidatosSeleccionados2.get(0).getNombre());
+	   	Parent root;
+	   	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
 		try {
-			root = FXMLLoader.load((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
+			loader.setLocation((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
+			root = loader.load();
+			
+			
+			EvaluarFuncionesController display = loader.getController();
+			display.setCandidatos(listaCandidatosSeleccionados2);
+			
 			Stage window = (Stage)siguienteButton.getScene().getWindow();
 			window.setTitle("Evaluar Candidatos");
-	    	window.setScene(new Scene(root));
+	    	window.setScene(new Scene(loader.getRoot()));
+	    	window.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

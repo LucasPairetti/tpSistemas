@@ -174,6 +174,8 @@ public class GestorDeCandidato {
 			//Seteo cuestionario en candidato
 			c.setCuestionario(punteroCuestionario);
 			
+			this.updateCandidato(c);
+			
 			//Aniado a lista para luego crear evaluacion
 			listaCuestionarios.add(punteroCuestionario);
 			

@@ -12,7 +12,10 @@ public class Cuestionario {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="idCuestionario")
 	private int idCuestionario;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@JoinColumn(name="candidato_id", nullable = false, referencedColumnName="idCandidato" , 
+	foreignKey=@ForeignKey(name="FK_Candidato_Cuestionario", 
+	value=ConstraintMode.CONSTRAINT))
 	private Candidato candidato;
 	//private int nroDocumento;
 	private String clave;

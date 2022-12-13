@@ -49,17 +49,16 @@ public class GestorDeAutenticacion {
 		// TODO Auto-generated method stub
 		Candidato candidato = gestorCandidato.getCandidatoByNroDocumento(tipoDoc, nroDoc);
 		
-		if(candidato == null || !candidato.getClave().equals(clave)) {
-			System.out.println("El usuario o la contraseña no son válidos"); return false;}
+		if(candidato == null || !candidato.getClave().equals(clave))  {System.out.println("Los datos ingresados no son válidos o no existe un cuestionario para el Candidato"); return false;}
 		
 		//Falta alerta
 		
 		//Chequeo cuestionario
 		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
 		
-		Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato.getIdCandidato(), clave);
+		Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato, clave);
 		///////////Cambiar en diagrama de secuencia
-		
+		if(cuestionario == null) return false;
 		if(!cuestionario.getEstado().getEstado().equals("EnProceso") || 
 				!cuestionario.getEstado().getEstado().equals("Activo")) return false; 
 		

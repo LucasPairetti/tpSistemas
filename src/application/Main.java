@@ -40,10 +40,8 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		
-		Date fecha = new java.util.Date();
-		System.out.println(fecha);
-		
-	/*
+		/*
+
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);
 		Respuesta respuesta2 = new Respuesta("Cumplo de manera íntegra con lo que se me pide en el trabajo.", 2);
@@ -154,7 +152,7 @@ public class Main extends Application {
 		calendario.set(2000, 11, 3);
 		Date fechaNacimiento = calendario.getTime();
 		GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
-		gestorCandidato.createCandidato(42870674, "ABCDE123", null, "DNI", null, 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
+		gestorCandidato.createCandidato(42870674, "ABCDE123", null, "DNI", 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
 		
 		*/
 		

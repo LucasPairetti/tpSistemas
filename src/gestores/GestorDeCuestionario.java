@@ -81,9 +81,9 @@ public class GestorDeCuestionario {
 	}
 
 	
-	public Cuestionario getCuestionarioByCandidato(int idCandidato, String clave) {
+	public Cuestionario getCuestionarioByCandidato(Candidato candidato, String clave) {
 		// TODO Auto-generated method stub
-		return dao.getCuestionarioByCandidato(idCandidato, clave);
+		return dao.getCuestionarioByCandidato(candidato, clave);
 	}
 	
 	public Object verificarCuestionario(int idCuestionario) {

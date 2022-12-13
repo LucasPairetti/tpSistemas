@@ -19,11 +19,6 @@ public class Candidato {
 	private Cuestionario cuestionario;
 	@Column(nullable = false, unique = false, name = "tipoDocumento")
 	private String tipoDocumento;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="candidato_id", nullable = false, referencedColumnName="idCandidato" , 
-				foreignKey=@ForeignKey(name="FK_Candidato_Cuestionario", 
-				value=ConstraintMode.CONSTRAINT))
-	private List<Cuestionario> cuestionariosTerminados;
 	@Column(nullable = false, unique = true)
 	private int nroCandidato;
 	@Column(nullable = false, unique = false)
@@ -51,7 +46,7 @@ public class Candidato {
 	}
 	
 	public Candidato(int numeroDocumento, String clave, Cuestionario cuestionario,
-			String tipoDocumento, List<Cuestionario> cuestionariosTerminados, int nroCandidato, String nombre,
+			String tipoDocumento, int nroCandidato, String nombre,
 			String apellido, Date fechaNacimiento, String nacionalidad, String email, String escolaridad,
 			Boolean eliminacion) {
 		super();
@@ -59,7 +54,7 @@ public class Candidato {
 		this.clave = clave;
 		this.cuestionario = cuestionario;
 		this.tipoDocumento = tipoDocumento;
-		this.cuestionariosTerminados = cuestionariosTerminados;
+		//this.cuestionariosTerminados = cuestionariosTerminados;
 		this.nroCandidato = nroCandidato;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -100,12 +95,13 @@ public class Candidato {
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-	public List<Cuestionario> getCuestionariosTerminados() {
+	
+	/*public List<Cuestionario> getCuestionariosTerminados() {
 		return cuestionariosTerminados;
 	}
 	public void setCuestionariosTerminados(List<Cuestionario> cuestionariosTerminados) {
 		this.cuestionariosTerminados = cuestionariosTerminados;
-	}
+	}*/
 	public int getNroCandidato() {
 		return nroCandidato;
 	}

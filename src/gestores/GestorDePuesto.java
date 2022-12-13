@@ -147,9 +147,12 @@ public class GestorDePuesto implements PuestoDao{
 		return true;
 		
 	}
+	
+	//Implementacion solo a fines del tp. En caso de haber una modificacion, se debe recuperar el
+	//objeto y modificarlo. (ModificarPuesto);
 	private Puesto getPuestoByDTO(PuestoDTO p) {
 		// TODO Auto-generated method stub
-		return this.getPuestoById(p.getIdPuesto());
+		return this.getPuestoByCodigo(p.getCodigo());
 	}
 	
 }

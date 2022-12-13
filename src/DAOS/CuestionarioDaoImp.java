@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.hibernate.PersistentObjectException;
 import org.hibernate.Session;
+
+import entidades.Candidato;
 import entidades.Cuestionario;
 import entidades.Puesto;
 import interfaces.CuestionarioDao;
@@ -94,7 +96,7 @@ public class CuestionarioDaoImp implements CuestionarioDao {
 	}
 
 	@Override
-	public Cuestionario getCuestionarioByCandidato(int idCandidato, String clave) {
+	public Cuestionario getCuestionarioByCandidato(Candidato candidato, String clave) {
 		// TODO Auto-generated method stub
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -105,7 +107,7 @@ public class CuestionarioDaoImp implements CuestionarioDao {
 	    CriteriaQuery<Cuestionario> criteria = builder.createQuery(Cuestionario.class);
 	    Root<Cuestionario> from = criteria.from(Cuestionario.class);
 	    criteria.select(from);
-	    criteria.where(builder.equal(from.get("idCandidato"), idCandidato), 
+	    criteria.where(builder.equal(from.get("candidato"), candidato), 
 	    		builder.equal(from.get("clave"), clave));
 	    TypedQuery<Cuestionario> typed = session.createQuery(criteria);
 		

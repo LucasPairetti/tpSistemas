@@ -88,7 +88,7 @@ public class EvaluarFuncionesController implements Initializable{
     private TableColumn<CandidatoDTO, String> tipoDocColumn;
     
     
-    List<CandidatoDTO> candidatos;
+    List<CandidatoDTO> candidatos= new ArrayList<CandidatoDTO>();
     ObservableList<CandidatoDTO> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
     ObservableList<PuestoDTO> listaPuestos = FXCollections.observableArrayList();
     ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
@@ -124,7 +124,7 @@ public class EvaluarFuncionesController implements Initializable{
         		listaPuestos.addAll(gestorPuesto.getAllpuestosDTO());
 				puestoTableView.setItems(listaPuestos);
 
-				System.out.println(candidatos);
+				
 	}
 
     @FXML
@@ -156,16 +156,17 @@ public class EvaluarFuncionesController implements Initializable{
     	
     	PuestoDTO puesto = puestoTableView.getSelectionModel().getSelectedItem();
     	
-    	System.out.println(puesto.getIdPuesto());
+  
     	
     	
     	if(!gestorPuesto.validarFactores(puesto)) {
     		List<CompetenciaDTO> lista = new ArrayList<CompetenciaDTO>();
-    		System.out.println(puesto+ "despues del if");
+    		
     		
     		for(ItemCompetencia item: puesto.getCompetencias()) {
     			lista.add(gestorCompetencias.getCompetenciaDTO(item.getCompetencia()));
     		}
+    		
     		
     		alertaCompetencias(lista); 
     }else {
@@ -188,20 +189,28 @@ public class EvaluarFuncionesController implements Initializable{
 	
     void alertaCompetencias(List<CompetenciaDTO> listaCompetencias) {
     	
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("/views/alertaCompetenciaEvaluar.fxml"));
+    	 
+    	 FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/alertaCompetenciaEvaluar.fxml")));
     	
-    	Stage alertaStage = new Stage();
-    	Parent root;
+    	
+    	
 		try {
-			loader.load();
+		
+			loader.setLocation((getClass().getResource("/views/alertaCompetenciaEvaluar.fxml")));
+			Parent root= (Parent)loader.load();
+			
 			AlertaCompetenciasController display = loader.getController();
 			display.agregarCompetencias(listaCompetencias);
+			display.initialize(null, null);
+		
 			
-			root = FXMLLoader.load((getClass().getResource("/views/alertaCompetenciaEvaluar.fxml")));
-			Scene scene = new Scene(root);
-			alertaStage.setTitle("Candidatos en curso");
-			alertaStage.setScene(scene);
+			
+			
+		
+			Stage alertaStage = new Stage();
+	 
+			alertaStage.setTitle("Competencias");
+			alertaStage.setScene(new Scene(root));
 			alertaStage.show();
 	    	
 		} catch (IOException e) {
@@ -212,7 +221,9 @@ public class EvaluarFuncionesController implements Initializable{
     }
 
     public void setCandidatos(List<CandidatoDTO> lista) {
+    	
     	candidatos.addAll(lista);
+    	
     }
 
 }

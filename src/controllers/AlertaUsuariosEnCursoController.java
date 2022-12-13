@@ -1,10 +1,12 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import DTOS.CandidatoDTO;
+import DTOS.CompetenciaDTO;
 import entidades.Candidato;
 import entidades.Puesto;
 import javafx.collections.FXCollections;
@@ -42,8 +44,8 @@ public class AlertaUsuariosEnCursoController implements Initializable{
 
     @FXML
     private Button volverButton;
-    
-    private List<CandidatoDTO> candidatosEnCurso;
+    ObservableList<CandidatoDTO> listaCandidatos = FXCollections.observableArrayList();  
+    private List<CandidatoDTO> candidatosEnCurso= new ArrayList<CandidatoDTO>();
 
     @FXML
     void volverButtonClicked(ActionEvent event) {
@@ -54,16 +56,16 @@ public class AlertaUsuariosEnCursoController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		ObservableList<CandidatoDTO> listaListaCandidatos= (ObservableList<CandidatoDTO>) candidatosEnCurso;
+		listaCandidatos.addAll(candidatosEnCurso);
 		nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 		apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
 		nroCandidato.setCellValueFactory(new PropertyValueFactory<>("nroCandidato"));
-		CandidatosTable.setItems(listaListaCandidatos);
+		CandidatosTable.setItems(listaCandidatos);
 	
 	}
 	
 	public void setCandidatosEnCurso (List<CandidatoDTO> lista) {
-		candidatosEnCurso=lista;	
+		candidatosEnCurso.addAll(lista);	
 	}
 
 }

@@ -31,6 +31,7 @@ public class EvaluarBusquedaController implements Initializable {
 	//public List<Candidato> listaCandidatos;
 	GestorDeCandidato gestorCandidatos = GestorDeCandidato.getInstance();
 	
+	
     @FXML
     private TableView<CandidatoDTO> CandidatoTableView;
 
@@ -160,13 +161,12 @@ public class EvaluarBusquedaController implements Initializable {
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
     	
+    	List<Candidato> candidatosAValidar= new ArrayList<Candidato>();
+    	for(CandidatoDTO cd : candidatosSiguienteInterfaz) candidatosAValidar.add(gestorCandidatos.getCandidatoByDTO(cd));
     	
-   
-    	/*
-    	GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
-    	if(gestorCandidato.validarCuestionarios(listaCandidatos)) llamo interfaz;
-    	//else IncluirAlerta()*/
-    	EvaluarFuncionInterfaz(candidatosSiguienteInterfaz);
+    	
+    	if(!gestorCandidatos.validarCuestionarios(candidatosAValidar)) alertaUsuarioEnCurso(candidatosSiguienteInterfaz);
+    	else EvaluarFuncionInterfaz(candidatosSiguienteInterfaz);
 
     }
     
@@ -174,22 +174,23 @@ public class EvaluarBusquedaController implements Initializable {
     void alertaUsuarioEnCurso(List<CandidatoDTO> listaEnCurso) {
     	
     	
-    	FXMLLoader loader = new FXMLLoader();
-    	loader.setLocation(getClass().getResource("/views/alertaUsuariosEnCurso.fxml"));
+    	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/alertaUsuariosEnCurso.fxml")));
+    	
     
-    	Stage alertaStage = new Stage();
-    	Parent root;
+    	
+    	
 		try {
-			loader.load();
+			loader.setLocation((getClass().getResource("/views/alertaUsuariosEnCurso.fxml")));
+			Parent root = (Parent)loader.load();
 			
 			AlertaUsuariosEnCursoController display = loader.getController();
 			display.setCandidatosEnCurso(listaEnCurso);
+			display.initialize(null, null);
 			
+			Stage alertaStage = new Stage();
 			
-			root = FXMLLoader.load((getClass().getResource("/views/alertaUsuariosEnCurso.fxml")));
-			Scene scene = new Scene(root);
-			alertaStage.setTitle("Candidatos en curso");
-			alertaStage.setScene(scene);
+			alertaStage.setTitle("Candidatos");
+			alertaStage.setScene(new Scene(root));
 			alertaStage.show();
 	    	
 		} catch (IOException e) {
@@ -200,21 +201,21 @@ public class EvaluarBusquedaController implements Initializable {
 		
     }
     
-   void EvaluarFuncionInterfaz(List<CandidatoDTO> listaCandidatosSeleccionados2) {
+   void EvaluarFuncionInterfaz(List<CandidatoDTO> lista) {
 	   
-	   	Parent root;
+	   	
 	   	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
 		try {
 			loader.setLocation((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
-			root = loader.load();
+			Parent root = (Parent)loader.load();
 			
 			
 			EvaluarFuncionesController display = loader.getController();
-			display.setCandidatos(listaCandidatosSeleccionados2);
+			display.setCandidatos(lista);
 			
-			Stage window = (Stage)siguienteButton.getScene().getWindow();
+			Stage window = new Stage();
 			window.setTitle("Evaluar Candidatos");
-	    	window.setScene(new Scene(loader.getRoot()));
+	    	window.setScene(new Scene(root));
 	    	window.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

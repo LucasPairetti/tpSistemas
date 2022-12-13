@@ -1,6 +1,7 @@
 package controllers;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -36,12 +37,14 @@ public class AlertaCompetenciasController implements Initializable {
     private AnchorPane panel;
 
     ObservableList<CompetenciaDTO> listaItemCompetencia = FXCollections.observableArrayList();  
-    private List<CompetenciaDTO> competencias;
+    private List<CompetenciaDTO> competencias= new ArrayList<CompetenciaDTO>();
     
     @FXML
     void aceptarButtonClicked(ActionEvent event) {
     	Stage stage = (Stage) panel.getScene().getWindow();
     	stage.close();
+    	
+    	
     }
 
 	@Override
@@ -55,7 +58,7 @@ public class AlertaCompetenciasController implements Initializable {
 	}
 	
 	public void agregarCompetencias(List<CompetenciaDTO> lista) {
-		competencias=lista;
+		competencias.addAll(lista);
 	}
 
 }

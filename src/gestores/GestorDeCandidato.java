@@ -187,7 +187,7 @@ public class GestorDeCandidato {
 		
 	}
 	
-	private Candidato getCandidatoByDTO(CandidatoDTO candidatoDto) {
+	public Candidato getCandidatoByDTO(CandidatoDTO candidatoDto) {
 		// TODO Auto-generated method stub
 		return this.getCandidatoByNroDocumento(candidatoDto.getTipoDocumento(),candidatoDto.getNumeroDocumento());
 	}

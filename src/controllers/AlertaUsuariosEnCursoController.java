@@ -3,6 +3,8 @@ package controllers;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+
+import DTOS.CandidatoDTO;
 import entidades.Candidato;
 import entidades.Puesto;
 import javafx.collections.FXCollections;
@@ -22,26 +24,26 @@ import javafx.stage.Stage;
 public class AlertaUsuariosEnCursoController implements Initializable{
 
     @FXML
-    private TableView<Candidato> CandidatosTable;
+    private TableView<CandidatoDTO> CandidatosTable;
 
     @FXML
-    private TableColumn<Candidato, String> apellidoColumn;
+    private TableColumn<CandidatoDTO, String> apellidoColumn;
 
     @FXML
-    private TableColumn<Candidato, String> nombreColumn;
+    private TableColumn<CandidatoDTO, String> nombreColumn;
 
     @FXML
     private AnchorPane panel;
     
     @FXML
-    private TableColumn<Candidato, String> nroCandidato;
+    private TableColumn<CandidatoDTO, String> nroCandidato;
     
     
 
     @FXML
     private Button volverButton;
     
-    private List<Candidato> candidatosEnCurso;
+    private List<CandidatoDTO> candidatosEnCurso;
 
     @FXML
     void volverButtonClicked(ActionEvent event) {
@@ -52,7 +54,7 @@ public class AlertaUsuariosEnCursoController implements Initializable{
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		
-		ObservableList<Candidato> listaListaCandidatos= (ObservableList<Candidato>) candidatosEnCurso;
+		ObservableList<CandidatoDTO> listaListaCandidatos= (ObservableList<CandidatoDTO>) candidatosEnCurso;
 		nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
 		apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
 		nroCandidato.setCellValueFactory(new PropertyValueFactory<>("nroCandidato"));
@@ -60,7 +62,7 @@ public class AlertaUsuariosEnCursoController implements Initializable{
 	
 	}
 	
-	public void setCandidatosEnCurso (List<Candidato> lista) {
+	public void setCandidatosEnCurso (List<CandidatoDTO> lista) {
 		candidatosEnCurso=lista;	
 	}
 

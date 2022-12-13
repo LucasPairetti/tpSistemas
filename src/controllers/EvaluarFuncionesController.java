@@ -37,16 +37,16 @@ public class EvaluarFuncionesController implements Initializable{
 	
 
     @FXML
-    private TableView<Candidato> CandidatoTableView;
+    private TableView<CandidatoDTO> CandidatoTableView;
 
     @FXML
-    private TableColumn<Candidato, String> apellidoColumn;
+    private TableColumn<CandidatoDTO, String> apellidoColumn;
 
     @FXML
     private Button cancelarButton;
 
     @FXML
-    private TableColumn<Candidato, String> claveIngresoColumn;
+    private TableColumn<CandidatoDTO, String> claveIngresoColumn;
 
     @FXML
     private TableColumn<ItemCompetencia, String> competenciaColumn;
@@ -61,13 +61,13 @@ public class EvaluarFuncionesController implements Initializable{
     private Button finalizarButton;
 
     @FXML
-    private TableColumn<Candidato, String> nombreColumn;
+    private TableColumn<CandidatoDTO, String> nombreColumn;
 
     @FXML
     private TableColumn<PuestoDTO, String> nombrePuestoColumn;
 
     @FXML
-    private TableColumn<Candidato, Integer> numeroDocColumn;
+    private TableColumn<CandidatoDTO, Integer> numeroDocColumn;
 
     @FXML
     private TableColumn<ItemCompetencia, Integer> ponderacionColumn;
@@ -85,11 +85,11 @@ public class EvaluarFuncionesController implements Initializable{
     private Button siguienteButton;
 
     @FXML
-    private TableColumn<Candidato, String> tipoDocColumn;
+    private TableColumn<CandidatoDTO, String> tipoDocColumn;
     
     
-    private List<Candidato> candidatos;
-    ObservableList<Candidato> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
+    private List<CandidatoDTO> candidatos;
+    ObservableList<CandidatoDTO> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
     ObservableList<PuestoDTO> listaPuestos = FXCollections.observableArrayList();
     ObservableList<ItemCompetencia> listaItemCompetencia = FXCollections.observableArrayList();
     
@@ -121,8 +121,8 @@ public class EvaluarFuncionesController implements Initializable{
     	
     	
 				
-				List<PuestoDTO> listaPuestos = gestorPuesto.getAllpuestosDTO();
-				puestoTableView.setItems((ObservableList<PuestoDTO>) listaPuestos);
+        		listaPuestos.addAll(gestorPuesto.getAllpuestosDTO());
+				puestoTableView.setItems(listaPuestos);
 
 		
 	}
@@ -203,7 +203,7 @@ public class EvaluarFuncionesController implements Initializable{
     	
     }
 
-    public void setCandidatos(List<Candidato> lista) {
+    public void setCandidatos(List<CandidatoDTO> lista) {
     	candidatos= lista;
     }
 

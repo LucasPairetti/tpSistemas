@@ -1,7 +1,12 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
+import entidades.*;
+import gestores.*;
 /*
 import java.util.Date;
 import java.util.List;
@@ -38,7 +43,7 @@ public class Main extends Application {
 		Date fecha = new java.util.Date();
 		System.out.println(fecha);
 		
-		/*
+	/*
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);
 		Respuesta respuesta2 = new Respuesta("Cumplo de manera íntegra con lo que se me pide en el trabajo.", 2);
@@ -150,6 +155,7 @@ public class Main extends Application {
 		Date fechaNacimiento = calendario.getTime();
 		GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
 		gestorCandidato.createCandidato(42870674, "ABCDE123", null, "DNI", null, 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
+		
 		*/
 		
 		launch(args);

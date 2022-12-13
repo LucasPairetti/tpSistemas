@@ -68,7 +68,8 @@
       <TableView fx:id="CandidatoTableView" layoutX="100.0" layoutY="344.0" prefHeight="284.0" prefWidth="888.0">
         <columns>
           <TableColumn fx:id="nombreColumn" prefWidth="284.0" text="Nombre" />
-          <TableColumn fx:id="apellidoColumn" prefWidth="603.0" text="Apellido" />
+          <TableColumn fx:id="apellidoColumn" prefWidth="331.0" text="Apellido" />
+            <TableColumn fx:id="nroCandidatoColumn" prefWidth="272.0" text="Nº de candidato" />
         </columns>
       </TableView>
       <Button fx:id="quitarButton" layoutX="1023.0" layoutY="603.0" mnemonicParsing="false" onAction="#quitarButtonClicked" text="Quitar" />

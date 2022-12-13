@@ -62,7 +62,7 @@ public class CandidatoDaoImp implements CandidatoDao {
 		session.beginTransaction();
 		
 		List<Candidato> candidatos = session
-				.createQuery("SELECT a FROM Candidato", Candidato.class)
+				.createQuery("SELECT a FROM Candidato a", Candidato.class)
 				.getResultList();
 		
 		session.getTransaction().commit();

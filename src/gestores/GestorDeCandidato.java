@@ -213,5 +213,14 @@ public class GestorDeCandidato {
 
     }
 	
+	public List<CandidatoDTO> getAllCandidatosDTO(){
+		List<CandidatoDTO> candidatos = new ArrayList<CandidatoDTO>();
+		for(Candidato c: this.getAllCandidato()) {
+			candidatos.add(this.getCandidatoDTO(c));
+		}
+		
+		return candidatos;
+	}
+	
 }
 	

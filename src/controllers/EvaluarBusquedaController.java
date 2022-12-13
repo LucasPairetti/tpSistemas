@@ -2,9 +2,11 @@ package controllers;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import DTOS.CandidatoDTO;
 import DTOS.CompetenciaDTO;
 import entidades.Candidato;
 import gestores.GestorDeCandidato;
@@ -20,6 +22,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -29,16 +32,16 @@ public class EvaluarBusquedaController implements Initializable {
 	GestorDeCandidato gestorCandidatos = GestorDeCandidato.getInstance();
 	
     @FXML
-    private TableView<Candidato> CandidatoTableView;
+    private TableView<CandidatoDTO> CandidatoTableView;
 
     @FXML
     private Button agregarButton;
 
     @FXML
-    private TableColumn<Candidato, String> apellidoBuscarColumn;
+    private TableColumn<CandidatoDTO, String> apellidoBuscarColumn;
 
     @FXML
-    private TableColumn<Candidato, String> apellidoColumn;
+    private TableColumn<CandidatoDTO, String> apellidoColumn;
 
     @FXML
     private TextField apellidoTextField;
@@ -47,21 +50,21 @@ public class EvaluarBusquedaController implements Initializable {
     private Button buscarButton;
 
     @FXML
-    private TableView<Candidato> buscarCandidatoTableView;
+    private TableView<CandidatoDTO> buscarCandidatoTableView;
 
     @FXML
-    private TableColumn<Candidato, String> nombreBuscarColumn;
+    private TableColumn<CandidatoDTO, String> nombreBuscarColumn;
 
     @FXML
-    private TableColumn<Candidato, String> nombreColumn;
+    private TableColumn<CandidatoDTO, String> nombreColumn;
 
     @FXML
     private TextField nombreTextField;
 
     @FXML
-    private TableColumn<Candidato, Integer> nroBuscarColumn;
+    private TableColumn<CandidatoDTO, Integer> nroBuscarColumn;
     @FXML
-    private TableColumn<Candidato, Integer> nroCandidatoColumn;
+    private TableColumn<CandidatoDTO, Integer> nroCandidatoColumn;
 
     @FXML
     private TextField nroTextField;
@@ -78,14 +81,26 @@ public class EvaluarBusquedaController implements Initializable {
     @FXML
     private Button siguienteButton;
     
-    ObservableList<Candidato> listaCandidatosBuscados = FXCollections.observableArrayList(); 
-    ObservableList<Candidato> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
+    ObservableList<CandidatoDTO> listaCandidatosBuscados = FXCollections.observableArrayList(); 
+    ObservableList<CandidatoDTO> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
+    List<CandidatoDTO> candidatosSiguienteInterfaz = new ArrayList<CandidatoDTO>();
     
     
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
     	// TODO Auto-generated method stub
-    	listaCandidatosBuscados.addAll(gestorCandidatos.getAllCandidato());
+    	
+    	apellidoBuscarColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+    	nombreBuscarColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    	nroBuscarColumn.setCellValueFactory(new PropertyValueFactory<>("numeroDocumento"));
+    	
+    	apellidoColumn.setCellValueFactory(new PropertyValueFactory<>("apellido"));
+    	nombreColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
+    	nroCandidatoColumn.setCellValueFactory(new PropertyValueFactory<>("numeroDocumento"));
+    	
+    	
+    	
+    	listaCandidatosBuscados.addAll(gestorCandidatos.getAllCandidatosDTO());
     	buscarCandidatoTableView.setItems(listaCandidatosBuscados);
     	
     }
@@ -95,21 +110,26 @@ public class EvaluarBusquedaController implements Initializable {
 
     @FXML
     void agregarButtonClicked(ActionEvent event) {
+    	if(!listaCandidatosSeleccionados.contains(buscarCandidatoTableView.getSelectionModel().getSelectedItem())) {
     	listaCandidatosSeleccionados.add(buscarCandidatoTableView.getSelectionModel().getSelectedItem());
-    	CandidatoTableView.setItems(listaCandidatosBuscados);
-    	
+    	candidatosSiguienteInterfaz.add(buscarCandidatoTableView.getSelectionModel().getSelectedItem());
+    	CandidatoTableView.setItems(listaCandidatosSeleccionados);
+    	}
     }
 
     @FXML
     void buscarButtonClicked(ActionEvent event) {
-    	
+    	List<CandidatoDTO> candidatosDTOencontrados= new ArrayList<CandidatoDTO> ();
     	int nroCandidato;
     	if(nroTextField.equals("")) nroCandidato = -1; else nroCandidato = Integer.parseInt(nroTextField.getText());
     	List<Candidato> candidatosEncontrados = 
     			gestorCandidatos.buscarCandidatos(apellidoTextField.getText(), 
     			nombreTextField.getText(), 
     			nroCandidato);
-    	buscarCandidatoTableView.setItems((ObservableList<Candidato>) candidatosEncontrados);
+    	for(Candidato c: candidatosEncontrados) {
+    		candidatosDTOencontrados.add(gestorCandidatos.getCandidatoDTO(c));
+    	}
+    	buscarCandidatoTableView.setItems((ObservableList<CandidatoDTO>) candidatosDTOencontrados);
     	
     }
 
@@ -117,6 +137,7 @@ public class EvaluarBusquedaController implements Initializable {
     void quitarButtonClicked(ActionEvent event) {
     	if(CandidatoTableView.getSelectionModel().getSelectedItem()!=null) {
     		listaCandidatosSeleccionados.remove(CandidatoTableView.getSelectionModel().getSelectedItem());
+    		candidatosSiguienteInterfaz.remove(CandidatoTableView.getSelectionModel().getSelectedItem());
     		CandidatoTableView.setItems(listaCandidatosSeleccionados);
     	}
     	
@@ -139,16 +160,18 @@ public class EvaluarBusquedaController implements Initializable {
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
     	
+    	
+   
     	/*
     	GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
     	if(gestorCandidato.validarCuestionarios(listaCandidatos)) llamo interfaz;
     	//else IncluirAlerta()*/
-    	EvaluarFuncionInterfaz(listaCandidatosSeleccionados);
+    	EvaluarFuncionInterfaz(candidatosSiguienteInterfaz);
 
     }
     
     
-    void alertaUsuarioEnCurso(List<Candidato> listaEnCurso) {
+    void alertaUsuarioEnCurso(List<CandidatoDTO> listaEnCurso) {
     	
     	
     	FXMLLoader loader = new FXMLLoader();
@@ -177,7 +200,7 @@ public class EvaluarBusquedaController implements Initializable {
 		
     }
     
-   void EvaluarFuncionInterfaz(List<Candidato> listaCandidatos) {
+   void EvaluarFuncionInterfaz(List<CandidatoDTO> listaCandidatosSeleccionados2) {
 	   
 		Parent root;
 		try {

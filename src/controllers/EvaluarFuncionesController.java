@@ -149,9 +149,18 @@ public class EvaluarFuncionesController implements Initializable{
 
     @FXML
     void finalizarButtonClicked(ActionEvent event) {
-    	//aca se genera por cada candidato un cuestionario?
     	
     	
+    	Parent root;
+		try {
+			root = FXMLLoader.load((getClass().getResource("/views/UsuarioConsultor.fxml")));
+			Stage window = (Stage)finalizarButton.getScene().getWindow();
+			window.setTitle("Usuario consultor");
+	    	window.setScene(new Scene(root));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     	
     }
 
@@ -194,11 +203,11 @@ public class EvaluarFuncionesController implements Initializable{
     	
     	for(CandidatoDTO c: candidatos) {
     		
-    		System.out.println(gestorCandidatos.getCandidatoByDTO(c).getCuestionario());
+    		c.setClave(gestorCandidatos.getCandidatoByDTO(c).getCuestionario().getClave()) ;
     		
-    		
+    		//falta id cuestionario
     	}
-    
+    	listaCandidatosSeleccionados.addAll(candidatos);
    
     	CandidatoTableView.setItems(listaCandidatosSeleccionados);
     	

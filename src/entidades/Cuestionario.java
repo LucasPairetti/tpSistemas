@@ -12,7 +12,7 @@ public class Cuestionario {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	@Column(name="idCuestionario")
 	private int idCuestionario;
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="candidato_id", nullable = false, referencedColumnName="idCandidato" , 
 	foreignKey=@ForeignKey(name="FK_Candidato_Cuestionario", 
 	value=ConstraintMode.CONSTRAINT))

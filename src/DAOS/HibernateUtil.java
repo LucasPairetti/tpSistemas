@@ -44,6 +44,7 @@ public class HibernateUtil {
 					sources.addAnnotatedClass( entidades.Respuesta.class );
 					sources.addAnnotatedClass( entidades.RespuestaEnCuestionario.class );
 					sources.addAnnotatedClass( entidades.Auditoria.class );
+					sources.addAnnotatedClass( entidades.Evaluacion.class );
 				
 			Metadata metadata = sources.buildMetadata();
 				    

@@ -5,6 +5,7 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
+@Entity
 public class Evaluacion {
 	@Id
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -16,11 +17,11 @@ public class Evaluacion {
     private Date fechaInicio;
 	@Column(nullable = true)
     private Date fechaFin;
-	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="evaluacion_id", nullable = false, referencedColumnName="idEvaluacion", 
+	@OneToMany
+	@JoinColumn(name="evaluacion_id", nullable = true, referencedColumnName="idEvaluacion", 
 	foreignKey=@ForeignKey(name="FK_Evaluacion_Cuestionario", value=ConstraintMode.CONSTRAINT))
     private List<Cuestionario> cuestionarios;
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+	@ManyToOne
 	@JoinColumn(name="puesto_id", nullable = false, referencedColumnName="idPuesto", 
 	foreignKey=@ForeignKey(name="FK_Evaluacion_Puesto", value=ConstraintMode.CONSTRAINT))
     private Puesto puesto;

@@ -183,7 +183,7 @@ public class GestorDeCandidato {
 		
 		GestorDeEvaluacion gestorEvaluacion = GestorDeEvaluacion.getInstance();
 		
-		gestorEvaluacion.createEvaluacion("Incompleta", null, null, listaCuestionarios, puesto);
+		gestorEvaluacion.createEvaluacion("Incompleta", new Date(), null, listaCuestionarios, puesto);
 		
 	}
 	

@@ -39,7 +39,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		
+		/*
 
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);
@@ -152,7 +152,7 @@ public class Main extends Application {
 		Date fechaNacimiento = calendario.getTime();
 		GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
 		gestorCandidato.createCandidato(42870674, null, "DNI", 1, "Tomas", "Dannunzio", fechaNacimiento, "Argentina", "tomidannunzio@gmail.com", "Universitario", false);
-		
+		*/
 		
 		launch(args);
 		

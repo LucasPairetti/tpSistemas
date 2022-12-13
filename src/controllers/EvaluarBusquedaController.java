@@ -213,7 +213,7 @@ public class EvaluarBusquedaController implements Initializable {
 			EvaluarFuncionesController display = loader.getController();
 			display.setCandidatos(lista);
 			
-			Stage window = new Stage();
+			Stage window = (Stage)siguienteButton.getScene().getWindow();
 			window.setTitle("Evaluar Candidatos");
 	    	window.setScene(new Scene(root));
 	    	window.show();

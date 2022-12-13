@@ -119,6 +119,10 @@ public class EvaluarFuncionesController implements Initializable{
             
 
         });
+    	
+    	
+    	
+    	
         ponderacionColumn.setCellValueFactory(new PropertyValueFactory<>("ponderacion"));
     	
     	
@@ -188,7 +192,14 @@ public class EvaluarFuncionesController implements Initializable{
     	
     	gestorCandidatos.evaluarCandidatos(candidatos,puestoAusar);
     	
-    	listaCandidatosSeleccionados.addAll(candidatos);
+    	for(CandidatoDTO c: candidatos) {
+    		
+    		System.out.println(gestorCandidatos.getCandidatoByDTO(c).getCuestionario());
+    		
+    		
+    	}
+    
+   
     	CandidatoTableView.setItems(listaCandidatosSeleccionados);
     	
     	

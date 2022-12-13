@@ -116,7 +116,7 @@ public class GestorDeCandidato {
 		GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
 		
 		Puesto puesto = gestorPuesto.getPuestoByPuestoDTO(p);
-		System.out.println(puesto);
+		
 		List<Candidato> listaCandidatos = new ArrayList<Candidato>();
 		
 		for(CandidatoDTO candidatoDto : listaCandidatosDTO) {

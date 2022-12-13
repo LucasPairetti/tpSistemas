@@ -14,9 +14,7 @@ public class CandidatoDTO {
 	private int idCandidato;
 	private int numeroDocumento;
 	private String clave;
-	private Cuestionario cuestionario;
 	private String tipoDocumento;
-	private List<Cuestionario> cuestionariosTerminados;
 	private int nroCandidato;
 	private String nombre;
 	private String apellido;
@@ -43,9 +41,7 @@ public class CandidatoDTO {
 		super();
 		this.numeroDocumento = numeroDocumento;
 		this.clave = clave;
-		this.cuestionario = cuestionario;
 		this.tipoDocumento = tipoDocumento;
-		this.cuestionariosTerminados = cuestionariosTerminados;
 		this.nroCandidato = nroCandidato;
 		this.nombre = nombre;
 		this.apellido = apellido;
@@ -106,23 +102,6 @@ public class CandidatoDTO {
 
 
 
-
-	public Cuestionario getCuestionario() {
-		return cuestionario;
-	}
-
-
-
-
-
-	public void setCuestionario(Cuestionario cuestionario) {
-		this.cuestionario = cuestionario;
-	}
-
-
-
-
-
 	public String getTipoDocumento() {
 		return tipoDocumento;
 	}
@@ -134,23 +113,6 @@ public class CandidatoDTO {
 	public void setTipoDocumento(String tipoDocumento) {
 		this.tipoDocumento = tipoDocumento;
 	}
-
-
-
-
-
-	public List<Cuestionario> getCuestionariosTerminados() {
-		return cuestionariosTerminados;
-	}
-
-
-
-
-
-	public void setCuestionariosTerminados(List<Cuestionario> cuestionariosTerminados) {
-		this.cuestionariosTerminados = cuestionariosTerminados;
-	}
-
 
 
 

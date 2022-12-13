@@ -36,11 +36,11 @@ public class GestorDeCandidato {
 	}
 	
 	
-	public void createCandidato(int numeroDocumento, String clave, Cuestionario cuestionario,
+	public void createCandidato(int numeroDocumento, Cuestionario cuestionario,
 			String tipoDocumento, int nroCandidato, String nombre,
 			String apellido, Date fechaNacimiento, String nacionalidad, String email, String escolaridad,
 			Boolean eliminacion) {
-		Candidato candidato = new Candidato(numeroDocumento, clave, cuestionario, tipoDocumento,
+		Candidato candidato = new Candidato(numeroDocumento, cuestionario, tipoDocumento,
 				nroCandidato, nombre, apellido, fechaNacimiento, nacionalidad, email,
 				escolaridad, eliminacion);
 		dao.createCandidato(candidato);
@@ -196,11 +196,8 @@ public class GestorDeCandidato {
 
         CandidatoDTO candidatoDTO = new CandidatoDTO();
         candidatoDTO.setNumeroDocumento(candidato.getNumeroDocumento());
-        candidatoDTO.setClave(candidato.getClave());
-        candidatoDTO.setCuestionario(candidato.getCuestionario());
-        //candidatoDTO.setCuestionario(candidato.)
+        candidatoDTO.setClave(candidato.getCuestionario().getClave());
         candidatoDTO.setTipoDocumento(candidato.getTipoDocumento());
-        //candidatoDTO.setCuestionariosTerminados(candidato.getCuestionariosTerminados());
         candidatoDTO.setNroCandidato(candidato.getNroCandidato());
         candidatoDTO.setNombre(candidato.getNombre());
         candidatoDTO.setApellido(candidato.getApellido());

@@ -13,8 +13,6 @@ public class Candidato {
 	private int idCandidato;
 	@Column(nullable = false, unique = true, name = "numeroDocumento")
 	private int numeroDocumento;
-	@Column(nullable = false, unique = true)
-	private String clave;
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	private Cuestionario cuestionario;
 	@Column(nullable = false, unique = false, name = "tipoDocumento")
@@ -45,13 +43,12 @@ public class Candidato {
 		super();
 	}
 	
-	public Candidato(int numeroDocumento, String clave, Cuestionario cuestionario,
+	public Candidato(int numeroDocumento, Cuestionario cuestionario,
 			String tipoDocumento, int nroCandidato, String nombre,
 			String apellido, Date fechaNacimiento, String nacionalidad, String email, String escolaridad,
 			Boolean eliminacion) {
 		super();
 		this.numeroDocumento = numeroDocumento;
-		this.clave = clave;
 		this.cuestionario = cuestionario;
 		this.tipoDocumento = tipoDocumento;
 		//this.cuestionariosTerminados = cuestionariosTerminados;
@@ -77,12 +74,7 @@ public class Candidato {
 	public void setNumeroDocumento(int numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
-	public String getClave() {
-		return clave;
-	}
-	public void setClave(String clave) {
-		this.clave = clave;
-	}
+
 	public Cuestionario getCuestionario() {
 		return cuestionario;
 	}

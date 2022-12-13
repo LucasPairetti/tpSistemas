@@ -201,7 +201,7 @@ public class EvaluarBusquedaController implements Initializable {
     }
     
    void EvaluarFuncionInterfaz(List<CandidatoDTO> listaCandidatosSeleccionados2) {
-	   	System.out.println(listaCandidatosSeleccionados2.get(0).getNombre());
+	   
 	   	Parent root;
 	   	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/EvaluarFuncionesCandidatos.fxml")));
 		try {

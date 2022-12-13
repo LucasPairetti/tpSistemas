@@ -15,6 +15,7 @@ import entidades.Candidato;
 import entidades.Competencia;
 import entidades.ItemCompetencia;
 import entidades.Puesto;
+import gestores.GestorDeCandidato;
 import gestores.GestorDeCompetencias;
 import gestores.GestorDePuesto;
 import javafx.fxml.FXML;
@@ -34,6 +35,7 @@ import javafx.stage.Stage;
 public class EvaluarFuncionesController implements Initializable{
 	GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
 	GestorDeCompetencias gestorCompetencias = GestorDeCompetencias.getInstance();
+	GestorDeCandidato gestorCandidatos = GestorDeCandidato.getInstance();
 	
 
     @FXML
@@ -87,7 +89,7 @@ public class EvaluarFuncionesController implements Initializable{
     @FXML
     private TableColumn<CandidatoDTO, String> tipoDocColumn;
     
-    
+    PuestoDTO puestoAusar = new PuestoDTO();
     List<CandidatoDTO> candidatos= new ArrayList<CandidatoDTO>();
     ObservableList<CandidatoDTO> listaCandidatosSeleccionados = FXCollections.observableArrayList(); 
     ObservableList<PuestoDTO> listaPuestos = FXCollections.observableArrayList();
@@ -154,6 +156,7 @@ public class EvaluarFuncionesController implements Initializable{
     	if(puestoTableView.getSelectionModel().getSelectedItem()==null) return;
     	
     	
+    	
     	PuestoDTO puesto = puestoTableView.getSelectionModel().getSelectedItem();
     	
   
@@ -170,6 +173,7 @@ public class EvaluarFuncionesController implements Initializable{
     		
     		alertaCompetencias(lista); 
     }else {
+    	puestoAusar = puesto;
     	listaItemCompetencia.addAll(puesto.getCompetencias());
     	competenciasTableView.setItems(listaItemCompetencia);
     	
@@ -180,8 +184,14 @@ public class EvaluarFuncionesController implements Initializable{
 
     @FXML
     void siguienteButtonClicked(ActionEvent event) {
+    	
+    	
+    	gestorCandidatos.evaluarCandidatos(candidatos,puestoAusar);
+    	
     	listaCandidatosSeleccionados.addAll(candidatos);
     	CandidatoTableView.setItems(listaCandidatosSeleccionados);
+    	
+    	
     	
     }
 

@@ -121,7 +121,7 @@ public class GestorDePuesto implements PuestoDao{
 	
 	public Puesto getPuestoByPuestoDTO(PuestoDTO puestodto){
 		
-		Puesto puesto = dao.getPuestoById(puestodto.getIdPuesto());
+		Puesto puesto = dao.getPuestoByCodigo(puestodto.getCodigo());
 		
 		return puesto;
 		
@@ -150,7 +150,7 @@ public class GestorDePuesto implements PuestoDao{
 	
 	//Implementacion solo a fines del tp. En caso de haber una modificacion, se debe recuperar el
 	//objeto y modificarlo. (ModificarPuesto);
-	private Puesto getPuestoByDTO(PuestoDTO p) {
+	public Puesto getPuestoByDTO(PuestoDTO p) {
 		// TODO Auto-generated method stub
 		return this.getPuestoByCodigo(p.getCodigo());
 	}

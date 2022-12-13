@@ -116,7 +116,7 @@ public class GestorDeCandidato {
 		GestorDePuesto gestorPuesto = GestorDePuesto.getInstance();
 		
 		Puesto puesto = gestorPuesto.getPuestoByPuestoDTO(p);
-		
+		System.out.println(puesto);
 		List<Candidato> listaCandidatos = new ArrayList<Candidato>();
 		
 		for(CandidatoDTO candidatoDto : listaCandidatosDTO) {
@@ -196,7 +196,12 @@ public class GestorDeCandidato {
 
         CandidatoDTO candidatoDTO = new CandidatoDTO();
         candidatoDTO.setNumeroDocumento(candidato.getNumeroDocumento());
-        candidatoDTO.setClave(candidato.getCuestionario().getClave());
+        if(candidato.getCuestionario()==null) {
+        	candidatoDTO.setClave(null);
+        }else {
+        	candidatoDTO.setClave(candidato.getCuestionario().getClave());
+        }
+        
         candidatoDTO.setTipoDocumento(candidato.getTipoDocumento());
         candidatoDTO.setNroCandidato(candidato.getNroCandidato());
         candidatoDTO.setNombre(candidato.getNombre());

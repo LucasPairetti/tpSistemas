@@ -24,8 +24,6 @@ public class InstruccionesController implements Initializable{
 	    @FXML
 	    void siguienteButtonClicked(ActionEvent event) {
     	
-    	System.out.println("Entre");
-    	
     	GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
     	
     	gestorCuestionario.IniciarCuestionario(gestorCuestionario.getIdCuestionario());

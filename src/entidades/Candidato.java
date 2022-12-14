@@ -29,7 +29,7 @@ public class Candidato {
 	private String nacionalidad;
 	@Column(nullable = false, unique = false)
 	private String email;
-	@Column(nullable = false, unique = true)
+	@Column(nullable = false, unique = false)
 	private String escolaridad;
 	@Column
 	private Boolean eliminacion;

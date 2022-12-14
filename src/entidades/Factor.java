@@ -23,6 +23,7 @@ public class Factor {
 	foreignKey=@ForeignKey(name="FK_Factor_Pregunta", value=ConstraintMode.CONSTRAINT))
 	private List<Pregunta> preguntas;
 	
+	
 	public Factor() {
 		super();
 	}

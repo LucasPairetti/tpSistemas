@@ -218,7 +218,7 @@ public class GestorDeCuestionario {
 			
 			//Creo bloques
 			//ParametrosDao parametros = new ParametrosDaoImp();
-			int preguntasPorBloque = 4; //parametros.getPreguntasPorBloque();
+			int preguntasPorBloque = 2; //parametros.getPreguntasPorBloque();
 			
 			GestorDeBloque gestorBloque = GestorDeBloque.getInstance();
 			
@@ -233,12 +233,12 @@ public class GestorDeCuestionario {
 			
 			int contadorTotal = 0;
 			
+			List<PreguntaEnCuestionario> preguntasEnBloque;
+			int h = 0;
+			
 			for(int j = 0; j<cantidadDeBloques; j++) {
 				
-				
-				List<PreguntaEnCuestionario> preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
-				
-				int h = 0;
+				preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
 				
 				while(h < preguntasPorBloque && contadorTotal < preguntasEnCuestionario.size()) {
 					preguntasEnBloque.add(preguntasEnCuestionario.get(h));
@@ -246,6 +246,9 @@ public class GestorDeCuestionario {
 					contadorTotal++;
 				}
 				
+				System.out.println("Guarde "+j);
+				System.out.println(preguntasEnBloque.get(0).getIdPreguntaEnCuestionario());
+				System.out.println(preguntasEnBloque.get(1).getIdPreguntaEnCuestionario());
 				bloqueX = gestorBloque.createBloque(preguntasEnBloque, j+1, false);
 				
 				cuestionario.getBloques().add(bloqueX);

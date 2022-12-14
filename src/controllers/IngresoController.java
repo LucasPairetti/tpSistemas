@@ -25,7 +25,7 @@ public class IngresoController {
     private AnchorPane scenePane;
     @FXML
     void ingresoConsultorClicked(ActionEvent event) throws IOException {
-Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarConsultor.fxml")));
+    	Parent root = FXMLLoader.load((getClass().getResource("/views/ValidarConsultor.fxml")));
     	
     	Stage window = (Stage)ingresoConsultorButton.getScene().getWindow();
     	window.setTitle("Validar usuario consultor");

@@ -7,6 +7,7 @@ import interfaces.ParametrosDao;
 
 public class ParametrosDaoImp implements ParametrosDao {
 	
+	
 	@Override
 	public int getPreguntasPorBloque() {
 		 

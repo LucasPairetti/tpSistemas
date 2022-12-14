@@ -25,6 +25,8 @@ public class Cuestionario {
 	private Estado estado;
 	@Column(nullable = false)
 	private int cantidadAccesos;
+	@Column(nullable = false)
+	private Date fechaActivo;
 	@Column(nullable = true)
 	private Date fechaComienzo;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
@@ -48,13 +50,14 @@ public class Cuestionario {
 	}
 	
 	public Cuestionario(Candidato candidato, String clave, Estado estado, int cantidadAccesos,
-			Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
+			Date fechaActivo, Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
 			int resultadoFinal, Date fechaFinal, Date ultimoAcceso) {
 		super();
 		this.candidato = candidato;
 		this.clave = clave;
 		this.estado = estado;
 		this.cantidadAccesos = cantidadAccesos;
+		this.fechaActivo = fechaActivo;
 		this.fechaComienzo = fechaComienzo;
 		this.bloques = bloques;
 		this.resultadoXCompetencia = resultadoXCompetencia;
@@ -63,6 +66,14 @@ public class Cuestionario {
 		this.ultimoAcceso = ultimoAcceso;
 	}
 	
+	public Date getFechaActivo() {
+		return fechaActivo;
+	}
+
+	public void setFechaActivo(Date fechaActivo) {
+		this.fechaActivo = fechaActivo;
+	}
+
 	public int getIdCuestionario() {
 		return idCuestionario;
 	}

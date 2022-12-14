@@ -39,13 +39,6 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
-		
-		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
-		
-		Estado estado = gestorCuestionario.getCuestionarioById(1).getEstado();
-		
-		System.out.println(estado);
-		
 		/*
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);

@@ -167,7 +167,7 @@ public class GestorDeCandidato {
 		        }
 		     
 		    //Creo cuestionario
-			punteroCuestionario = gestorCuestionario.createCuestionario(c, clave, estado, 0, null, 
+			punteroCuestionario = gestorCuestionario.createCuestionario(c, clave, estado, 0, new Date(), null,
 					new ArrayList<Bloque>(),
 					puntajesXCompetencia, 0, null, null);
 			

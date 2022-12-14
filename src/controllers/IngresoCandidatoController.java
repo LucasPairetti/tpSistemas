@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DAOS.ParametrosDaoImp;
+import DTOS.BloqueDTO;
 import entidades.Candidato;
 import entidades.Cuestionario;
 import gestores.GestorDeAutenticacion;
@@ -124,31 +126,58 @@ public class IngresoCandidatoController implements Initializable {
     	Candidato candidato = gestorCandidato.getCandidatoByNroDocumento(tipoDoc, nroDoc);
     	Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato, clave);
     	
+		Object resultado = gestorCuestionario.verificarCuestionario(cuestionario.getIdCuestionario());
     	
-    	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/CompletarCuestionario.fxml")));
-    	int id =cuestionario.getIdCuestionario();
-    	System.out.println("antes de la interfaz"+id);
-		try {
+		if(resultado==null) {
+			GestorDeCuestionario.getInstance().setIdCuestionario(cuestionario.getIdCuestionario());
+			Parent root;
+			try {
+				root = FXMLLoader.load((getClass().getResource("/views/Instrucciones.fxml")));
+				Stage window = (Stage)salirButton.getScene().getWindow();
+		    	window.setTitle("Instrucciones");
+		    	window.setScene(new Scene(root));
+		    	window.show();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			
-			loader.setLocation((getClass().getResource("/views/CompletarCuestionario.fxml")));
-			
-			Parent root = (Parent)loader.load();
-			
-			ResolverCuestionarioController display = loader.getController();
-			
-			display.setIdCuestionario(id);
-			
-			loader.setController(display);
-			
-			Stage window = (Stage)ingresarButton.getScene().getWindow();
-			window.setTitle("Resolver cuestionario");
-	    	window.setScene(new Scene(root));
+		} else {if(resultado.getClass()==Exception.class) {
+			Parent root;
+			try {
+				root = FXMLLoader.load((getClass().getResource("/views/ValidarCandidato.fxml")));
+				Stage window = (Stage)salirButton.getScene().getWindow();
+		    	window.setTitle("Validar usuario consultor");
+		    	window.setScene(new Scene(root));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	    	
-	    	window.show();
 	    	
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		} else {
+		if(resultado.getClass()==BloqueDTO.class) {
+			
+			FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/CompletarCuestionario.fxml")));
+
+			try {
+				
+				
+				
+				Parent root = (Parent)loader.load();
+				
+				Stage window = (Stage)ingresarButton.getScene().getWindow();
+				window.setTitle("Resolver cuestionario");
+		    	window.setScene(new Scene(root));
+		    	
+		    	window.show();
+		    	
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		}
 		}
     	
 

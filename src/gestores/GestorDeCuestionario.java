@@ -26,6 +26,14 @@ public class GestorDeCuestionario {
 
 	private static GestorDeCuestionario instance;
 	private static CuestionarioDao dao;
+	private int cuestionarioId;
+	
+	public int getIdCuestionario() {
+		return cuestionarioId;
+	}
+	public void setIdCuestionario(int id) {
+		cuestionarioId = id;
+	}
 	
 	public GestorDeCuestionario() {
 		super();
@@ -47,10 +55,10 @@ public class GestorDeCuestionario {
 	
 	
 	public Cuestionario createCuestionario(Candidato candidato, String clave, Estado estado, int cantidadAccesos,
-			Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
+			Date fechaActivo, Date fechaComienzo, List<Bloque> bloques, List<PuntajePorCompetencia> resultadoXCompetencia,
 			int resultadoFinal, Date fechaFinal, Date ultimoAcceso) {
 		Cuestionario cuestionario= new Cuestionario(candidato, clave, estado, cantidadAccesos,
-			fechaComienzo, bloques, resultadoXCompetencia,
+			fechaActivo, fechaComienzo, bloques, resultadoXCompetencia,
 			resultadoFinal, fechaFinal, ultimoAcceso);
 		dao.createCuestionario(cuestionario);
 		return cuestionario;
@@ -140,7 +148,7 @@ public class GestorDeCuestionario {
     	 if(cuestionario.getEstado().getEstado().equals("Activo")) {
     		 
     		 int milisecondsByDay = 86400000;
-    		 int dias = (int) (((new Date()).getTime() - cuestionario.getFechaComienzo().getTime()) / milisecondsByDay);
+    		 int dias = (int) (((new Date()).getTime() - cuestionario.getFechaActivo().getTime()) / milisecondsByDay);
     		 
 	    	 if(dias > 15){
 	    		 Estado estado = new Estado(new Date(), "Sin contestar");
@@ -155,7 +163,7 @@ public class GestorDeCuestionario {
 	            	//Ojo
 	    	 }
 	    	 
-	    	 return true;
+	    	 return null;
 	    	 
     	 }
     	 

@@ -1,16 +1,24 @@
 package controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import DTOS.BloqueDTO;
+import gestores.GestorDeCuestionario;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class ResolverCuestionarioController implements Initializable{
+	GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
 
     @FXML
     private Button atrasButton;
@@ -54,6 +62,45 @@ public class ResolverCuestionarioController implements Initializable{
     private int idcuestionario;
     
     
+	@Override
+	public void initialize(URL arg0, ResourceBundle arg1) {
+		System.out.println("despues de la interfaz" + idcuestionario);
+		
+		
+		if(gestorCuestionario.verificarCuestionario(idcuestionario)==null) {
+			Parent root;
+			try {
+				root = FXMLLoader.load((getClass().getResource("/views/Instrucciones.fxml")));
+				Stage window = (Stage)salirButton.getScene().getWindow();
+		    	window.setTitle("Validar usuario consultor");
+		    	window.setScene(new Scene(root));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+		}
+		if(gestorCuestionario.verificarCuestionario(idcuestionario).getClass()==Exception.class) {
+			Parent root;
+			try {
+				root = FXMLLoader.load((getClass().getResource("/views/ValidarCandidato.fxml")));
+				Stage window = (Stage)salirButton.getScene().getWindow();
+		    	window.setTitle("Validar usuario consultor");
+		    	window.setScene(new Scene(root));
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	    	
+	    	
+		}
+		if(gestorCuestionario.verificarCuestionario(idcuestionario).getClass()==BloqueDTO.class) {
+			
+		}
+		
+		
+	}
+    
     
 
     @FXML
@@ -71,14 +118,9 @@ public class ResolverCuestionarioController implements Initializable{
 
     }
 
-	@Override
-	public void initialize(URL arg0, ResourceBundle arg1) {
-	
-		
-		
-		
-	}
+
 	public void setIdCuestionario(int id) {
+		System.out.println("seteando"+id);
 		idcuestionario=id;
 	}
 

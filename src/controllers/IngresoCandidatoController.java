@@ -4,7 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import entidades.Candidato;
+import entidades.Cuestionario;
 import gestores.GestorDeAutenticacion;
+import gestores.GestorDeCandidato;
+import gestores.GestorDeCuestionario;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +26,8 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 public class IngresoCandidatoController implements Initializable {
+	GestorDeCandidato gestorCandidato = GestorDeCandidato.getInstance();
+	GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();
 
     @FXML
     private Button ingresarButton;
@@ -113,12 +119,30 @@ public class IngresoCandidatoController implements Initializable {
     	
     	
     	//ahora necesito obtener el idCuestionario para pasarselo a la interfaz Instrucciones
-    	Parent root;
+    	
+    	
+    	Candidato candidato = gestorCandidato.getCandidatoByNroDocumento(tipoDoc, nroDoc);
+    	Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato, clave);
+    	
+    	
+    	FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/CompletarCuestionario.fxml")));
+    	int id =cuestionario.getIdCuestionario();
+    	System.out.println("antes de la interfaz"+id);
 		try {
-			root = FXMLLoader.load((getClass().getResource("/views/Instrucciones.fxml")));
+			
+			
+			loader.setLocation((getClass().getResource("/views/CompletarCuestionario.fxml")));
+			Parent root = (Parent)loader.load();
+			
+			ResolverCuestionarioController display = loader.getController();
+			
+			display.setIdCuestionario(id);
+			
+		
 			Stage window = (Stage)ingresarButton.getScene().getWindow();
-			window.setTitle("Usuario consultor");
+			window.setTitle("Resolver cuestionario");
 	    	window.setScene(new Scene(root));
+	    	window.show();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

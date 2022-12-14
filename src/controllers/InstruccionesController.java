@@ -15,7 +15,9 @@ public class InstruccionesController implements Initializable{
 
     @FXML
     void salirButtonClicked(ActionEvent event) {
-
+    	
+    	
+    	
     }
 
 	@Override

@@ -66,7 +66,6 @@ public class ResolverCuestionarioController implements Initializable{
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		System.out.println("despues de la interfaz" + idcuestionario);
 		
-		
 		if(gestorCuestionario.verificarCuestionario(idcuestionario)==null) {
 			Parent root;
 			try {
@@ -97,8 +96,7 @@ public class ResolverCuestionarioController implements Initializable{
 		if(gestorCuestionario.verificarCuestionario(idcuestionario).getClass()==BloqueDTO.class) {
 			
 		}
-		
-		
+
 	}
     
     
@@ -120,7 +118,6 @@ public class ResolverCuestionarioController implements Initializable{
 
 
 	public void setIdCuestionario(int id) {
-		System.out.println("seteando"+id);
 		idcuestionario=id;
 	}
 

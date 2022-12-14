@@ -130,19 +130,22 @@ public class IngresoCandidatoController implements Initializable {
     	System.out.println("antes de la interfaz"+id);
 		try {
 			
-			
 			loader.setLocation((getClass().getResource("/views/CompletarCuestionario.fxml")));
+			
 			Parent root = (Parent)loader.load();
 			
 			ResolverCuestionarioController display = loader.getController();
 			
 			display.setIdCuestionario(id);
 			
-		
+			loader.setController(display);
+			
 			Stage window = (Stage)ingresarButton.getScene().getWindow();
 			window.setTitle("Resolver cuestionario");
 	    	window.setScene(new Scene(root));
+	    	
 	    	window.show();
+	    	
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

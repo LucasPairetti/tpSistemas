@@ -20,7 +20,7 @@ public class Cuestionario {
 	//private int nroDocumento;
 	private String clave;
 	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="idCuestionario", nullable = false, referencedColumnName="idCuestionario" , 
+	@JoinColumn(name="idEstado", nullable = false, referencedColumnName="idEstado" , 
 	foreignKey=@ForeignKey(name="FK_Cuestionario_Estado", value=ConstraintMode.CONSTRAINT))
 	private Estado estado;
 	@Column(nullable = false)

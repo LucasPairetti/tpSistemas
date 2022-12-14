@@ -12,11 +12,12 @@ import javafx.scene.control.Button;
 
 public class InstruccionesController implements Initializable{
 
-    @FXML
-    private Button Ac;
+	  @FXML
+	    private Button siguienteButton;
 
-    @FXML
-    void salirButtonClicked(ActionEvent event) {
+
+	    @FXML
+	    void siguienteButtonClicked(ActionEvent event) {
     	
     	System.out.println("Entre");
     	

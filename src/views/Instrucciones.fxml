@@ -10,7 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.ResolverCuestionarioController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.InstruccionesController">
    <bottom>
       <AnchorPane prefHeight="49.0" prefWidth="1280.0" style="-fx-background-color: gray;" BorderPane.alignment="CENTER" />
    </bottom>
@@ -40,7 +40,7 @@
                   <Font name="System Bold" size="64.0" />
                </font>
             </Text>
-            <Button fx:id="Ac" layoutX="1052.0" layoutY="614.0" mnemonicParsing="false" onAction="#salirButtonClicked" prefHeight="45.0" prefWidth="185.0" text="Aceptar" />
+            <Button fx:id="siguienteButton" layoutX="1052.0" layoutY="614.0" mnemonicParsing="false" onAction="#siguienteButtonClicked" prefHeight="45.0" prefWidth="185.0" text="Aceptar" />
             <Text layoutX="87.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="En el siguiente cuestionario se lo evaluará con preguntas relacionadas a diferentes factores, donde se le presentará como una serie de preguntas con multiples opciones para elegir, dicho cuestionario consta de un tiempo maximo que aparecerá en la pantalla superior y este permite un ingreso de hasta maximo 3 veces, posterior al tiempo de vencimiento o al exceso de ingresos se tomará al cuestionario como incompleto y no podrá volver a ingresar." textAlignment="JUSTIFY" wrappingWidth="859.9192504882812">
                <font>
                   <Font size="24.0" />

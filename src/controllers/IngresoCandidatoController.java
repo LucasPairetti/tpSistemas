@@ -127,7 +127,7 @@ public class IngresoCandidatoController implements Initializable {
     	Cuestionario cuestionario = gestorCuestionario.getCuestionarioByCandidato(candidato, clave);
     	
 		Object resultado = gestorCuestionario.verificarCuestionario(cuestionario.getIdCuestionario());
-    	
+		
 		if(resultado==null) {
 			GestorDeCuestionario.getInstance().setIdCuestionario(cuestionario.getIdCuestionario());
 			Parent root;
@@ -158,7 +158,7 @@ public class IngresoCandidatoController implements Initializable {
 		} else {
 		if(resultado.getClass()==BloqueDTO.class) {
 			
-			FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/CompletarCuestionario.fxml")));
+			FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/ResolverCuestionario.fxml")));
 
 			try {
 				

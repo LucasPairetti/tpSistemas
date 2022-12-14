@@ -21,7 +21,7 @@ public class PreguntaEnCuestionario {
 	private String textoPregunta;
 	@Column(nullable = false)
 	private String descripcion;
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="preguntaEnCuestionario_id", nullable = false, referencedColumnName="idPreguntaEnCuestionario",
 	foreignKey=@ForeignKey(name="FK_PreguntaEnCuestionario_ponderacion", value=ConstraintMode.CONSTRAINT))
 	private List<PonderacionRtaCuestionario> respuestas;

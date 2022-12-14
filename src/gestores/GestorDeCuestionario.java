@@ -175,14 +175,13 @@ public class GestorDeCuestionario {
 		GestorDeCuestionario gestorCuestionario = GestorDeCuestionario.getInstance();		
 		Cuestionario cuestionario = gestorCuestionario.getCuestionarioById(idCuestionario);
 		
-		GestorDePregunta gestorPregunta = GestorDePregunta.getInstance();
-		
 		List<Factor> factores;
 		Random rand = new Random();
 		
 		List<Pregunta> listaPreguntas;
 		List<PreguntaEnCuestionario> preguntasEnCuestionario = new ArrayList<PreguntaEnCuestionario>();
-		Pregunta p;
+		Pregunta p1;
+		Pregunta p2;
 		
 		for(PuntajePorCompetencia puntaje : cuestionario.getResultadoXCompetencia()) {
 			
@@ -195,8 +194,17 @@ public class GestorDeCuestionario {
 				listaPreguntas = f.getPreguntas();
 				
 				if(!(listaPreguntas.size() < 2)) {
-					p = listaPreguntas.get(rand.nextInt(f.getPreguntas().size()));
-					preguntasEnCuestionario.add(new PreguntaEnCuestionario(f, p));
+					p1 = listaPreguntas.get(rand.nextInt(f.getPreguntas().size()));
+					
+					p2 = listaPreguntas.get(rand.nextInt(f.getPreguntas().size()));
+					
+					while(p1==p2) {
+						p2 = listaPreguntas.get(rand.nextInt(f.getPreguntas().size()));
+					}
+					
+					preguntasEnCuestionario.add(new PreguntaEnCuestionario(f, p1));
+					
+					preguntasEnCuestionario.add(new PreguntaEnCuestionario(f, p2));
 				} 
 			}
 			
@@ -206,28 +214,40 @@ public class GestorDeCuestionario {
 				return null;
 			}
 		}
-			
+		
 			Collections.shuffle(preguntasEnCuestionario);
 			
 			//Creo bloques
-			ParametrosDao parametros = new ParametrosDaoImp();
-			int preguntasPorBloque = parametros.getPreguntasPorBloque();
+			//ParametrosDao parametros = new ParametrosDaoImp();
+			int preguntasPorBloque = 4; //parametros.getPreguntasPorBloque();
 			
 			GestorDeBloque gestorBloque = GestorDeBloque.getInstance();
 			
-			int cantidadDeBloques = (int) (preguntasEnCuestionario.size()/preguntasPorBloque) + 1;
+			
+			int cantidadDeBloques;
+			
+			if(preguntasEnCuestionario.size()%preguntasPorBloque==0)
+			cantidadDeBloques= preguntasEnCuestionario.size()/preguntasPorBloque;
+			else cantidadDeBloques= (int) ((preguntasEnCuestionario.size()/preguntasPorBloque)+1);
 			
 			Bloque bloqueX;
 			
+			System.out.println("Me atrapaste, es cine.");
+			
+			int contadorTotal = 0;
+			
 			for(int j = 0; j<cantidadDeBloques; j++) {
+				
+				System.out.println("Entre al otro loop");
 				
 				List<PreguntaEnCuestionario> preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
 				
 				int h = 0;
 				
-				while(h < preguntasPorBloque) {
+				while(h < preguntasPorBloque && contadorTotal < preguntasEnCuestionario.size()) {
 					preguntasEnBloque.add(preguntasEnCuestionario.get(h));
 					h++;
+					contadorTotal++;
 				}
 				
 				bloqueX = gestorBloque.createBloque(preguntasEnBloque, j+1, false);
@@ -237,7 +257,7 @@ public class GestorDeCuestionario {
 			}
 			
 			cuestionario.setFechaComienzo(new Date());
-			cuestionario.setEstado(new Estado(new Date(), "Activo"));
+			cuestionario.setEstado(new Estado(new Date(), "EnProceso"));
 			cuestionario.setCantidadAccesos(1);
 			cuestionario.setUltimoAcceso(new Date());
 			

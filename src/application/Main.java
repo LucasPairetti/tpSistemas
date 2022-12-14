@@ -39,6 +39,7 @@ public class Main extends Application {
 	}
 	
 	public static void main(String[] args) {
+		
 		/*
 		//Creo respuestas
 		Respuesta respuesta1 = new Respuesta("Soy digno de confianza, porque a través de mis hechos profesionales lo demuestro.", 1);

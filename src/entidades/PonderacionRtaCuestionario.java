@@ -10,7 +10,7 @@ public class PonderacionRtaCuestionario {
 	private int idPonderacionRtaCuestionario;
 	@Column(nullable = false)
 	private int ponderacion;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinColumn(name="respuesta_id", nullable = false, referencedColumnName="idRespuestaEnCuestionario", 
 				foreignKey=@ForeignKey(name="FK_Ponderacion_RespuestaEnCuestionario", 
 				value=ConstraintMode.CONSTRAINT))

@@ -30,7 +30,7 @@ public class Cuestionario {
 	@Column(nullable = true)
 	private Date fechaComienzo;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-	@JoinColumn(name="cuestionario_id", nullable = false, referencedColumnName="idCuestionario" , 
+	@JoinColumn(name="cuestionario_id", nullable = true, referencedColumnName="idCuestionario" , 
 				foreignKey=@ForeignKey(name="FK_Bloque_Cuestionario", value=ConstraintMode.CONSTRAINT))
 	private List<Bloque> bloques;
 	@OneToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)

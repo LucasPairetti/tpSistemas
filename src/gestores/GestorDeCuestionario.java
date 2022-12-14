@@ -217,8 +217,8 @@ public class GestorDeCuestionario {
 			Collections.shuffle(preguntasEnCuestionario);
 			
 			//Creo bloques
-			//ParametrosDao parametros = new ParametrosDaoImp();
-			int preguntasPorBloque = 2; //parametros.getPreguntasPorBloque();
+			ParametrosDao parametros = new ParametrosDaoImp();
+			int preguntasPorBloque = parametros.getPreguntasPorBloque();
 			
 			GestorDeBloque gestorBloque = GestorDeBloque.getInstance();
 			
@@ -229,19 +229,24 @@ public class GestorDeCuestionario {
 			cantidadDeBloques= preguntasEnCuestionario.size()/preguntasPorBloque;
 			else cantidadDeBloques= (int) ((preguntasEnCuestionario.size()/preguntasPorBloque)+1);
 			
+			System.out.println(preguntasPorBloque);
+			System.out.println(cantidadDeBloques);
+			System.out.println(preguntasEnCuestionario.size());
+			
 			Bloque bloqueX;
 			
 			int contadorTotal = 0;
 			
 			List<PreguntaEnCuestionario> preguntasEnBloque;
-			int h = 0;
 			
 			for(int j = 0; j<cantidadDeBloques; j++) {
+				
+				int h = 0;
 				
 				preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
 				
 				while(h < preguntasPorBloque && contadorTotal < preguntasEnCuestionario.size()) {
-					preguntasEnBloque.add(preguntasEnCuestionario.get(h));
+					preguntasEnBloque.add(preguntasEnCuestionario.get(h+j*preguntasPorBloque));
 					h++;
 					contadorTotal++;
 				}

@@ -99,28 +99,16 @@ public class IngresoCandidatoController implements Initializable {
     	}
     	String tipoDoc= tipoDocComboBox.getSelectionModel().getSelectedItem();
     	int  nroDoc=Integer.parseInt(usuarioTextField.getText());
-    	String clave;
-    	if(passwordFieldHidden.getText().length()>=passwordFieldShowed.getText().length()) { //este if lo pongo xq como son dos textfield, no se cual es el completo (asumo que es el que tiene mas caracteres)
-    		clave = passwordFieldHidden.getText(); 
-    	}else {
-    		clave = passwordFieldShowed.getText(); 
-    	}
-    	
+    	String clave = passwordFieldHidden.getText(); ;
+        if(!passwordFieldHidden.isVisible()) clave = passwordFieldShowed.getText();
     	
     	GestorDeAutenticacion gestorDeAutenticacion = GestorDeAutenticacion.getInstance();
     	
     	if(!gestorDeAutenticacion.autenticarCandidato(tipoDoc, nroDoc, clave)) {
-    		System.out.println("Los datos ingresados no son válidos o no existe un cuestionario para el Candidato"); 
+    		System.out.println("Los datos ingresados no son vÃ¡lidos o no existe un cuestionario para el Candidato"); 
     		return;}
     	
-    	/*
-    	 * tenes tipoDoc, nroDoc y clave para como atributos para hacer la validacion
-    	 * misma logica que en validar consultor, solo que aun no tengo pensada la interfaz que le sigue a esto
-    	 * 
-    	 */
-    	
-    	
-    	//ahora necesito obtener el idCuestionario para pasarselo a la interfaz Instrucciones
+
     	
     	
     	Candidato candidato = gestorCandidato.getCandidatoByNroDocumento(tipoDoc, nroDoc);
@@ -158,15 +146,12 @@ public class IngresoCandidatoController implements Initializable {
 		} else {
 		if(resultado.getClass()==BloqueDTO.class) {
 			
-			FXMLLoader loader = new FXMLLoader((getClass().getResource("/views/ResolverCuestionario.fxml")));
-
+		Parent root;
 			try {
 				
+				root = FXMLLoader.load((getClass().getResource("/views/CompletarCuestionario.fxml")));
 				
-				
-				Parent root = (Parent)loader.load();
-				
-				Stage window = (Stage)ingresarButton.getScene().getWindow();
+				Stage window = new Stage();
 				window.setTitle("Resolver cuestionario");
 		    	window.setScene(new Scene(root));
 		    	

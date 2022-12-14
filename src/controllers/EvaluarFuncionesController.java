@@ -23,6 +23,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
@@ -149,20 +150,28 @@ public class EvaluarFuncionesController implements Initializable{
 
     @FXML
     void finalizarButtonClicked(ActionEvent event) {
-    	
-    	
-    	Parent root;
-		try {
-			root = FXMLLoader.load((getClass().getResource("/views/UsuarioConsultor.fxml")));
-			Stage window = (Stage)finalizarButton.getScene().getWindow();
-			window.setTitle("Usuario consultor");
-	    	window.setScene(new Scene(root));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-    	
+
+
+        if(listaCandidatosSeleccionados.isEmpty()) {
+            Alert alerta= new Alert(Alert.AlertType.WARNING);
+            alerta.setTitle("Error puesto no seleccionado");
+            alerta.setContentText("Por favor seleccione un puesto y pulse siguiente antes de finalizar");
+            alerta.showAndWait();
+        }else {
+
+        Parent root;
+        try {
+            root = FXMLLoader.load((getClass().getResource("/views/UsuarioConsultor.fxml")));
+            Stage window = (Stage)finalizarButton.getScene().getWindow();
+            window.setTitle("Usuario consultor");
+            window.setScene(new Scene(root));
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        }
     }
+
 
     @FXML
     void seleccionarButtonClicked(ActionEvent event) {
@@ -205,7 +214,6 @@ public class EvaluarFuncionesController implements Initializable{
     		
     		c.setClave(gestorCandidatos.getCandidatoByDTO(c).getCuestionario().getClave()) ;
     		
-    		//falta id cuestionario
     	}
     	listaCandidatosSeleccionados.addAll(candidatos);
    

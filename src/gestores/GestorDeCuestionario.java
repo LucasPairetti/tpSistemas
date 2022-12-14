@@ -98,7 +98,7 @@ public class GestorDeCuestionario {
 		
     	Cuestionario cuestionario = this.getCuestionarioById(idCuestionario);
     	  
-    	 if(cuestionario.getEstado().getEstado()=="EnProceso"){
+    	 if(cuestionario.getEstado().getEstado().equals("EnProceso")){
     		 
     		 int milisecondsByDay = 86400000;
     		 int dias = (int) (((new Date()).getTime() - cuestionario.getFechaComienzo().getTime()) / milisecondsByDay);
@@ -117,8 +117,8 @@ public class GestorDeCuestionario {
     	 }
 	    	 
     	 if((cuestionario.getCantidadAccesos()+1)>3) {
-	    		 cuestionario.getEstado().setEstado("Incompleto");
-	    	 	 cuestionario.getEstado().setFecha(new Date());
+    		 	Estado estado2 = new Estado(new Date(), "Incompleto");
+	    		 cuestionario.setEstado(estado2);
 	    	  
 		    	  Alert alerta= new Alert(Alert.AlertType.WARNING);
 		            	alerta.setTitle("Cantidad de accesos");
@@ -159,8 +159,7 @@ public class GestorDeCuestionario {
 	            	alerta.setContentText("El tiempo para iniciar el cuestionario a expirado");
 	            	alerta.showAndWait();
 	           
-	            	return new Exception(); 
-	            	//Ojo
+	            	return new Exception();
 	    	 }
 	    	 
 	    	 return null;
@@ -232,13 +231,10 @@ public class GestorDeCuestionario {
 			
 			Bloque bloqueX;
 			
-			System.out.println("Me atrapaste, es cine.");
-			
 			int contadorTotal = 0;
 			
 			for(int j = 0; j<cantidadDeBloques; j++) {
 				
-				System.out.println("Entre al otro loop");
 				
 				List<PreguntaEnCuestionario> preguntasEnBloque = new ArrayList<PreguntaEnCuestionario>();
 				
